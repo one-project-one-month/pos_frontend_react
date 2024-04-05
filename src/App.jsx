@@ -1,13 +1,11 @@
-
 import './App.css'
+import View from './Route/View'
 
 function App() {
 
   return (
     <>
-     <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+      <View />
     </>
   )
 }
