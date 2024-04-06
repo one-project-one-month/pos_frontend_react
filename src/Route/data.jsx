@@ -1,3 +1,5 @@
+
+export const routes=[
 import Main from '../Layout/Main'
 import NotFound from '../Pages/NotFound/NotFound'
 import Dashboard from '../Pages/Dashboard/Dashboard'
@@ -71,5 +73,4 @@ export const routes=[
                 ]
             }
         ]
-    }
 ]
