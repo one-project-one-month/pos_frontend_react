@@ -2,7 +2,9 @@ import React from 'react'
 
 const Invoice = () => {
   return (
-    <div>Invoice</div>
+    <section className=' InvoiceSection  bg-[#28243d] ' >
+      
+    </section>
   )
 }
 

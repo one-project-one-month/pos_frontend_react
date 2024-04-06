@@ -1,5 +1,10 @@
 .InvoiceSection {
-  @apply flex absolute right-0 w-[80%] top-[50px] h-[90%] justify-between items-center p-2 rounded-md bg-[#28243d];
+  @apply flex gap-3 absolute right-0 w-[80%] top-[50px] h-[90%] justify-between items-start p-2 rounded-md bg-[#28243d];
+}
+
+.addInvoiceCard {
+  @apply flex gap-2   w-[80%]  h-full justify-between items-center p-2 rounded-md bg-[#28243d];
+
 }
 
 .InvoiceCard {

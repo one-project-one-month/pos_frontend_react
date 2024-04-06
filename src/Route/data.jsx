@@ -26,7 +26,7 @@ export const routes =
     children: [
       {
         index: true,
-        Component: Dashboard,
+        Component: <Dashboard/>,
       },
       {
         path: "general",
@@ -34,17 +34,17 @@ export const routes =
         children: [
           {
             index: true,
-            Component: Staff,
+            Component: <Staff/>,
           },
           {
             path: "general/shops",
             handle: { title: "Shop" },
-            Component: Shop,
+            Component: <Shop/>,
           },
           {
             path: "general/customers",
             handle: { title: "Customer" },
-            Component: Customer,
+            Component: <Customer/>,
           },
         ],
       },
@@ -55,12 +55,12 @@ export const routes =
         children: [
           {
             index: true,
-            Component: Product,
+            Component: <Product/>,
           },
           {
             path: "products/productcategories",
             handle: { title: "Product Category" },
-            Component: ProductCategory,
+            Component: <ProductCategory/>,
           },
         ],
       },
@@ -71,33 +71,33 @@ export const routes =
         children: [
           {
             index: true,
-            Component: Invoice,
+            Component: <Invoice/>,
           },
           {
             path: "invoice/list",
             handle: { title: "Invoice List" },
-            Component: InvoiceList,
+            Component: <InvoiceList/>,
           },
           {
             path: "invoice/edit",
             handle: { title: "Edit Invoice" },
-            Component: EditInvoice,
+            Component: <EditInvoice/>,
           },
           {
             path: "invoice/add",
             handle: { title: "Create New Invoice" },
-            Component: AddNewInvoice,
+            Component: <AddNewInvoice/>,
           },
           {
             path: "invoice/preview",
             handle: { title: "Invoice Preview" },
-            Component: PreviewInvoice,
+            Component: <PreviewInvoice/>,
           },
         ],
       },
       {
         path: "history",
-        Component: HistoryPage,
+        Component: <HistoryPage/>,
 
         handle: { title: "History" },
       },
@@ -107,17 +107,17 @@ export const routes =
         children: [
           {
             index: true,
-            Component: SaleInvoice,
+            Component: <SaleInvoice/>,
           },
           {
             path: "saleinvoices/saleinvoicedetails",
             handle: { title: "Saleinvoice Detail" },
-            Component: Detail,
+            Component: <Detail/>,
           },
           {
             path: "saleinvoices/saleinvoicedetails",
             handle: { title: "Saleinvoice Detail" },
-            Component: Detail,
+            Component: <Detail/>,
           },
         ],
       },

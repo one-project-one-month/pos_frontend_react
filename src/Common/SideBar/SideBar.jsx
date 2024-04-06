@@ -132,7 +132,7 @@ const SideBar = () => {
                       key={index}
                       style={{
                         visibility:
-                          menuItemArrow === true ? "visible" : "collapse",
+                          menuItemArrow === true ? "visible" : "hidden",
                         height: menuItemArrow === true ? "auto" : "0px",
                       }}
                       className=" flex flex-col w-full  justify-start items-center "
