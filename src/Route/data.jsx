@@ -114,11 +114,7 @@ export const routes =
             handle: { title: "Saleinvoice Detail" },
             Component: <Detail/>,
           },
-          {
-            path: "saleinvoices/saleinvoicedetails",
-            handle: { title: "Saleinvoice Detail" },
-            Component: <Detail/>,
-          },
+         
         ],
       },
     ],
