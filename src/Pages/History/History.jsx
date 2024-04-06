@@ -1,7 +1,7 @@
 
 const HistoryPage = () => {
   return (
-    <div className=" absolute flex p-2 w-[80%] text-[#d4d4d4] right-0 h-screen justify-center items-center ">
+    <div  className=' flex gap-3 absolute right-10 w-[70%] top-[50px] h-[90%] justify-between items-start p-2 rounded-md bg-[#312d4b]'>
       History
     </div>
   )

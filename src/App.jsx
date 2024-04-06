@@ -4,6 +4,7 @@ import NavBar from "./Common/Header/NavBar";
 import SideBar from "./Common/SideBar/SideBar";
 import Home from "./Pages/Home/Home";
 import { routes } from "./Route/data";
+import NotFound from "./Pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/*" element={<NotFound />} />
           {routes.map((route) =>
             route.children.map((general, index) => {
               return (
