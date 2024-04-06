@@ -24,22 +24,22 @@ const SideBar = () => {
     {
       routeName: "Invoice",
       icon: <NotepadText />,
-      Item: [
+      children: [
         {
-          itemName: "List",
-          route: "/invoice-list",
+          childrenName: "List",
+          route: "invoice/list",
         },
         {
-          itemName: "Preview",
-          route: "/invoice-preview",
+          childrenName: "Preview",
+          route: "invoice/preview",
         },
         {
-          itemName: "Edit",
-          route: "/invoice-edit",
+          childrenName: "Edit",
+          route: "invoice/edit",
         },
         {
-          itemName: "Add",
-          route: "/add-new-invoice",
+          childrenName: "Add",
+          route: "invoice/add",
         },
       ],
     },
@@ -65,37 +65,68 @@ const SideBar = () => {
               key={index}
               className=" flex flex-col gap-1 justify-start items-center h-auto w-[90%] "
             >
-              <NavLink
-                to={side.route ? side.route : currentRoute}
-                onClick={() => {
-                  side.Item &&
-                    dispatch(
-                      menuItemArrowOn({ menuItemArrow: !menuItemArrow })
-                    );
-                }}
-                className=" flex w-[100%] justify-start gap-2 text-[#e6e6eb] hover:bg-[#3a3541] items-center pt-1 pb-2 px-4 cursor-pointer rounded-r-full "
-              >
-                <div className=" w-[10%] h-full flex justify-center items-center  ">
-                  {side.icon}
-                </div>
-                <div className=" w-[80%] h-full flex justify-start items-center  ">
-                  {side.routeName}
-                </div>
-
-                {side.Item && (
-                  <div className=" relative  transition-transform flex self-end w-[10%] justify-center items-center  ">
-                    <IoIosArrowForward
-                      className=" transition-all   "
-                      style={{
-                        rotate: menuItemArrow === true ? "90deg" : "0deg",
-                      }}
-                    />
+              {side.route ? (
+                <NavLink
+                  to={side.route ? side.route : currentRoute}
+                  onClick={() => {
+                    side.children &&
+                      dispatch(
+                        menuItemArrowOn({ menuItemArrow: !menuItemArrow })
+                      );
+                  }}
+                  className=" menu-item flex w-[100%] justify-start gap-2 text-[#e6e6eb] hover:bg-[#3a3541] items-center pt-1 pb-2 px-4 cursor-pointer rounded-r-full "
+                >
+                  <div className=" w-[10%] h-full flex justify-center items-center  ">
+                    {side.icon}
                   </div>
-                )}
-              </NavLink>
+                  <div className=" w-[80%] h-full flex justify-start items-center  ">
+                    {side.routeName}
+                  </div>
 
-              {side.Item &&
-                side.Item.map((item, index) => {
+                  {side.children && (
+                    <div className=" relative  transition-transform flex self-end w-[10%] justify-center items-center  ">
+                      <IoIosArrowForward
+                        className=" transition-all   "
+                        style={{
+                          rotate: menuItemArrow === true ? "90deg" : "0deg",
+                        }}
+                      />
+                    </div>
+                  )}
+                </NavLink>
+              ) : (
+                <div
+                  to={side.route ? side.route : currentRoute}
+                  onClick={() => {
+                    side.children &&
+                      dispatch(
+                        menuItemArrowOn({ menuItemArrow: !menuItemArrow })
+                      );
+                  }}
+                  className=" menu-item flex w-[100%] justify-start gap-2 text-[#e6e6eb] hover:bg-[#3a3541] items-center pt-1 pb-2 px-4 cursor-pointer rounded-r-full "
+                >
+                  <div className=" w-[10%] h-full flex justify-center items-center  ">
+                    {side.icon}
+                  </div>
+                  <div className=" w-[80%] h-full flex justify-start items-center  ">
+                    {side.routeName}
+                  </div>
+
+                  {side.children && (
+                    <div className=" relative  transition-transform flex self-end w-[10%] justify-center items-center  ">
+                      <IoIosArrowForward
+                        className=" transition-all   "
+                        style={{
+                          rotate: menuItemArrow === true ? "90deg" : "0deg",
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {side.children &&
+                side.children.map((item, index) => {
                   return (
                     <div
                       key={index}
@@ -112,7 +143,7 @@ const SideBar = () => {
                       >
                         <div className=" p-1 rounded-full outline-[#e6e6eb] outline-[1.5px] outline "></div>
                         <div className=" flex justify-start items-center   ">
-                          <p>{item.itemName}</p>
+                          <p>{item.childrenName}</p>
                         </div>
                       </NavLink>
                     </div>

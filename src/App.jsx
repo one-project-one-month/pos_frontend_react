@@ -15,13 +15,15 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/add-new-invoice" element={<AddNewInvoice />} />
-          <Route path="/dashboard" element={<Dashboard/>} />
-          
+          <Route path="invoice/add" element={<AddNewInvoice />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
 
-  
+
+      {/* <SideBar />
+        <NavBar /> */}
+      {/* <View/> */}
     </section>
   );
 }
