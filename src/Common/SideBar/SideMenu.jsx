@@ -13,7 +13,7 @@ const SideMenu = [
       children:[
         {
           childrenName:'Shop',
-          route:'/general/shop',
+          route:'/general/shops',
           icon:<ShoppingBagIcon/>
         },
         {
