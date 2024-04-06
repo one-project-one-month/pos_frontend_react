@@ -19,10 +19,10 @@ export const routes =
 [
   {
     path: "/",
-    Component: Main,
-
+    Component: <Dashboard/>,
     handle: { title: "Home" },
     errorElement: <NotFound />,
+
     children: [
       {
         index: true,
@@ -31,6 +31,7 @@ export const routes =
       {
         path: "general",
         handle: { title: "Staffs" },
+        Component: <Staff/>,
         children: [
           {
             index: true,
@@ -50,7 +51,7 @@ export const routes =
       },
       {
         path: "products",
-
+        Component: <Product/>,
         handle: { title: "Products" },
         children: [
           {
@@ -66,7 +67,7 @@ export const routes =
       },
       {
         path: "invoice",
-
+        Component: <Invoice/>,
         handle: { title: "Invoice" },
         children: [
           {
@@ -104,6 +105,7 @@ export const routes =
       {
         path: "saleinvoices",
         handle: { title: "Saleinvoices" },
+        Component: <SaleInvoice/>,
         children: [
           {
             index: true,
