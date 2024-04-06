@@ -5,6 +5,7 @@ import SideBar from "./Common/SideBar/SideBar";
 import View from "./Route/View";
 import Home from "./Pages/Home/Home";
 import AddNewInvoice from "./Pages/Invoice/AddNewInvoice";
+import Dashboard from "./Pages/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/add-new-invoice" element={<AddNewInvoice />} />
+          <Route path="/dashboard" element={<Dashboard/>} />
         </Routes>
       </BrowserRouter>
     </section>
