@@ -1,0 +1,3 @@
+.mainSection {
+    @apply flex w-full h-screen justify-between items-start
+}

@@ -1,9 +1,9 @@
-import React from 'react'
-
 const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
+    <div className=" absolute flex p-2 w-[80%] text-[#d4d4d4] right-0 h-screen justify-center items-center ">
+      Home
+    </div>
+  );
+};
 
-export default Home
+export default Home;

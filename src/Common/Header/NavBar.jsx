@@ -1,10 +1,9 @@
-import React from 'react'
-
+import './nav.css'
 const NavBar = () => {
   return (
-    <div>
+    <section className=' navBar ' >
       NavBar
-    </div>
+    </section>
   )
 }
 

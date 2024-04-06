@@ -1,13 +1,24 @@
-import './App.css'
-import View from './Route/View'
+import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
+import "./App.css";
+import NavBar from "./Common/Header/NavBar";
+import SideBar from "./Common/SideBar/SideBar";
+import View from "./Route/View";
+import Home from "./Pages/Home/Home";
+import AddNewInvoice from "./Pages/Invoice/AddNewInvoice";
 
 function App() {
-
   return (
-    <>
-      <View />
-    </>
-  )
+    <section className=" bg-[#28243d] mainSection flex relative justify-end  w-full h-screen ">
+      <BrowserRouter>
+        <SideBar />
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/add-new-invoice" element={<AddNewInvoice />} />
+        </Routes>
+      </BrowserRouter>
+    </section>
+  );
 }
 
-export default App
+export default App;
