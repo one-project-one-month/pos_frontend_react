@@ -1,11 +1,9 @@
 import "./sidebar.css";
-
 import { NavLink } from "react-router-dom";
 import SideMenuItem from "./SideMenuItem";
 import SideMenu from "./SideMenu";
 
 const SideBar = () => {
-
   return (
     <aside className=" sideBarSection ">
       <div className=" tracking-wide flex flex-col gap-3 w-full justify-start items-start ">
