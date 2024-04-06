@@ -17,8 +17,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/add-new-invoice" element={<AddNewInvoice />} />
           <Route path="/dashboard" element={<Dashboard/>} />
+          
         </Routes>
       </BrowserRouter>
+
+  
     </section>
   );
 }
