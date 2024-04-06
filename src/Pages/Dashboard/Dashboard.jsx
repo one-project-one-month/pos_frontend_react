@@ -1,3 +1,4 @@
+
 import './dashboard.css'
 const Dashboard = () => {
   return (
@@ -6,6 +7,13 @@ const Dashboard = () => {
         Dashboard
       </div>
       </section>
+
+import React from 'react'
+
+const Dashboard = () => {
+  return (
+    <div>Dashboard</div>
+
   )
 }
 
