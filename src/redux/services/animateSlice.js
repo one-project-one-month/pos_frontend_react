@@ -3,13 +3,14 @@ import Cookies from "js-cookie";
 
 const initialState = {
   blur: false,
-  noti: false,
-  account: false,
+  page: false,
+  exportSet: false,
   menu: false,
-  messenger: false,
+  addCat: false,
   width: null,
   height: null,
   menuItemArrow: false,
+  pageNum:7
 };
 
 const STORAGE_KEY = "Animate";
@@ -30,34 +31,37 @@ export const animateSlice = createSlice({
     blurOn: (state, { payload }) => {
       state.blur = payload.blur;
     },
+    setPageNum: (state, { payload }) => {
+      state.pageNum = payload.pageNum;
+    },
     menuItemArrowOn: (state, { payload }) => {
       state.menuItemArrow = payload.menuItemArrow;
     },
-    accountSettingOn: (state, { payload }) => {
-      state.account = payload.account;
-      state.noti = false;
-      state.messenger = false;
+    exportSettingOn: (state, { payload }) => {
+      state.exportSet = payload.exportSet;
+      state.page = false;
+      state.addCat = false;
       state.menu = false;
     },
-    notiOn: (state, { payload }) => {
-      state.account = false;
-      state.noti = payload.noti;
-      state.messenger = false;
+    pageOn: (state, { payload }) => {
+      state.exportSet = false;
+      state.page = payload.page;
+      state.addCat = false;
       state.menu = false;
     },
-    messengerOn: (state, { payload }) => {
-      state.messenger = payload.messenger;
+    addCatOn: (state, { payload }) => {
+      state.addCat = payload.addCat;
 
-      state.account = false;
-      state.noti = false;
+      state.exportSet = false;
+      state.page = false;
       state.menu = false;
     },
     menuOn: (state, { payload }) => {
       state.menu = payload.menu;
 
-      state.account = false;
-      state.noti = false;
-      state.messenger = false;
+      state.exportSet = false;
+      state.page = false;
+      state.addCat = false;
     },
     setArea: (state, { payload }) => {
       state.width = payload.width;
@@ -68,11 +72,12 @@ export const animateSlice = createSlice({
 
 export const {
   blurOn,
-  accountSettingOn,
-  notiOn,
-  messengerOn,
+  exportSettingOn,
+  pageOn,
+  addCatOn,
   menuOn,
   setArea,
   menuItemArrowOn,
+  setPageNum
 } = animateSlice.actions;
 export default animateSlice.reducer;
