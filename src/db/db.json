@@ -186,5 +186,117 @@
             "mobileNo":7778889999,
             "address":"555 Maple St, Boroughville, USA"
         }
+    ],
+    "customers": [
+        {
+            "id": 1,
+            "customerCode": "C001",
+            "customerName": "Alice Brown",
+            "dateOfBirth": "1985-07-15",
+            "mobileNo": 1234567890,
+            "gender": "Female",
+            "stateCode": "NY",
+            "townshipCode": "NYC",
+            "address": "123 Main St, Cityville, USA"
+        },
+        {
+            "id": 2,
+            "customerCode": "C002",
+            "customerName": "Bob Smith",
+            "dateOfBirth": "1990-04-22",
+            "mobileNo": 2345678901,
+            "gender": "Male",
+            "stateCode": "CA",
+            "townshipCode": "LA",
+            "address": "456 Elm St, Townsville, USA"
+        },
+        {
+            "id": 3,
+            "customerCode": "C003",
+            "customerName": "Emily Johnson",
+            "dateOfBirth": "1978-12-03",
+            "mobileNo": 3456789012,
+            "gender": "Female",
+            "stateCode": "TX",
+            "townshipCode": "DAL",
+            "address": "789 Oak St, Villagetown, USA"
+        },
+        {
+            "id": 4,
+            "customerCode": "C004",
+            "customerName": "David Wilson",
+            "dateOfBirth": "1983-09-18",
+            "mobileNo": 4567890123,
+            "gender": "Male",
+            "stateCode": "FL",
+            "townshipCode": "MIA",
+            "address": "101 Pine St, Hamletville, USA"
+        },
+        {
+            "id": 5,
+            "customerCode": "C005",
+            "customerName": "Sophia Martinez",
+            "dateOfBirth": "1995-02-07",
+            "mobileNo": 5678901234,
+            "gender": "Female",
+            "stateCode": "IL",
+            "townshipCode": "CHI",
+            "address": "202 Cedar St, Suburbia, USA"
+        },
+        {
+            "id": 6,
+            "customerCode": "C006",
+            "customerName": "Michael Taylor",
+            "dateOfBirth": "1989-06-30",
+            "mobileNo": 6789012345,
+            "gender": "Male",
+            "stateCode": "PA",
+            "townshipCode": "PHI",
+            "address": "303 Maple St, Countryside, USA"
+        },
+        {
+            "id": 7,
+            "customerCode": "C007",
+            "customerName": "Olivia Anderson",
+            "dateOfBirth": "1975-10-12",
+            "mobileNo": 7890123456,
+            "gender": "Female",
+            "stateCode": "OH",
+            "townshipCode": "CLE",
+            "address": "404 Birch St, Townsville, USA"
+        },
+        {
+            "id": 8,
+            "customerCode": "C008",
+            "customerName": "Daniel Garcia",
+            "dateOfBirth": "1980-03-25",
+            "mobileNo": 8901234567,
+            "gender": "Male",
+            "stateCode": "GA",
+            "townshipCode": "ATL",
+            "address": "505 Oak St, Cityville, USA"
+        },
+        {
+            "id": 9,
+            "customerCode": "C009",
+            "customerName": "Isabella Hernandez",
+            "dateOfBirth": "1987-08-14",
+            "mobileNo": 9012345678,
+            "gender": "Female",
+            "stateCode": "AZ",
+            "townshipCode": "PHX",
+            "address": "606 Walnut St, Metropolis, USA"
+        },
+        {
+            "id": 10,
+            "customerCode": "C010",
+            "customerName": "William Lopez",
+            "dateOfBirth": "1992-01-09",
+            "mobileNo": 1234509876,
+            "gender": "Male",
+            "stateCode": "MA",
+            "townshipCode": "BOS",
+            "address": "707 Pine St, Villageville, USA"
+        }
     ]
 }

@@ -3,7 +3,7 @@ import NotFound from "../Pages/NotFound/NotFound";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import Staff from "../Pages/Staff/Staff";
 import Shop from "../Pages/Shop/Shop";
-import Customer from "../Pages/Customer/Customer";
+import CustomerList from "../Pages/Customer/CustomerList";
 import SaleInvoice from "../Pages/SaleInvoice/Saleinvoice";
 import Detail from "../Pages/Detail/Detail";
 import Product from "../Pages/Product/Product";
@@ -15,110 +15,113 @@ import AddNewInvoice from "../Pages/Invoice/AddNewInvoice";
 import PreviewInvoice from "../Pages/Invoice/PreviewInvoice";
 import HistoryPage from "../Pages/History/History";
 
-export const routes = 
-[
-  {
-    path: "/",
-    Component: <Dashboard/>,
-    handle: { title: "Home" },
-    errorElement: <NotFound />,
+export const routes = [
+    {
+        path: "/",
+        Component: <Dashboard />,
+        handle: { title: "Home" },
+        errorElement: <NotFound />,
 
-    children: [
-      {
-        index: true,
-        Component: <Dashboard/>,
-      },
-      {
-        path: "general",
-        handle: { title: "Staffs" },
-        Component: <Staff/>,
         children: [
-          {
-            index: true,
-            Component: <Staff/>,
-          },
-          {
-            path: "general/shops",
-            handle: { title: "Shop" },
-            Component: <Shop/>,
-          },
-          {
-            path: "general/customers",
-            handle: { title: "Customer" },
-            Component: <Customer/>,
-          },
-        ],
-      },
-      {
-        path: "products",
-        Component: <Product/>,
-        handle: { title: "Products" },
-        children: [
-          {
-            index: true,
-            Component: <Product/>,
-          },
-          {
-            path: "products/productcategories",
-            handle: { title: "Product Category" },
-            Component: <ProductCategory/>,
-          },
-        ],
-      },
-      {
-        path: "invoice",
-        Component: <Invoice/>,
-        handle: { title: "Invoice" },
-        children: [
-          {
-            index: true,
-            Component: <Invoice/>,
-          },
-          {
-            path: "invoice/list",
-            handle: { title: "Invoice List" },
-            Component: <InvoiceList/>,
-          },
-          {
-            path: "invoice/edit",
-            handle: { title: "Edit Invoice" },
-            Component: <EditInvoice/>,
-          },
-          {
-            path: "invoice/add",
-            handle: { title: "Create New Invoice" },
-            Component: <AddNewInvoice/>,
-          },
-          {
-            path: "invoice/preview",
-            handle: { title: "Invoice Preview" },
-            Component: <PreviewInvoice/>,
-          },
-        ],
-      },
-      {
-        path: "history",
-        Component: <HistoryPage/>,
+            {
+                index: true,
+                Component: <Dashboard />,
+            },
+            {
+                path: "general",
+                handle: { title: "Staffs" },
+                Component: <Staff />,
+                children: [
+                    {
+                        index: true,
+                        Component: <Staff />,
+                    },
+                    {
+                        path: "general/shops",
+                        handle: { title: "Shop" },
+                        Component: <Shop />,
+                    },
+                    {
+                        path: "general/customers",
+                        handle: { title: "CustomerList" },
+                        Component: <CustomerList />,
+                    },
+                    {
+                        path: "general/customers/:customerID",
+                        handle: { title: "CustomerList" },
+                        Component: <CustomerList />,
+                    },
+                ],
+            },
+            {
+                path: "products",
+                Component: <Product />,
+                handle: { title: "Products" },
+                children: [
+                    {
+                        index: true,
+                        Component: <Product />,
+                    },
+                    {
+                        path: "products/productcategories",
+                        handle: { title: "Product Category" },
+                        Component: <ProductCategory />,
+                    },
+                ],
+            },
+            {
+                path: "invoice",
+                Component: <Invoice />,
+                handle: { title: "Invoice" },
+                children: [
+                    {
+                        index: true,
+                        Component: <Invoice />,
+                    },
+                    {
+                        path: "invoice/list",
+                        handle: { title: "Invoice List" },
+                        Component: <InvoiceList />,
+                    },
+                    {
+                        path: "invoice/edit",
+                        handle: { title: "Edit Invoice" },
+                        Component: <EditInvoice />,
+                    },
+                    {
+                        path: "invoice/add",
+                        handle: { title: "Create New Invoice" },
+                        Component: <AddNewInvoice />,
+                    },
+                    {
+                        path: "invoice/preview",
+                        handle: { title: "Invoice Preview" },
+                        Component: <PreviewInvoice />,
+                    },
+                ],
+            },
+            {
+                path: "history",
+                Component: <HistoryPage />,
 
-        handle: { title: "History" },
-      },
-      {
-        path: "saleinvoices",
-        handle: { title: "Saleinvoices" },
-        Component: <SaleInvoice/>,
-        children: [
-          {
-            index: true,
-            Component: <SaleInvoice/>,
-          },
-          {
-            path: "saleinvoices/saleinvoicedetails",
-            handle: { title: "Saleinvoice Detail" },
-            Component: <Detail/>,
-          },
-         
+                handle: { title: "History" },
+            },
+            {
+                path: "saleinvoices",
+                handle: { title: "Saleinvoices" },
+                Component: <SaleInvoice />,
+                children: [
+                    {
+                        index: true,
+                        Component: <SaleInvoice />,
+                    },
+                    {
+                        path: "saleinvoices/saleinvoicedetails",
+                        handle: { title: "Saleinvoice Detail" },
+                        Component: <Detail />,
+                    },
+                ],
+            },
         ],
-      },
-    ],
-  },
+    },
 ];
