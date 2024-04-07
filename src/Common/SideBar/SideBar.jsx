@@ -32,6 +32,18 @@ const SideBar = () => {
             <p>Dashboard</p>
           </div>
         </NavLink>
+
+        <NavLink
+         to= {"/product"} 
+          className= " rounded-r-full py-1 text-[#e6e6eb]  cursor-pointer menu-item flex  justify-start px-4 items-center gap-3 w-[90%]"
+         >
+        
+          <div className= "flex justify-start items-center text-white mx-2 ">
+            <p>Products</p>
+          </div>
+
+         </NavLink>
+
         <div className=" flex flex-col gap-1 justify-start items-center h-auto w-[90%] ">
           <div
             onClick={() => {

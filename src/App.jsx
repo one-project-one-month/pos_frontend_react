@@ -6,6 +6,7 @@ import View from "./Route/View";
 import Home from "./Pages/Home/Home";
 import AddNewInvoice from "./Pages/Invoice/AddNewInvoice";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import Product from "./Pages/Product/Product"
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/add-new-invoice" element={<AddNewInvoice />} />
           <Route path="/dashboard" element={<Dashboard/>} />
-          
+          <Route path = "product" element= {<Product/>}/>
         </Routes>
       </BrowserRouter>
 

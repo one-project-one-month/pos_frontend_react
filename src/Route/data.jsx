@@ -1,5 +1,3 @@
-
-export const routes=[
 import Main from '../Layout/Main'
 import NotFound from '../Pages/NotFound/NotFound'
 import Dashboard from '../Pages/Dashboard/Dashboard'
@@ -11,66 +9,67 @@ import Detail from '../Pages/Detail/Detail'
 import Product from '../Pages/Product/Product'
 import ProductCategory from '../Pages/ProductCategory/Category'
 
-export const routes=[
+export const routes = [
     {
-        path:'/',
-        Component:Main,
-        handle: {title:"Home"},
-        errorElement:<NotFound />,
-        children:[
+        path: '/',
+        Component: Main,
+        handle: { title: "Home" },
+        errorElement: <NotFound />,
+        children: [
             {
-                index:true,
-                Component:Dashboard
+                index: true,
+                Component: Dashboard
             },
             {
-                path:"general",
-                handle:{title:"Staffs"},
-                children:[
+                path: "general",
+                handle: { title: "Staffs" },
+                children: [
                     {
-                        index:true,
-                        Component:Staff
+                        index: true,
+                        Component: Staff
                     },
                     {
-                        path:"general/shops",
-                        handle:{title:"Shop"},
-                        Component:Shop
+                        path: "general/shops",
+                        handle: { title: "Shop" },
+                        Component: Shop
                     },
                     {
-                        path:"general/customers",
-                        handle:{title:"Customer"},
-                        Component:Customer
+                        path: "general/customers",
+                        handle: { title: "Customer" },
+                        Component: Customer
                     }
                 ]
             },
             {
-                path:"products",
-                handle:{title:"Products"},
-                children:[
+                path: "products",
+                handle: { title: "Products" },
+                children: [
                     {
-                        index:true,
-                        Component:Product
+                        index: true,
+                        Component: Product
                     },
                     {
-                        path:"products/productcategories",
-                        handle:{title:"Product Category"},
-                        Component:ProductCategory
+                        path: "products/productcategories",
+                        handle: { title: "Product Category" },
+                        Component: ProductCategory
                     }
                 ]
             },
             {
-                path:"saleinvoices",
-                handle:{title:"Saleinvoices"},
-                children:[
+                path: "saleinvoices",
+                handle: { title: "Saleinvoices" },
+                children: [
                     {
-                        index:true,
-                        Component:SaleInvoice
+                        index: true,
+                        Component: SaleInvoice
                     },
                     {
-                        path:"saleinvoices/saleinvoicedetails",
-                        handle:{title:"Saleinvoice Detail"},
-                        Component:Detail
+                        path: "saleinvoices/saleinvoicedetails",
+                        handle: { title: "Saleinvoice Detail" },
+                        Component: Detail
                     }
                 ]
             }
         ]
-]
+    }
+];
