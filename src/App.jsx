@@ -6,6 +6,7 @@ import Home from "./Pages/Home/Home";
 import { routes } from "./Route/data";
 import NotFound from "./Pages/NotFound/NotFound";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import AddCategory from "./Pages/ProductCategory/AddCategory";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           )}
         </Routes>
       </BrowserRouter>
+      <AddCategory/>
     </section>
   );
 }
