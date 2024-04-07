@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import './Product.css';
 import productsData from "../../db/db.json"; // Correct the import path
