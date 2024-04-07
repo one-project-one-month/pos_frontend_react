@@ -5,3 +5,7 @@
 body {
     background-color: #28243d;
 }
+
+.addCatForm {
+    transition: all .5s ease ;
+}

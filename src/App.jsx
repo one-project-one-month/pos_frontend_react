@@ -2,11 +2,11 @@ import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
 import "./App.css";
 import NavBar from "./Common/Header/NavBar";
 import SideBar from "./Common/SideBar/SideBar";
-import View from "./Route/View";
 import Home from "./Pages/Home/Home";
-import AddNewInvoice from "./Pages/Invoice/AddNewInvoice";
+import { routes } from "./Route/data";
+import NotFound from "./Pages/NotFound/NotFound";
 import Dashboard from "./Pages/Dashboard/Dashboard";
-import Product from "./Pages/Product/Product"
+import AddCategory from "./Pages/ProductCategory/AddCategory";
 
 function App() {
   return (
@@ -15,14 +15,34 @@ function App() {
         <SideBar />
         <NavBar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/add-new-invoice" element={<AddNewInvoice />} />
-          <Route path="/dashboard" element={<Dashboard/>} />
-          <Route path = "product" element= {<Product/>}/>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/*" element={<NotFound />} />
+          {routes.map((route) =>
+            route.children.map((general, index) => {
+              return (
+                <>
+                  <Route
+                    key={index}
+                    path={general.path}
+                    element={general.Component}
+                  />
+                  {general?.children &&
+                    general.children.map((children, index) => {
+                      return (
+                        <Route
+                          key={index}
+                          path={children.path}
+                          element={children.Component}
+                        />
+                      );
+                    })}
+                </>
+              );
+            })
+          )}
         </Routes>
       </BrowserRouter>
-
-  
+      <AddCategory/>
     </section>
   );
 }

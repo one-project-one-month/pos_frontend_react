@@ -1,15 +1,9 @@
 import "./sidebar.css";
-import { FaRegClipboard } from "react-icons/fa";
-import { MdOutlineHome } from "react-icons/md";
-
-import { IoIosArrowForward } from "react-icons/io";
-import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { menuItemArrowOn } from "../../redux/services/animateSlice";
+import SideMenuItem from "./SideMenuItem";
+import SideMenu from "./SideMenu";
 
 const SideBar = () => {
-  const dispatch = useDispatch();
-  const { menuItemArrow } = useSelector((state) => state.animateSlice);
   return (
     <aside className=" sideBarSection ">
       <div className=" tracking-wide flex flex-col gap-3 w-full justify-start items-start ">
@@ -32,18 +26,6 @@ const SideBar = () => {
             <p>Dashboard</p>
           </div>
         </NavLink>
-
-        <NavLink
-         to= {"/product"} 
-          className= " rounded-r-full py-1 text-[#e6e6eb]  cursor-pointer menu-item flex  justify-start px-4 items-center gap-3 w-[90%]"
-         >
-        
-          <div className= "flex justify-start items-center text-white mx-2 ">
-            <p>Products</p>
-          </div>
-
-         </NavLink>
-
         <div className=" flex flex-col gap-1 justify-start items-center h-auto w-[90%] ">
           <div
             onClick={() => {
@@ -86,6 +68,10 @@ const SideBar = () => {
             </NavLink>
           </div>
         </div>
+
+        {SideMenu?.map((side, index) => {
+          return <SideMenuItem side={side}  key={index} />;
+        })}
       </div>
     </aside>
   );

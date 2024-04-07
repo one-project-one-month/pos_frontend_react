@@ -71,7 +71,7 @@
             "productCategoryCode":"Electronics"
         }
     ],
-    "product-Categories":[
+    "productCategories":[
         {
             "id":1,
             "productCategoryCode":"PC",

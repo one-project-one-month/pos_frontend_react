@@ -1,3 +1,9 @@
 .mainSection {
     @apply flex w-full h-screen justify-between items-start
 }
+
+@media print {
+    /* Styles for printing, e.g., hiding unnecessary elements, adjusting layout */
+    .no-print { display: none; }
+    table { border: 1px solid black; } /* Add borders for better readability */
+  }
