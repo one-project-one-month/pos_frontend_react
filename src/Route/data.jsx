@@ -1,6 +1,4 @@
 
-
-import Main from "../Layout/Main";
 import NotFound from "../Pages/NotFound/NotFound";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import Staff from "../Pages/Staff/Staff";
@@ -17,12 +15,12 @@ import AddNewInvoice from "../Pages/Invoice/AddNewInvoice";
 import PreviewInvoice from "../Pages/Invoice/PreviewInvoice";
 import HistoryPage from "../Pages/History/History";
 import PrintTable from "../Pages/ProductCategory/PrintTable";
+import AddStaff from '../Pages/Staff/AddStaff'
 
 export const routes = 
 [
   {
     path: "/",
-    Component: <Dashboard/>,
     handle: { title: "Home" },
     errorElement: <NotFound />,
 
@@ -39,6 +37,11 @@ export const routes =
           {
             index: true,
             Component: <Staff/>,
+          },
+          {
+            path: "general/add",
+            handle: { title: "Add Staff" },
+            Component: <AddStaff />,
           },
           {
             path: "general/shops",

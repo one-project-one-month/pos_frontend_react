@@ -1,58 +1,27 @@
+/* eslint-disable react/jsx-no-undef */
 import "./sidebar.css";
 import { NavLink } from "react-router-dom";
 import SideMenuItem from "./SideMenuItem";
 import SideMenu from "./SideMenu";
 
-const SideBar = () => {
+// eslint-disable-next-line react/prop-types
+const SideBar = ({menuItemArrow}) => {
   return (
     <aside className=" sideBarSection ">
-      <div className=" tracking-wide flex flex-col gap-3 w-full justify-start items-start ">
+      <div className=" tracking-wide flex flex-col gap-3 w-full justify-start items-start border-r-2">
         <NavLink
           to={"/"}
           className=" cursor-pointer  logo px-4 py-2 justify-center items-start font-bold text-[#9055fd] "
         >
           <p>LOGO</p>
         </NavLink>
-
-        <NavLink
-          to={"/dashboard"}
-          className=" rounded-r-full py-1 text-[#e6e6eb]  cursor-pointer menu-item flex  justify-start px-4 items-center gap-3 w-[90%] "
-        >
-          <div className=" w-[10%] h-full flex justify-center items-center  ">
-            <MdOutlineHome className=" text-[30px] " />
-          </div>
-
-          <div className=" flex justify-start items-center   ">
-            <p>Dashboard</p>
-          </div>
-        </NavLink>
         <div className=" flex flex-col gap-1 justify-start items-center h-auto w-[90%] ">
-          <div
-            onClick={() => {
-              dispatch(menuItemArrowOn({ menuItemArrow: !menuItemArrow }));
-            }}
-            className=" flex w-[100%] justify-start gap-2 text-[#e6e6eb] hover:bg-[#3a3541] items-center pt-1 pb-2 px-4 cursor-pointer rounded-r-full "
-          >
-            <div className=" w-[10%] h-full flex justify-center items-center  ">
-              <FaRegClipboard />
-            </div>
-            <div className=" w-[80%] h-full flex justify-start items-center  ">
-              Invoice
-            </div>
-
-            <div
-              style={{
-                rotate: menuItemArrow === true ? "90deg" : "0deg",
-              }}
-              className=" rotate-0 transition-transform flex self-end w-[10%] justify-center items-center  "
-            >
-              <IoIosArrowForward />
-            </div>
-          </div>
 
           <div
             style={{
+              // eslint-disable-next-line no-undef
               visibility: menuItemArrow === true ? "visible" : "collapse",
+              // eslint-disable-next-line no-undef
               height: menuItemArrow === true ? "auto" : "0px",
             }}
             className=" flex flex-col w-full  justify-start items-center "
