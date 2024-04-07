@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 
 const initialState = {
- 
+ categoryList:[]
 };
 
 const STORAGE_KEY = 'Auth';
@@ -25,10 +25,13 @@ export const authSlice = createSlice({
       state.isLogin = payload
       Cookies.set(STORAGE_KEY, JSON.stringify(state.isLogin));
 
+    },
+    setCategoryList: (state,{payload}) => {
+      state.categoryList = payload.categoryList
     }
   },
 });
 
-export const { setLogin } =
+export const { setLogin,setCategoryList } =
   authSlice.actions;
 export default authSlice.reducer;

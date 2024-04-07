@@ -14,6 +14,7 @@ import EditInvoice from "../Pages/Invoice/EditInvoice";
 import AddNewInvoice from "../Pages/Invoice/AddNewInvoice";
 import PreviewInvoice from "../Pages/Invoice/PreviewInvoice";
 import HistoryPage from "../Pages/History/History";
+import PrintTable from "../Pages/ProductCategory/PrintTable";
 
 export const routes = 
 [
@@ -118,6 +119,12 @@ export const routes =
           },
          
         ],
+      },
+      {
+        path: "printtable",
+        Component: <PrintTable/>,
+
+        handle: { title: "Print Table" },
       },
     ],
   },

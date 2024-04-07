@@ -5,12 +5,13 @@ const initialState = {
   blur: false,
   page: false,
   exportSet: false,
-  menu: false,
   addCat: false,
+  addCatForm: false,
   width: null,
   height: null,
   menuItemArrow: false,
-  pageNum:7
+  pageNum:7,
+  global:false
 };
 
 const STORAGE_KEY = "Animate";
@@ -41,23 +42,30 @@ export const animateSlice = createSlice({
       state.exportSet = payload.exportSet;
       state.page = false;
       state.addCat = false;
-      state.menu = false;
+      state.addCatForm = false;
+    },
+    GlobalOn: (state, { payload }) => {
+      state.global = payload.global
+      state.exportSet = false;
+      state.page = false;
+      state.addCat = false;
+      state.addCatForm = false;
     },
     pageOn: (state, { payload }) => {
       state.exportSet = false;
       state.page = payload.page;
       state.addCat = false;
-      state.menu = false;
+      state.addCatForm = false;
     },
     addCatOn: (state, { payload }) => {
-      state.addCat = payload.addCat;
+      state.addCat = payload.addCatForm;
 
       state.exportSet = false;
       state.page = false;
-      state.menu = false;
+      state.addCatForm = false;
     },
-    menuOn: (state, { payload }) => {
-      state.menu = payload.menu;
+    addCatFormOn: (state, { payload }) => {
+      state.addCatForm = payload.addCatForm;
 
       state.exportSet = false;
       state.page = false;
@@ -75,9 +83,10 @@ export const {
   exportSettingOn,
   pageOn,
   addCatOn,
-  menuOn,
+  addCatFormOn,
   setArea,
   menuItemArrowOn,
-  setPageNum
+  setPageNum,
+  GlobalOn
 } = animateSlice.actions;
 export default animateSlice.reducer;
