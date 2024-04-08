@@ -11,7 +11,7 @@ export default {
                 "2xs": "320px"
             },
             width: {
-                "userForm": "450px"
+                "userForm": "400px",
             }
         },
     },
