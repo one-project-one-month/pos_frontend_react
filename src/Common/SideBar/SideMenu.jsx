@@ -1,4 +1,4 @@
-import {  BoltIcon, Clipboard, History, Home, List, NotepadText, Package, ShoppingBagIcon, SquareGanttChartIcon, Users } from "lucide-react";
+import {  BoltIcon, Clipboard ,History, Home, List, NotepadText, Package, ShoppingBagIcon, SquareGanttChartIcon, Users } from "lucide-react";
 
 const SideMenu = [
     {
@@ -13,7 +13,7 @@ const SideMenu = [
       children:[
         {
           childrenName:'Shop',
-          route:'/general/shop',
+          route:'/general/shops',
           icon:<ShoppingBagIcon/>
         },
         {

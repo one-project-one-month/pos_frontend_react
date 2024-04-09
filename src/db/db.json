@@ -71,7 +71,7 @@
             "productCategoryCode":"Electronics"
         }
     ],
-    "product-Categories":[
+    "productCategories":[
         {
             "id":1,
             "productCategoryCode":"PC",
@@ -127,7 +127,7 @@
             "mobileNo":5551234567,
             "address":"789 Oak St, Villagetown, USA",
             "gender":"Male",
-            "position":"Customer Service Representative"
+            "position":"Cashier"
         },
         {
             "id":4,

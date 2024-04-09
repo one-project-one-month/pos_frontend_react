@@ -6,7 +6,7 @@ const token = "pk_test_c3Ryb25nLWpheS01OS5jbGVyay5hY2NvdW50cy5kZXYk";
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://strong-jay-59.clerk.accounts.dev/v1",
+    baseUrl: "https://github.com/sannlynnhtun-coding/pos_frontend_react/blob/main/src/db/",
   }),
 
   tagTypes: ["auth"],
@@ -46,6 +46,16 @@ export const authApi = createApi({
       providesTags: ["auth"],
     }),
 
+    getProductsCategory: builder.query({
+      query: () => ({
+        url: "/db.json",
+        method: "GET",
+        mode:'no-cors',
+        // body: data,
+      }),
+      providesTags: ["auth"],
+    }),
+
     
   }),
 });
@@ -57,4 +67,5 @@ export const {
   useLoginMutation,
   useLazyEnvironmentQuery,
   useLogoutMutation,
+  useGetProductsCategoryQuery
 } = authApi;

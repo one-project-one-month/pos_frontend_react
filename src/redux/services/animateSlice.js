@@ -3,13 +3,15 @@ import Cookies from "js-cookie";
 
 const initialState = {
   blur: false,
-  noti: false,
-  account: false,
-  menu: false,
-  messenger: false,
+  page: false,
+  exportSet: false,
+  addCat: false,
+  addCatForm: false,
   width: null,
   height: null,
   menuItemArrow: false,
+  pageNum:7,
+  global:false
 };
 
 const STORAGE_KEY = "Animate";
@@ -30,34 +32,44 @@ export const animateSlice = createSlice({
     blurOn: (state, { payload }) => {
       state.blur = payload.blur;
     },
+    setPageNum: (state, { payload }) => {
+      state.pageNum = payload.pageNum;
+    },
     menuItemArrowOn: (state, { payload }) => {
       state.menuItemArrow = payload.menuItemArrow;
     },
-    accountSettingOn: (state, { payload }) => {
-      state.account = payload.account;
-      state.noti = false;
-      state.messenger = false;
-      state.menu = false;
+    exportSettingOn: (state, { payload }) => {
+      state.exportSet = payload.exportSet;
+      state.page = false;
+      state.addCat = false;
+      state.addCatForm = false;
     },
-    notiOn: (state, { payload }) => {
-      state.account = false;
-      state.noti = payload.noti;
-      state.messenger = false;
-      state.menu = false;
+    GlobalOn: (state, { payload }) => {
+      state.global = payload.global
+      state.exportSet = false;
+      state.page = false;
+      state.addCat = false;
+      state.addCatForm = false;
     },
-    messengerOn: (state, { payload }) => {
-      state.messenger = payload.messenger;
+    pageOn: (state, { payload }) => {
+      state.exportSet = false;
+      state.page = payload.page;
+      state.addCat = false;
+      state.addCatForm = false;
+    },
+    addCatOn: (state, { payload }) => {
+      state.addCat = payload.addCatForm;
 
-      state.account = false;
-      state.noti = false;
-      state.menu = false;
+      state.exportSet = false;
+      state.page = false;
+      state.addCatForm = false;
     },
-    menuOn: (state, { payload }) => {
-      state.menu = payload.menu;
+    addCatFormOn: (state, { payload }) => {
+      state.addCatForm = payload.addCatForm;
 
-      state.account = false;
-      state.noti = false;
-      state.messenger = false;
+      state.exportSet = false;
+      state.page = false;
+      state.addCat = false;
     },
     setArea: (state, { payload }) => {
       state.width = payload.width;
@@ -68,11 +80,13 @@ export const animateSlice = createSlice({
 
 export const {
   blurOn,
-  accountSettingOn,
-  notiOn,
-  messengerOn,
-  menuOn,
+  exportSettingOn,
+  pageOn,
+  addCatOn,
+  addCatFormOn,
   setArea,
   menuItemArrowOn,
+  setPageNum,
+  GlobalOn
 } = animateSlice.actions;
 export default animateSlice.reducer;

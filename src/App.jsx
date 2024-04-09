@@ -1,10 +1,11 @@
-import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import NavBar from "./Common/Header/NavBar";
 import SideBar from "./Common/SideBar/SideBar";
-import Home from "./Pages/Home/Home";
 import { routes } from "./Route/data";
 import NotFound from "./Pages/NotFound/NotFound";
+import Dashboard from "./Pages/Dashboard/Dashboard";
+import AddCategory from "./Pages/ProductCategory/AddCategory";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <SideBar />
         <NavBar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/*" element={<NotFound />} />
           {routes.map((route) =>
             route.children.map((general, index) => {
@@ -40,6 +41,7 @@ function App() {
           )}
         </Routes>
       </BrowserRouter>
+      <AddCategory/>
     </section>
   );
 }
