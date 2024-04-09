@@ -1,302 +1,309 @@
 {
-    "products":[
-        {
-            "id":1,
-            "productCode":"P001",
-            "productName":"Laptop",
-            "price":999,
-            "productCategoryCode":"PC"
-        },
-        {
-            "id":2,
-            "productCode":"P002",
-            "productName":"Smartphone",
-            "price":699,
-            "productCategoryCode":"Mobile"
-        },
-        {
-            "id":3,
-            "productCode":"P003",
-            "productName":"Headphones",
-            "price":99,
-            "productCategoryCode":"Accessories"
-        },
-        {
-            "id":4,
-            "productCode":"P004",
-            "productName":"Tablet",
-            "price":499,
-            "productCategoryCode":"PC"
-        },
-        {
-            "id":5,
-            "productCode":"P005",
-            "productName":"Smartwatch",
-            "price":299,
-            "productCategoryCode":"Wearable"
-        },
-        {
-            "id":6,
-            "productCode":"P006",
-            "productName":"Camera",
-            "price":799,
-            "productCategoryCode":"Electronics"
-        },
-        {
-            "id":7,
-            "productCode":"P007",
-            "productName":"Keyboard",
-            "price":49,
-            "productCategoryCode":"Accessories"
-        },
-        {
-            "id":8,
-            "productCode":"P008",
-            "productName":"Mouse",
-            "price":29,
-            "productCategoryCode":"Accessories"
-        },
-        {
-            "id":9,
-            "productCode":"P009",
-            "productName":"Monitor",
-            "price":399,
-            "productCategoryCode":"PC"
-        },
-        {
-            "id":10,
-            "productCode":"P010",
-            "productName":"Speaker",
-            "price":149,
-            "productCategoryCode":"Electronics"
-        }
-    ],
-    "productCategories":[
-        {
-            "id":1,
-            "productCategoryCode":"PC",
-            "productCategoryName":"Personal Computers"
-        },
-        {
-            "id":2,
-            "productCategoryCode":"Mobile",
-            "productCategoryName":"Mobile Devices"
-        },
-        {
-            "id":3,
-            "productCategoryCode":"Accessories",
-            "productCategoryName":"Accessories"
-        },
-        {
-            "id":4,
-            "productCategoryCode":"Wearable",
-            "productCategoryName":"Wearable Technology"
-        },
-        {
-            "id":5,
-            "productCategoryCode":"Electronics",
-            "productCategoryName":"Electronic Devices"
-        }
-    ],
-    "staffs":[
-        {
-            "id":1,
-            "staffCode":"S001",
-            "staffName":"John Smith",
-            "dateOfBirth":"1985-07-15",
-            "mobileNo":1234567890,
-            "address":"123 Main St, Cityville, USA",
-            "gender":"Male",
-            "position":"Manager"
-        },
-        {
-            "id":2,
-            "staffCode":"S002",
-            "staffName":"Emily Johnson",
-            "dateOfBirth":"1990-03-22   ",
-            "mobileNo":9876543210,
-            "address":"456 Elm St, Townsville, USA",
-            "gender":"Female",
-            "position":"Sales Associate"
-        },
-        {
-            "id":3,
-            "staffCode":"S003",
-            "staffName":"Michael Brown",
-            "dateOfBirth":"1988-11-10",
-            "mobileNo":5551234567,
-            "address":"789 Oak St, Villagetown, USA",
-            "gender":"Male",
-            "position":"Cashier"
-        },
-        {
-            "id":4,
-            "staffCode":"S004",
-            "staffName":"Sarah Lee",
-            "dateOfBirth":"1995-05-03",
-            "mobileNo":2223334444,
-            "address":"321 Pine St, Hamletville, USA",
-            "gender":"Female",
-            "position":"Assistant Manager"
-        },
-        {
-            "id":5,
-            "staffCode":"S005",
-            "staffName":"David Chen",
-            "dateOfBirth":"1987-02-18",
-            "mobileNo":7778889999,
-            "address":" 555 Maple St, Boroughville, USA",
-            "gender":"Male",
-            "position":"Storekeeper"
-        }
-    ],
-    "shops":[
-        {
-            "id":1,
-            "shopCode":"SH001",
-            "shopName":"Tech Haven ",
-            "mobileNo":1234567890,
-            "address":"123 Main St, Cityville, USA"
-        },
-        {
-            "id":2,
-            "shopCode":"SH002",
-            "shopName":"Mobile Central",
-            "mobileNo":9876543210,
-            "address":"456 Elm St, Townsville, USA"
-        },
-        {
-            "id":3,
-            "shopCode":"SH003",
-            "shopName":"Gadget Emporium",
-            "mobileNo":5551234567,
-            "address":"789 Oak St, Villagetown, USA"
-        },
-        {
-            "id":4,
-            "shopCode":"SH004",
-            "shopName":"Appliance Outlet",
-            "mobileNo":2223334444,
-            "address":"321 Pine St, Hamletville, USA"
-        },
-        {
-            "id":5,
-            "shopCode":"SH005",
-            "shopName":"Bookworm's Delight",
-            "mobileNo":7778889999,
-            "address":"555 Maple St, Boroughville, USA"
-        }
-    ],
-    "customers": [
-        {
-            "id": 1,
-            "customerCode": "C001",
-            "customerName": "Alice Brown",
-            "dateOfBirth": "1985-07-15",
-            "mobileNo": 1234567890,
-            "gender": "Female",
-            "stateCode": "NY",
-            "townshipCode": "NYC",
-            "address": "123 Main St, Cityville, USA"
-        },
-        {
-            "id": 2,
-            "customerCode": "C002",
-            "customerName": "Bob Smith",
-            "dateOfBirth": "1990-04-22",
-            "mobileNo": 2345678901,
-            "gender": "Male",
-            "stateCode": "CA",
-            "townshipCode": "LA",
-            "address": "456 Elm St, Townsville, USA"
-        },
-        {
-            "id": 3,
-            "customerCode": "C003",
-            "customerName": "Emily Johnson",
-            "dateOfBirth": "1978-12-03",
-            "mobileNo": 3456789012,
-            "gender": "Female",
-            "stateCode": "TX",
-            "townshipCode": "DAL",
-            "address": "789 Oak St, Villagetown, USA"
-        },
-        {
-            "id": 4,
-            "customerCode": "C004",
-            "customerName": "David Wilson",
-            "dateOfBirth": "1983-09-18",
-            "mobileNo": 4567890123,
-            "gender": "Male",
-            "stateCode": "FL",
-            "townshipCode": "MIA",
-            "address": "101 Pine St, Hamletville, USA"
-        },
-        {
-            "id": 5,
-            "customerCode": "C005",
-            "customerName": "Sophia Martinez",
-            "dateOfBirth": "1995-02-07",
-            "mobileNo": 5678901234,
-            "gender": "Female",
-            "stateCode": "IL",
-            "townshipCode": "CHI",
-            "address": "202 Cedar St, Suburbia, USA"
-        },
-        {
-            "id": 6,
-            "customerCode": "C006",
-            "customerName": "Michael Taylor",
-            "dateOfBirth": "1989-06-30",
-            "mobileNo": 6789012345,
-            "gender": "Male",
-            "stateCode": "PA",
-            "townshipCode": "PHI",
-            "address": "303 Maple St, Countryside, USA"
-        },
-        {
-            "id": 7,
-            "customerCode": "C007",
-            "customerName": "Olivia Anderson",
-            "dateOfBirth": "1975-10-12",
-            "mobileNo": 7890123456,
-            "gender": "Female",
-            "stateCode": "OH",
-            "townshipCode": "CLE",
-            "address": "404 Birch St, Townsville, USA"
-        },
-        {
-            "id": 8,
-            "customerCode": "C008",
-            "customerName": "Daniel Garcia",
-            "dateOfBirth": "1980-03-25",
-            "mobileNo": 8901234567,
-            "gender": "Male",
-            "stateCode": "GA",
-            "townshipCode": "ATL",
-            "address": "505 Oak St, Cityville, USA"
-        },
-        {
-            "id": 9,
-            "customerCode": "C009",
-            "customerName": "Isabella Hernandez",
-            "dateOfBirth": "1987-08-14",
-            "mobileNo": 9012345678,
-            "gender": "Female",
-            "stateCode": "AZ",
-            "townshipCode": "PHX",
-            "address": "606 Walnut St, Metropolis, USA"
-        },
-        {
-            "id": 10,
-            "customerCode": "C010",
-            "customerName": "William Lopez",
-            "dateOfBirth": "1992-01-09",
-            "mobileNo": 1234509876,
-            "gender": "Male",
-            "stateCode": "MA",
-            "townshipCode": "BOS",
-            "address": "707 Pine St, Villageville, USA"
-        }
-    ]
+  "products": [
+    {
+      "id": 1,
+      "productCode": "P001",
+      "productName": "Laptop",
+      "price": 999,
+      "productCategoryCode": "PC"
+    },
+    {
+      "id": 2,
+      "productCode": "P002",
+      "productName": "Smartphone",
+      "price": 699,
+      "productCategoryCode": "Mobile"
+    },
+    {
+      "id": 3,
+      "productCode": "P003",
+      "productName": "Headphones",
+      "price": 99,
+      "productCategoryCode": "Accessories"
+    },
+    {
+      "id": 4,
+      "productCode": "P004",
+      "productName": "Tablet",
+      "price": 499,
+      "productCategoryCode": "PC"
+    },
+    {
+      "id": 5,
+      "productCode": "P005",
+      "productName": "Smartwatch",
+      "price": 299,
+      "productCategoryCode": "Wearable"
+    },
+    {
+      "id": 6,
+      "productCode": "P006",
+      "productName": "Camera",
+      "price": 799,
+      "productCategoryCode": "Electronics"
+    },
+    {
+      "id": 7,
+      "productCode": "P007",
+      "productName": "Keyboard",
+      "price": 49,
+      "productCategoryCode": "Accessories"
+    },
+    {
+      "id": 8,
+      "productCode": "P008",
+      "productName": "Mouse",
+      "price": 29,
+      "productCategoryCode": "Accessories"
+    },
+    {
+      "id": 9,
+      "productCode": "P009",
+      "productName": "Monitor",
+      "price": 399,
+      "productCategoryCode": "PC"
+    },
+    {
+      "id": 10,
+      "productCode": "P010",
+      "productName": "Speaker",
+      "price": 149,
+      "productCategoryCode": "Electronics"
+    }
+  ],
+  "productCategories": [
+    {
+      "id": 1,
+      "productCategoryCode": "PC",
+      "productCategoryName": "Personal Computers"
+    },
+    {
+      "id": 2,
+      "productCategoryCode": "Mobile",
+      "productCategoryName": "Mobile Devices"
+    },
+    {
+      "id": 3,
+      "productCategoryCode": "Accessories",
+      "productCategoryName": "Accessories"
+    },
+    {
+      "id": 4,
+      "productCategoryCode": "Wearable",
+      "productCategoryName": "Wearable Technology"
+    },
+    {
+      "id": 5,
+      "productCategoryCode": "Electronics",
+      "productCategoryName": "Electronic Devices"
+    }
+  ],
+  "staffs": [
+    {
+      "id": 1,
+      "staffCode": "S001",
+      "staffName": "John Smith",
+      "dateOfBirth": "1985-07-15",
+      "mobileNo": 1234567890,
+      "address": "123 Main St, Cityville, USA",
+      "gender": "Male",
+      "position": "Manager"
+    },
+    {
+      "id": 2,
+      "staffCode": "S002",
+      "staffName": "Emily Johnson",
+      "dateOfBirth": "1990-03-22   ",
+      "mobileNo": 9876543210,
+      "address": "456 Elm St, Townsville, USA",
+      "gender": "Female",
+      "position": "Sales Associate"
+    },
+    {
+      "id": 3,
+      "staffCode": "S003",
+      "staffName": "Michael Brown",
+      "dateOfBirth": "1988-11-10",
+      "mobileNo": 5551234567,
+      "address": "789 Oak St, Villagetown, USA",
+      "gender": "Male",
+      "position": "Cashier"
+    },
+    {
+      "id": 4,
+      "staffCode": "S004",
+      "staffName": "Sarah Lee",
+      "dateOfBirth": "1995-05-03",
+      "mobileNo": 2223334444,
+      "address": "321 Pine St, Hamletville, USA",
+      "gender": "Female",
+      "position": "Assistant Manager"
+    },
+    {
+      "id": 5,
+      "staffCode": "S005",
+      "staffName": "David Chen",
+      "dateOfBirth": "1987-02-18",
+      "mobileNo": 7778889999,
+      "address": " 555 Maple St, Boroughville, USA",
+      "gender": "Male",
+      "position": "Storekeeper"
+    }
+  ],
+  "shops": [
+    {
+      "id": 1,
+      "shopCode": "SH001",
+      "shopName": "Tech Haven ",
+      "mobileNo": 1234567890,
+      "address": "123 Main St, Cityville, USA"
+    },
+    {
+      "id": 2,
+      "shopCode": "SH002",
+      "shopName": "Mobile Central",
+      "mobileNo": 9876543210,
+      "address": "456 Elm St, Townsville, USA"
+    },
+    {
+      "id": 3,
+      "shopCode": "SH003",
+      "shopName": "Gadget Emporium",
+      "mobileNo": 5551234567,
+      "address": "789 Oak St, Villagetown, USA"
+    },
+    {
+      "id": 4,
+      "shopCode": "SH004",
+      "shopName": "Appliance Outlet",
+      "mobileNo": 2223334444,
+      "address": "321 Pine St, Hamletville, USA"
+    },
+    {
+      "id": 5,
+      "shopCode": "SH005",
+      "shopName": "Bookworm's Delight",
+      "mobileNo": 7778889999,
+      "address": "555 Maple St, Boroughville, USA"
+    },
+    {
+      "shopCode": "SH007",
+      "shopName": "G&G",
+      "mobileNo": "0987654321",
+      "address": "MDY",
+      "id": 6
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "customerCode": "C001",
+      "customerName": "Alice Brown",
+      "dateOfBirth": "1985-07-15",
+      "mobileNo": 1234567890,
+      "gender": "Female",
+      "stateCode": "NY",
+      "townshipCode": "NYC",
+      "address": "123 Main St, Cityville, USA"
+    },
+    {
+      "id": 2,
+      "customerCode": "C002",
+      "customerName": "Bob Smith",
+      "dateOfBirth": "1990-04-22",
+      "mobileNo": 2345678901,
+      "gender": "Male",
+      "stateCode": "CA",
+      "townshipCode": "LA",
+      "address": "456 Elm St, Townsville, USA"
+    },
+    {
+      "id": 3,
+      "customerCode": "C003",
+      "customerName": "Emily Johnson",
+      "dateOfBirth": "1978-12-03",
+      "mobileNo": 3456789012,
+      "gender": "Female",
+      "stateCode": "TX",
+      "townshipCode": "DAL",
+      "address": "789 Oak St, Villagetown, USA"
+    },
+    {
+      "id": 4,
+      "customerCode": "C004",
+      "customerName": "David Wilson",
+      "dateOfBirth": "1983-09-18",
+      "mobileNo": 4567890123,
+      "gender": "Male",
+      "stateCode": "FL",
+      "townshipCode": "MIA",
+      "address": "101 Pine St, Hamletville, USA"
+    },
+    {
+      "id": 5,
+      "customerCode": "C005",
+      "customerName": "Sophia Martinez",
+      "dateOfBirth": "1995-02-07",
+      "mobileNo": 5678901234,
+      "gender": "Female",
+      "stateCode": "IL",
+      "townshipCode": "CHI",
+      "address": "202 Cedar St, Suburbia, USA"
+    },
+    {
+      "id": 6,
+      "customerCode": "C006",
+      "customerName": "Michael Taylor",
+      "dateOfBirth": "1989-06-30",
+      "mobileNo": 6789012345,
+      "gender": "Male",
+      "stateCode": "PA",
+      "townshipCode": "PHI",
+      "address": "303 Maple St, Countryside, USA"
+    },
+    {
+      "id": 7,
+      "customerCode": "C007",
+      "customerName": "Olivia Anderson",
+      "dateOfBirth": "1975-10-12",
+      "mobileNo": 7890123456,
+      "gender": "Female",
+      "stateCode": "OH",
+      "townshipCode": "CLE",
+      "address": "404 Birch St, Townsville, USA"
+    },
+    {
+      "id": 8,
+      "customerCode": "C008",
+      "customerName": "Daniel Garcia",
+      "dateOfBirth": "1980-03-25",
+      "mobileNo": 8901234567,
+      "gender": "Male",
+      "stateCode": "GA",
+      "townshipCode": "ATL",
+      "address": "505 Oak St, Cityville, USA"
+    },
+    {
+      "id": 9,
+      "customerCode": "C009",
+      "customerName": "Isabella Hernandez",
+      "dateOfBirth": "1987-08-14",
+      "mobileNo": 9012345678,
+      "gender": "Female",
+      "stateCode": "AZ",
+      "townshipCode": "PHX",
+      "address": "606 Walnut St, Metropolis, USA"
+    },
+    {
+      "id": 10,
+      "customerCode": "C010",
+      "customerName": "William Lopez",
+      "dateOfBirth": "1992-01-09",
+      "mobileNo": 1234509876,
+      "gender": "Male",
+      "stateCode": "MA",
+      "townshipCode": "BOS",
+      "address": "707 Pine St, Villageville, USA"
+    }
+  ]
 }
