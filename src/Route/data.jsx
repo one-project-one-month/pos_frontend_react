@@ -3,7 +3,7 @@ import NotFound from "../Pages/NotFound/NotFound";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import Staff from "../Pages/Staff/Staff";
 import Shop from "../Pages/Shop/Shop";
-import Customer from "../Pages/Customer/Customer";
+import CustomerList from "../Pages/Customer/CustomerList";
 import SaleInvoice from "../Pages/SaleInvoice/Saleinvoice";
 import Detail from "../Pages/Detail/Detail";
 import Product from "../Pages/Product/Product";
@@ -51,8 +51,13 @@ export const routes =
           {
             path: "general/customers",
             handle: { title: "Customer" },
-            Component: <Customer/>,
+            Component: <CustomerList/>,
           },
+          {
+            path:'general/customers/:customerId',
+            handle:{title:"customer list"},
+            Component: <CustomerList/>
+          }
         ],
       },
       {
@@ -133,4 +138,4 @@ export const routes =
       },
     ],
   },
-];
+]
