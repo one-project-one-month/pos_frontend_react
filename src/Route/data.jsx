@@ -16,6 +16,7 @@ import PreviewInvoice from "../Pages/Invoice/PreviewInvoice";
 import HistoryPage from "../Pages/History/History";
 import PrintTable from "../Pages/ProductCategory/PrintTable";
 import AddStaff from '../Pages/Staff/AddStaff'
+import NewShop from "../Pages/Shop/NewShop";
 
 export const routes = 
 [
@@ -47,6 +48,11 @@ export const routes =
             path: "general/shops",
             handle: { title: "Shop" },
             Component: <Shop/>,
+          },
+          {
+            path: "general/shops/newshop",
+            handle: { title: "New Shop" },
+            Component: <NewShop/>,
           },
           {
             path: "general/customers",
