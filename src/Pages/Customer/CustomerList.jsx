@@ -30,7 +30,7 @@ const CustomerList = () => {
     const { data, isLoading, isError, error } = useQuery("users", getUsers);
 
     return (
-        <div className="bg-[#b4b4b4] p-6 relative">
+        <div className="bg-[#b4b4b4] relative">
             <div className="grid 2xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-5">
                 <StackCardOne />
                 <StackCardTwo />
@@ -42,9 +42,9 @@ const CustomerList = () => {
                     <h5 className="text-xl font-semibold">Search Filter</h5>
                 </div>
                 <div className="user-datatable">
-                    <div className="btn-group p-5 flex justify-between items-center flex-col md:flex-row ">
+                    <div className="btn-group py-5  flex justify-between items-center flex-col md:flex-row ">
                         <ExportButtons />
-                        <div className="flex space-x-3 ">
+                        <div className="flex space-x-3 xs:flex-row flex-col">
                             <input
                                 className="search-input border block w-full border-gray-600 px-3 py-2 rounded-lg text-lg focus:outline-none"
                                 type="search"

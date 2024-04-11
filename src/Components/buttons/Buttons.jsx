@@ -91,13 +91,15 @@ export const AddNewUserButton = () => {
     return (
         <div className="adduser-btn sm:w-full">
             <button
-                className="btn bg-slate-500 text-white h-full px-7 py-2 rounded-lg text-lg flex items-center space-x-2"
+                className="btn bg-slate-500 text-white h-full px-5 py-2 rounded-lg text-lg flex items-center space-x-2"
                 onClick={() => setShowForm(!showForm)}
             >
                 <span className="plus-icon">
-                    <FaPlus />
+                    <FaPlus className="size-4 lg:size-5" />
                 </span>
-                <p className="hidden sm:block">Add New User</p>
+                <p className="hidden sm:block text-sm lg:text-base">
+                    Add New User
+                </p>
             </button>
             {showForm && <CustomerForm setShowForm={setShowForm} />}
         </div>
