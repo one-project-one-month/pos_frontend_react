@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'; // Importing useDispatch and useSelector
+import { useDispatch, useSelector } from 'react-redux'; 
 import { setProductList } from '../../redux/ProductsService/authSlice';
 import Pagination from "./Pagination";
 import productDb from "../../db/db.json";
@@ -16,13 +16,12 @@ import { RiAddLine } from "react-icons/ri";
 import { TiArrowSortedDown } from "react-icons/ti";
 
 const Product = () => {
-
-  const {products} = productDb; //use dummy data for testing
-  const { productList} = useSelector(state => state.authSlice); // Using useSelector to access Redux state
+  const { products } = productDb;
+  const { addCatForm } = useSelector(state => state.authSlice);
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(5);
+  const [productsPerPage] = useState(5); 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,31 +40,34 @@ const Product = () => {
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
+  // Calculate the index of the first and last products to display
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  // Slice the products array to get the products for the current page
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
   return (
     <div className='flex flex-col gap-3 mt-24 right-10 w-[75%] top-[50px] h-auto justify-between items-start p-2 rounded-md bg-[#312d4b]'>
-      <div className='flex'>
-      <div className="border-2 px-2 mx-5 border-[#76728e] flex justify-center items-center rounded-md w-[20%] h-[40px] ">
-        <input
-          placeholder="Search Category"
-          className="outline-none rounded-md bg-transparent w-full h-full"
-          type="text"
-        />
-      </div>
+      <div className='flex gap-24'>
+        <div className="border-2 px-2 mx-5 border-[#76728e] flex justify-center items-center rounded-md w-[20%] h-[40px] ">
+          <input
+            placeholder="Search Category"
+            className="outline-none rounded-md bg-transparent w-full h-full"
+            type="text"
+          />
+        </div>
 
-      
-      <div
-        onClick={() =>
-        dispatch(addCatFormOn({ addCatForm: !addCatForm }))
-        }
-        className=" flex justify-between px-3 items-center  bg-[#9055fd] cursor-pointer w-[40%] h-full rounded "
+        <div
+          onClick={() =>
+            dispatch(addCatFormOn({ addCatForm: !addCatForm }))
+          }
+          className=" flex justify-between px-3 items-center  bg-[#9055fd] cursor-pointer w-[40%] h-full rounded "
         >
-      <RiAddLine className=" text-lg " />
-      <p className=" font-semibold text-[15px] tracking-wide ">
-        ADD CATEGORY
-      </p>
-      </div>
-
-      
+          <RiAddLine className=" text-lg " />
+          <p className=" font-semibold text-[15px] tracking-wide ">
+            ADD CATEGORY
+          </p>
+        </div>
       </div>
 
       <div className="flex w-[100%] justify-between items-center">
@@ -106,8 +108,8 @@ const Product = () => {
               </tr>
             </thead>
             <tbody>
-              {productList.map((product) => (
-                <tr key={product.id}>
+              {currentProducts.map((product) => (
+                <tr key={product.id} className='border-b border-gray-200'>
                   <td className="w-4 p-4">
                     <div className="flex items-center">
                       <input
@@ -120,12 +122,12 @@ const Product = () => {
                       </label>
                     </div>
                   </td>
-                  <td className="pl-4">{product.id}</td>
-                  <td className="pl-7">{product.productCode}</td>
-                  <td className="pl-7">{product.productName}</td>
-                  <td className="pl-7">{product.price}</td>
-                  <td className="pl-10">{product.productCategoryCode}</td>
-                  <td className="px-6 py-4">
+                  <td className="pl-5">{product.id}</td>
+                  <td className="pl-14">{product.productCode}</td>
+                  <td className="pl-14">{product.productName}</td>
+                  <td className="pl-10">{product.price}</td>
+                  <td className="pl-16">{product.productCategoryCode}</td>
+                  <td className="px-6 pl-3 py-4">
                     <a
                       href="#"
                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
@@ -142,7 +144,6 @@ const Product = () => {
             totalProducts={products.length}
             paginate={paginate}
             currentPage={currentPage}
-            className=""
           />
         </div>
       </div>
