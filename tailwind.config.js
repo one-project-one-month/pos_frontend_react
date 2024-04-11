@@ -12,6 +12,9 @@ export default {
             },
             width: {
                 "userForm": "400px",
+            },
+            height: {
+                'page': 'calc(100% - 64px)',
             }
         },
     },

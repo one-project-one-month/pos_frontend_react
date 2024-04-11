@@ -8,13 +8,18 @@ import { MdDelete } from "react-icons/md";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 
+import Modal from "react-modal";
+
 import axios from "axios";
 
 import CustomerForm from "./CustomerForm";
+import { Notify } from "../toastify/Toastify";
+
+Modal.setAppElement("#root");
 
 const Table = ({ data, isLoading }) => {
     const [showForm, setShowForm] = useState(false);
-    const [selectedUser, setSelectedUser] = useState(null);
+    const [modalIsOpen, setIsOpen] = useState(false);
 
     const navigate = useNavigate();
     const queryClient = useQueryClient();
@@ -42,16 +47,36 @@ const Table = ({ data, isLoading }) => {
                 `https://jsonplaceholder.typicode.com/users/${id}`
             );
         },
-        onSuccconsoless: () => {
-            e.log("done");
-
+        onSuccess: () => {
             refetch();
+            Notify("User Delete Successfully", "info");
         },
     });
 
     const updateHandler = (id) => {
         setShowForm(true);
         setUserId(id);
+    };
+
+    const customStyles = {
+        content: {
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+            width: "50%",
+            height: "20%",
+            scrollBehavior: "smooth",
+            scrollbarWidth: "none",
+            borderRadius: "15px",
+        },
+        overlay: {
+            background: "#00000050",
+            opacity: "0.5",
+            backdropFilter: "blur(1px)",
+        },
     };
 
     return (
@@ -132,13 +157,56 @@ const Table = ({ data, isLoading }) => {
                                     <td>
                                         <button
                                             className="btn w-full bg-red-500 text-white px-3 py-2 rounded-lg flex mx-auto justify-center items-center"
-                                            onClick={() =>
-                                                deleteUser.mutate(user.id)
-                                            }
+                                            onClick={() => setIsOpen(true)}
                                         >
                                             <MdDelete className="me-2" />
                                             Delete
                                         </button>
+                                        {modalIsOpen && (
+                                            <div className="">
+                                                <Modal
+                                                    isOpen={modalIsOpen}
+                                                    onRequestClose={() =>
+                                                        setIsOpen(false)
+                                                    }
+                                                    style={customStyles}
+                                                    contentLabel="Example Modal"
+                                                >
+                                                    <div className="mb-3">
+                                                        <h2 className="text-3xl font-semibold mb-5">
+                                                            Delete User
+                                                        </h2>
+                                                        <p className="">
+                                                            Are you sure to
+                                                            delete this user?
+                                                        </p>
+                                                    </div>
+                                                    <div className="flex justify-end items-center space-x-3">
+                                                        <button
+                                                            className="bg-slate-300 py-2 text-lg rounded-lg px-8"
+                                                            onClick={() =>
+                                                                setIsOpen(false)
+                                                            }
+                                                        >
+                                                            Cancel
+                                                        </button>
+                                                        <button
+                                                            className="bg-red-500 text-white py-2 text-lg rounded-lg px-8"
+                                                            onClick={() => {
+                                                                deleteUser.mutate(
+                                                                    user.id
+                                                                );
+                                                                setIsOpen(
+                                                                    false
+                                                                );
+                                                            }}
+                                                        >
+                                                            Delete
+                                                        </button>
+                                                    </div>
+                                                </Modal>
+                                            </div>
+                                        )}
                                     </td>
                                 </tr>
                             ))}

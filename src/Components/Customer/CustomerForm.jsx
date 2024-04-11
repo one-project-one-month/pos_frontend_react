@@ -3,7 +3,7 @@ import { React, useState, useEffect } from "react";
 import axios from "axios";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
-
+import { Notify } from "../toastify/Toastify";
 import { AiFillCloseCircle } from "react-icons/ai";
 
 const CustomerForm = ({ setShowForm, data }) => {
@@ -73,6 +73,7 @@ const CustomerForm = ({ setShowForm, data }) => {
                 townshipCode: "",
                 address: "",
             });
+            Notify("User Updated Successfully", "success");
         },
     });
 
@@ -89,6 +90,7 @@ const CustomerForm = ({ setShowForm, data }) => {
                 townshipCode: "",
                 address: "",
             });
+            Notify("User Added Successfully", "success");
         },
     });
 
@@ -127,7 +129,7 @@ const CustomerForm = ({ setShowForm, data }) => {
     return (
         <>
             <div
-                className="overlay fixed inset-0 bg-black opacity-50"
+                className="overlay fixed inset-0 bg-black opacity-75"
                 onClick={() => {
                     setShowForm(false);
                     navigate("/general/customers");

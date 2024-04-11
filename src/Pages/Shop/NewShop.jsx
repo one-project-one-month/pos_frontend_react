@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 import React from 'react'
 import { useState } from 'react';
@@ -15,16 +16,16 @@ const NewShop = () => {
   const [isClick,setIsClick] = useState (false);
   const dispatch = useDispatch()
 
-  const handleChange = (e) => {
-    const {name,value} = e
-    setShop(prevShop => ({
-      ...prevShop,
-      [name]: value
-  }))
-  }
+    const handleChange = (e) => {
+        const { name, value } = e;
+        setShop((prevShop) => ({
+            ...prevShop,
+            [name]: value,
+        }));
+    };
 
-  const navigate = useNavigate();
-
+    const navigate = useNavigate();
+  
   const addHandler = async() => {
     setIsClick(true)
     const isFormCompleted = Object.values(shop).every(value => value)
@@ -79,4 +80,4 @@ const NewShop = () => {
   )
 }
 
-export default NewShop
+export default NewShop;

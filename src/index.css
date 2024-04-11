@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 body {
-    background-color: #28243d;
+    /* background-color: #28243d; */
 }
 
 .addCatForm {
-    transition: all .5s ease ;
+    transition: all 0.5s ease;
 }
