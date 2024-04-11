@@ -2,8 +2,8 @@ import axios from 'axios';
 import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
-  import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from 'react-redux'
+import {setIsSuccessful} from '../../redux/services/Shop/newshopsucces'
 
 const NewShop = () => {
   const [shop, setShop] = useState({
@@ -13,6 +13,7 @@ const NewShop = () => {
     address : ''
   });
   const [isClick,setIsClick] = useState (false);
+  const dispatch = useDispatch()
 
   const handleChange = (e) => {
     const {name,value} = e
@@ -29,17 +30,10 @@ const NewShop = () => {
     const isFormCompleted = Object.values(shop).every(value => value)
     if(isFormCompleted) {
       const url = 'http://localhost:3000/shops'
-      const response = await toast.promise(
-        axios.post(url,shop),
-        {
-          pending: 'Adding new shop',
-          success: 'Added new shop successfully 👌',
-          error: 'New shop was rejected 🤯'
-        }
-    );
-    console.log(response)
-    if(response.status == 201) {
-      navigate('/general/shops')
+      const response = await axios.post(url,shop)
+      if(response.status == 201) {
+        dispatch(setIsSuccessful(true))
+        navigate('/general/shops')
     }
     }
   }
@@ -81,18 +75,6 @@ const NewShop = () => {
         Add New Shop
       </button>
     </div>
-    <ToastContainer
-    position="top-center"
-    autoClose={3000}
-    hideProgressBar={false}
-    newestOnTop={false}
-    closeOnClick
-    rtl={false}
-    pauseOnFocusLoss
-    draggable
-    pauseOnHover
-    theme="light"
-    />
    </div>
   )
 }

@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Editform from './Editform';
 import Deleteform from './Deleteform';
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import { useSelector } from 'react-redux'
 
 const Shop = () => {
   const [shopName, setShopName] = useState('');
@@ -20,25 +23,31 @@ const Shop = () => {
     mobileNo : '',
     address : ''
   });
+
   const [isDelete,setIsDelete] = useState(false);
 
-  const searchHandler = () => {
-    navigate('/shop/?search='+ shopName)
-  }
+  const isSuccessfull = useSelector((state) => state.newShopReducer.isSuccessful)
 
-  const fetchData = async() => {
-    try {
+  const searchHandler = () => {
+    navigate('/general/shops/?search='+ shopName)
+  }
+  console.log(isSuccessfull);
+
+  useEffect(() => {
+    const fetchData = async() => {
+      try {
       const url = `http://localhost:3000/shops${search?`?q=${search}`: ''}`;
       const {data} = await axios.get(url)
       setDatas(data)
-    } catch (error) {
-      console.log(error);
+      if(isSuccessfull) {
+        toast.success("You've successfully added new shop!")
+      }
+      }catch (error) {
+        console.error(error);
+      }
     }
-  }
-
-  useEffect(() => {
     fetchData()
-  }, [search])
+  }, [])
 
   const editHandler = (index,id) => {
     setIsEdit(true)
@@ -76,6 +85,7 @@ const Shop = () => {
       const res = await axios.patch(`http://localhost:3000/shops/${currentId}`,postData);
       console.log(res);
       if(res.status === 200) {
+        toast.success("You've successfully edited the shop!")
         setIsEdit(false)
         setDatas(prevDatas => prevDatas.map(item => {
           if (item.id === currentId) {
@@ -92,8 +102,8 @@ const Shop = () => {
   const deleteShop = async() => {
     try {
       const res = await axios.delete(`http://localhost:3000/shops/${currentId}`);
-      console.log(res);
       if(res.status === 200) {
+        toast.success("You've successfully deleted the shop!")
         setIsDelete(false)
         setDatas(prevDatas => prevDatas.filter(shop => shop.id !== currentId));
       }
@@ -157,6 +167,19 @@ const Shop = () => {
      }
      {isDelete && <Deleteform discardChanges={discardChanges} deleteShop={deleteShop} />
      }
+      <ToastContainer
+    position="top-center"
+    autoClose={3000}
+    hideProgressBar={false}
+    newestOnTop={false}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss
+    draggable
+    pauseOnHover
+    theme="light"
+    className='w-[350px]'
+    />
     </div>
   )
 }
