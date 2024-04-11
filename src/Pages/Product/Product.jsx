@@ -11,10 +11,7 @@ import {
 } from "../../redux/ProductsService/animateSlice";
 
 //icons
-import { PiExportThin } from "react-icons/pi";
 import { RiAddLine } from "react-icons/ri";
-import { TiArrowSortedDown } from "react-icons/ti";
-
 const Product = () => {
   const { products } = productDb;
   const { addCatForm } = useSelector(state => state.authSlice);
@@ -47,9 +44,10 @@ const Product = () => {
   const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
   return (
-    <div className='flex flex-col gap-3 mt-24 right-10 w-[75%] top-[50px] h-auto justify-between items-start p-2 rounded-md bg-[#312d4b]'>
-      <div className='flex gap-24'>
-        <div className="border-2 px-2 mx-5 border-[#76728e] flex justify-center items-center rounded-md w-[20%] h-[40px] ">
+    <div className='flex flex-col gap-3 right-10 w-[77%] top-[50px] h-auto justify-between items-start p-2 rounded-md bg-[#312d4b]'>
+      <div className='flex gap-24 '>
+
+        <div className="border-2  px-2 mx-5 border-[#76728e] flex justify-center items-center rounded-md  h-[40px] ">
           <input
             placeholder="Search Category"
             className="outline-none rounded-md bg-transparent w-full h-full"
@@ -61,10 +59,10 @@ const Product = () => {
           onClick={() =>
             dispatch(addCatFormOn({ addCatForm: !addCatForm }))
           }
-          className=" flex justify-between px-3 items-center  bg-[#9055fd] cursor-pointer w-[40%] h-full rounded "
+          className=" flex justify-between px-3 items-center  bg-[#9055fd] cursor-pointer  h-auto rounded "
         >
           <RiAddLine className=" text-lg " />
-          <p className=" font-semibold text-[15px] tracking-wide ">
+          <p className="flex font-semibold text-[15px] tracking-wide  ">
             ADD CATEGORY
           </p>
         </div>

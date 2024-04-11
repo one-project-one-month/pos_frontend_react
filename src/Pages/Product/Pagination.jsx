@@ -36,5 +36,5 @@ const Pagination = ({ productsPerPage, totalProducts, paginate, currentPage }) =
     </div>
   );
 };
-
 export default Pagination;
+
