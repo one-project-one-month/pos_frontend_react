@@ -89,9 +89,9 @@ export const AddNewUserButton = () => {
     const [showForm, setShowForm] = useState(false);
 
     return (
-        <div className="adduser-btn sm:w-full">
+        <div className="adduser-btn sm:w-full ">
             <button
-                className="btn bg-slate-500 text-white h-full px-5 py-2 rounded-lg text-lg flex items-center space-x-2"
+                className="btn bg-slate-500 text-white h-full px-5 py-3.5 xs:py-2 rounded-lg text-lg flex items-center space-x-2"
                 onClick={() => setShowForm(!showForm)}
             >
                 <span className="plus-icon">

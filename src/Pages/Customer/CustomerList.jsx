@@ -8,6 +8,8 @@ import {
 
 import Table from "../../Components/Customer/Table";
 
+import { Toastbox } from "../../Components/toastify/Toastify";
+
 import {
     ExportButtons,
     AddNewUserButton,
@@ -30,37 +32,40 @@ const CustomerList = () => {
     const { data, isLoading, isError, error } = useQuery("users", getUsers);
 
     return (
-        <div className="bg-[#b4b4b4] relative">
-            <div className="grid 2xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-5">
-                <StackCardOne />
-                <StackCardTwo />
-                <StackCardThree />
-                <StackCardFour />
-            </div>
-            <div className="user-dashboard bg-white w-full shadow-2xl rounded-lg p-5">
-                <div className="user-dashboard__title ">
-                    <h5 className="text-xl font-semibold">Search Filter</h5>
+        <>
+            <Toastbox />
+            <div className="bg-[#b4b4b4] ">
+                <div className="grid 2xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-5">
+                    <StackCardOne />
+                    <StackCardTwo />
+                    <StackCardThree />
+                    <StackCardFour />
                 </div>
-                <div className="user-datatable">
-                    <div className="btn-group py-5  flex justify-between items-center flex-col md:flex-row ">
-                        <ExportButtons />
-                        <div className="flex space-x-3 xs:flex-row flex-col">
-                            <input
-                                className="search-input border block w-full border-gray-600 px-3 py-2 rounded-lg text-lg focus:outline-none"
-                                type="search"
-                                name="search"
-                                id="search"
-                                value={search}
-                                onChange={(e) => setSearch(e.target.value)}
-                                placeholder="Search..."
-                            />
-                            <AddNewUserButton />
-                        </div>
+                <div className="user-dashboard bg-white w-full shadow-2xl rounded-lg p-5">
+                    <div className="user-dashboard__title ">
+                        <h5 className="text-xl font-semibold">Search Filter</h5>
                     </div>
-                    <Table data={data} isLoading={isLoading} />
+                    <div className="user-datatable">
+                        <div className="btn-group py-5  flex justify-between items-center flex-col md:flex-row  ">
+                            <ExportButtons />
+                            <div className="flex space-x-0 xs:space-x-3 space-y-2 xs:space-y-0 xs:flex-row flex-col xs:items-stretch items-end">
+                                <input
+                                    className="search-input border block w-full border-gray-600 px-3 py-2 rounded-lg text-lg focus:outline-none"
+                                    type="search"
+                                    name="search"
+                                    id="search"
+                                    value={search}
+                                    onChange={(e) => setSearch(e.target.value)}
+                                    placeholder="Search..."
+                                />
+                                <AddNewUserButton />
+                            </div>
+                        </div>
+                        <Table data={data} isLoading={isLoading} />
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 
