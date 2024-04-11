@@ -2,6 +2,9 @@ import "./sidebar.css";
 import { NavLink } from "react-router-dom";
 import SideMenuItem from "./SideMenuItem";
 import SideMenu from "./SideMenu";
+import { FaRegClipboard } from "react-icons/fa";
+import { IoIosArrowForward } from "react-icons/io";
+import { MdOutlineHome } from "react-icons/md";
 
 const SideBar = () => {
   return (
