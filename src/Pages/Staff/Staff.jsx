@@ -31,7 +31,7 @@ const Staff = () => {
     return (
         <>
             <div className=" bg-[#28243d] rounded-md p-2">
-                <div className="m-2 flex justify-between items-center">
+                <div className="flex justify-between items-center">
                     <h2 className="text-white lg:text-3xl md:text-2xl sm:text-xl px-4 font-bold">
                         All Staff Lists
                     </h2>

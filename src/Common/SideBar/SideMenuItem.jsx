@@ -1,13 +1,10 @@
 /* eslint-disable react/prop-types */
-import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
-import { menuItemArrowOn } from "../../redux/services/animateSlice";
 import { IoIosArrowForward } from "react-icons/io";
 import MenuChildrenItem from "./MenuChildrenItem";
 import { useState } from "react";
 
 const SideMenuItem = ({ side }) => {
-  const dispatch = useDispatch();
   const [menuItemArrow, setMenuItemArrow] = useState(false);
   const currentRoute = useParams();
   return (
