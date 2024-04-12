@@ -11,7 +11,7 @@ function App() {
     return (
         <section className="mainSection">
             <BrowserRouter>
-                <div className="grid grid-cols-5 w-full h-full relative">
+                <div className="grid grid-cols-5 w-full h-screen relative">
                     <section className="sidebar col-span-1 bg-[#28243d]">
                         <SideBar />
                     </section>
