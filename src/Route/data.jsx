@@ -3,8 +3,6 @@ import Dashboard from "../Pages/Dashboard/Dashboard";
 import Staff from "../Pages/Staff/Staff";
 import Shop from "../Pages/Shop/Shop";
 import CustomerList from "../Pages/Customer/CustomerList";
-import SaleInvoice from "../Pages/SaleInvoice/Saleinvoice";
-import Detail from "../Pages/Detail/Detail";
 import Product from "../Pages/Product/Product";
 import ProductCategory from "../Pages/ProductCategory/Category";
 import Invoice from "../Pages/Invoice/Invoice";
@@ -116,22 +114,6 @@ export const routes = [
                 Component: <HistoryPage />,
 
                 handle: { title: "History" },
-            },
-            {
-                path: "saleinvoices",
-                handle: { title: "Saleinvoices" },
-                Component: <SaleInvoice />,
-                children: [
-                    {
-                        index: true,
-                        Component: <SaleInvoice />,
-                    },
-                    {
-                        path: "saleinvoices/saleinvoicedetails",
-                        handle: { title: "Saleinvoice Detail" },
-                        Component: <Detail />,
-                    },
-                ],
             },
             {
                 path: "printtable",
