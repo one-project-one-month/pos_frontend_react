@@ -48,6 +48,8 @@ function App() {
       <AddCategory/>
     </section>
   );
+   
+
 }
 
 export default App;

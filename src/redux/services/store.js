@@ -3,6 +3,7 @@ import { authApi } from "../api/AuthApi";
 import authSlice from "./authSlice";
 import  animateSlice  from "./animateSlice";
 import { dataApi } from "../api/Data";
+import newShopReducer from "./Shop/newshopsucces"
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
     [dataApi.reducerPath]: dataApi.reducer,
 
     authSlice: authSlice,
-    animateSlice: animateSlice
+    animateSlice: animateSlice,
+    newShopReducer : newShopReducer
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
