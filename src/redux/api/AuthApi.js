@@ -6,7 +6,7 @@ const token = "pk_test_c3Ryb25nLWpheS01OS5jbGVyay5hY2NvdW50cy5kZXYk";
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://github.com/sannlynnhtun-coding/pos_frontend_react/blob/main/src/db/",
+    baseUrl: "https://api.escuelajs.co/api/v1",
   }),
 
   tagTypes: ["auth"],
@@ -47,10 +47,9 @@ export const authApi = createApi({
     }),
 
     getProductsCategory: builder.query({
-      query: () => ({
-        url: "/db.json",
+      query: (url) => ({
+        url: url,
         method: "GET",
-        mode:'no-cors',
         // body: data,
       }),
       providesTags: ["auth"],

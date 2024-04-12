@@ -15,7 +15,7 @@ const SideBar = () => {
         </NavLink>
 
         {SideMenu?.map((side, index) => {
-          return <SideMenuItem side={side}  key={index} />;
+          return <SideMenuItem side={side} key={index} />;
         })}
       </div>
     </aside>
