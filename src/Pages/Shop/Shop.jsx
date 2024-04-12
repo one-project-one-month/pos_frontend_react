@@ -15,7 +15,9 @@ const Shop = () => {
   const search = params.get('search');
   const navigate = useNavigate();
   const [isEdit, setIsEdit] = useState(false);
+  const [isSave, setIsSave] = useState(false);
   const [currentId, setCurrentId] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(null);
   const [shop, setShop] = useState({
     shopCode: '',
     shopName: '',
@@ -31,8 +33,6 @@ const Shop = () => {
     navigate('/general/shops/?search=' + shopName);
   };
 
-  console.log(isSuccessfull);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -47,10 +47,10 @@ const Shop = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [search]);
 
   const changeHandler = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e;
     setShop((prevShop) => ({
       ...prevShop,
       [name]: value,
@@ -69,23 +69,27 @@ const Shop = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    try {
-      const postData = { id: currentId, ...shop };
-      const res = await axios.patch(`http://localhost:3000/shops/${currentId}`, postData);
-      console.log(res);
-      if (res.status === 200) {
-        setIsEdit(false);
-        setDatas((prevDatas) =>
-          prevDatas.map((item) => {
-            if (item.id === currentId) {
-              return { ...item, ...shop };
-            }
-            return item;
-          })
-        );
+    const isFormCompleted = Object.values(shop).every(value => value)
+    if (isFormCompleted) {
+      try {
+        const postData = { id: currentId, ...shop };
+        const res = await axios.patch(`http://localhost:3000/shops/${currentId}`, postData);
+        console.log(res);
+        if (res.status === 200) {
+          setIsEdit(false);
+          toast.success("You've successfully edited the shop!");
+          setDatas((prevDatas) =>
+            prevDatas.map((item) => {
+              if (item.id === currentId) {
+                return { ...item, ...shop };
+              }
+              return item;
+            })
+          );
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
     }
   };
 
@@ -101,7 +105,17 @@ const Shop = () => {
       console.log(error);
     }
   };
-
+  const editHandler = (index,id) => {
+    setCurrentId(id)
+    setCurrentIndex(index)
+    setIsEdit(true)
+    setShop({
+      shopCode :datas[index].shopCode,
+      shopName :datas[index].shopName,
+      mobileNo :datas[index].mobileNo,
+      address : datas[index].address
+    })
+  }
   return (
     <div>
       <div className='bg-white border-b-2 border-gray-200'>
@@ -122,6 +136,9 @@ const Shop = () => {
                   value={shopName}
                   onChange={(e) => setShopName(e.target.value)}
                 />
+                {shopName && <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 absolute top-3 right-3" onClick={()=>setShopName('')}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>}
               </div>
               <button
                 type='button'
@@ -197,6 +214,16 @@ const Shop = () => {
                     </svg>
                   </div>
                 </div>
+                <p className='text-sm text-gray-500'>{data.shopCode}</p>
+                <p className='text-sm'>{data.address}</p>
+                <div className='flex items-center space-x-2'>
+                  <div className='p-1 flex items-center justify-center rounded-sm bg-green-400'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" strokeWidth={1.5} stroke="none" className="w-4 h-4">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                    </svg>
+                  </div>
+                  <p className='text-sm font-medium'>{data.mobileNo}</p>
+                </div>
               </div>
             ))}
         </div>
@@ -210,6 +237,8 @@ const Shop = () => {
           changeHandler={changeHandler}
           discardChanges={discardChanges}
           submitHandler={submitHandler}
+          isSave={isSave}
+          setIsSave={setIsSave}
         />
       )}
       {isDelete && <Deleteform discardChanges={discardChanges} deleteShop={deleteShop} />}
