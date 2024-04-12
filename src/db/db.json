@@ -154,9 +154,9 @@
     {
       "id": 1,
       "shopCode": "SH001",
-      "shopName": "Tech Haven ",
-      "mobileNo": 1234567890,
-      "address": "123 Main St, Cityville, USA"
+      "shopName": "Anycall",
+      "mobileNo": "123456789",
+      "address": "Yangon"
     },
     {
       "id": 2,
@@ -188,10 +188,17 @@
     },
     {
       "shopCode": "SH006",
-      "shopName": "BBB",
+      "shopName": "ABC",
       "mobileNo": "0987654321",
-      "address": "YGN",
+      "address": "MDY",
       "id": 6
+    },
+    {
+      "shopCode": "SH007",
+      "shopName": "At Christ",
+      "mobileNo": "0987654321",
+      "address": "Samut prakan",
+      "id": 7
     }
   ],
   "customers": [
