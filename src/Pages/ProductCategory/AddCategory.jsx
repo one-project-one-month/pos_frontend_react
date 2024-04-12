@@ -1,4 +1,3 @@
-import React from "react";
 import { MdClose } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { GlobalOn } from "../../redux/services/animateSlice";

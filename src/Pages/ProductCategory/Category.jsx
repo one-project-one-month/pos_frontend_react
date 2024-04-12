@@ -9,11 +9,10 @@ import {
 import { PiExportThin } from "react-icons/pi";
 import { RiAddLine } from "react-icons/ri";
 import { MdOutlineLocalPrintshop } from "react-icons/md";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { setCategoryList } from "../../redux/services/authSlice";
 import { useNavigate } from "react-router-dom";
-import AddCategory from "./AddCategory";
 
 const Category = () => {
     const { page, exportSet, addCat, pageNum, addCatForm } = useSelector(
