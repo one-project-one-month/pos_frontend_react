@@ -9,7 +9,7 @@ import "./utils";
 
 
 import {  useSelector,useDispatch } from "react-redux";
-import { mdiRefresh, mdiRefreshCircle, mdiSync } from "@mdi/js";
+import {  mdiSync } from "@mdi/js";
 import { setRender } from "../../redux/services/animateSlice";
 
 
