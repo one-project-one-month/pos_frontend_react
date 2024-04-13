@@ -35,7 +35,6 @@ const Product = () => {
     return products;
   });
 
-    {/**in here ,wil be fetch the actual endpoint, now I am using dummy data */}
 
   // Dispatch the fetched data directly within useQuery
   if (!isLoading && data) {
@@ -266,6 +265,9 @@ const Product = () => {
           />
         </div>
       </div>
+    </div>
+
+    </div>
     </div>
   );
 };
