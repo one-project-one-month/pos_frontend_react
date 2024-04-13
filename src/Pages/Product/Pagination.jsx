@@ -11,7 +11,7 @@ const Pagination = ({ productsPerPage, totalProducts, paginate, currentPage }) =
   return (
     <div className="pagination flex justify-end text-white h-10 px-3 gap-3 ">
       <button
-       className=' hover:bg-[#3f3c57] text-white px-3 mt-2 rounded-xl text-[16px]'
+       className=' hover:bg-[#8578e6] text-white px-3 mt-2 rounded-xl text-[16px]'
         onClick={() => paginate(currentPage - 1)}
         disabled={currentPage === 1}
       >
@@ -21,13 +21,13 @@ const Pagination = ({ productsPerPage, totalProducts, paginate, currentPage }) =
         <button 
           key={number}
           onClick={() => paginate(number)}
-          className='hover:bg-[#3f3c57] text-white px-3 mt-2 rounded-xl text-[16px]'
+          className='hover:bg-[#8578e6] text-white px-3 mt-2 rounded-xl text-[16px]'
         >
           {number}
         </button>
       ))}
       <button
-        className='hover:bg-[#3f3c57] text-white px-3 mt-2 rounded-xl text-[16px]'  
+        className='hover:bg-[#8578e6] text-white px-3 mt-2 rounded-xl text-[16px]'  
         onClick={() => paginate(currentPage + 1)}
         disabled={currentPage === Math.ceil(totalProducts / productsPerPage)}
       >

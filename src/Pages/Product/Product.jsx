@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'; 
+import { useDispatch, useSelector } from 'react-redux';
 import { setProductList } from '../../redux/ProductsService/authSlice';
 import Pagination from "./Pagination";
 import productDb from "../../db/db.json";
@@ -8,17 +8,27 @@ import productDb from "../../db/db.json";
 import {
   addCatFormOn,
   exportSettingOn,
+  pageOn,
+  setPageNum,
+
 } from "../../redux/ProductsService/animateSlice";
 
 //icons
 import { RiAddLine } from "react-icons/ri";
+import { TiArrowSortedDown } from 'react-icons/ti';
+import { PiExportThin } from 'react-icons/pi';
+import { MdOutlineLocalPrintshop } from "react-icons/md";
+
 const Product = () => {
   const { products } = productDb;
-  const { addCatForm } = useSelector(state => state.authSlice);
+  const { addCatForm, page, exportSet, addCat, pageNum } = useSelector(state => state.animateSlice); // Corrected to state.animateSlice
   const dispatch = useDispatch();
+
+  const pageCount = [7, 10, 20, 50, 70, 100];
+
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(5); 
+  const [productsPerPage] = useState(5);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,33 +54,112 @@ const Product = () => {
   const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
   return (
-    <div className='flex flex-col gap-3 right-10 w-[77%] top-[50px] h-auto justify-between items-start p-2 rounded-md bg-[#312d4b]'>
-      <div className='flex gap-24 '>
+    <div className='flex flex-col gap-3 right-10 w-full top-[50px] h-auto justify-between items-start p-2 rounded-md bg-[#312d4b]'>
 
-        <div className="border-2  px-2 mx-5 border-[#76728e] flex justify-center items-center rounded-md  h-[40px] ">
+      <div className="   flex justify-between items-center w-full h-auto p-1 ">
+
+        <div className=' border-2 px-2  border-[#76728e] flex justify-center items-center rounded-md w-[20%] h-[40px]'>
           <input
             placeholder="Search Category"
-            className="outline-none rounded-md bg-transparent w-full h-full"
+            className=" outline-none rounded-md bg-transparent w-full h-full "
             type="text"
+            name=""
+            id=""
           />
+
         </div>
 
-        <div
-          onClick={() =>
-            dispatch(addCatFormOn({ addCatForm: !addCatForm }))
-          }
-          className=" flex justify-between px-3 items-center  bg-[#9055fd] cursor-pointer  h-auto rounded "
-        >
-          <RiAddLine className=" text-lg " />
-          <p className="flex font-semibold text-[15px] tracking-wide  ">
-            ADD CATEGORY
-          </p>
+        <div className=" relative flex justify-between items-center w-[40%] h-[45px] p-1 ">
+          <>
+            <div
+              onClick={() => {
+                dispatch(pageOn({ page: !page }));
+              }}
+              className=" cursor-pointer flex justify-around items-center rounded w-[15%] h-full border border-[#76728e] "
+            >
+              <p>{pageNum}</p>
+              <TiArrowSortedDown
+                className=" transition-all text-lg "
+                style={{
+                  rotate: page === true ? "360deg" : "270deg",
+                }}
+              />
+            </div>
+
+            <div
+              onClick={() => {
+                dispatch(
+                  exportSettingOn({ exportSet: !exportSet })
+                );
+              }}
+              className=" flex justify-evenly tracking-wider items-center text-[#6c6d7b] font-medium  bg-[#3f3c57] cursor-pointer w-[30%] h-full rounded "
+            >
+              <PiExportThin className=" text-lg " />
+
+              <p className=" text-sm  ">EXPORT</p>
+
+              <TiArrowSortedDown
+                className=" transition-all text-lg "
+                style={{
+                  rotate:
+                    exportSet === true
+                      ? "360deg"
+                      : "270deg",
+                }}
+              />
+            </div>
+            <div
+              onClick={() =>
+                dispatch(
+                  addCatFormOn({ addCatForm: !addCatForm })
+                )
+              }
+              className=" flex justify-between px-3 items-center  bg-[#9055fd] cursor-pointer w-[40%] h-full rounded "
+            >
+              <RiAddLine className=" text-lg " />
+              <p className=" font-semibold text-[15px] tracking-wide ">
+                ADD CATEGORY
+              </p>
+            </div>
+
+          </>
+
+          {/* Page Count  */}
+          <div
+            style={{
+              visibility: page === true ? "visible" : "collapse",
+            }}
+            className=" shadow-lg   flex flex-col justify-center items-center gap-3 absolute w-[15%] h-auto  rounded-md bg-[#312d4b]  top-[100%] "
+          >
+            {pageCount.map((num) => {
+              return (
+                <p
+                  style={{
+                    backgroundColor:
+                      num === pageNum
+                        ? "#16b1ff"
+                        : "transparent",
+                  }}
+                  onClick={() => {
+                    dispatch(setPageNum({ pageNum: num }));
+                    dispatch(pageOn({ page: !page }));
+                  }}
+                  className=" p-2 rounded w-full justify-center text-center cursor-pointer "
+                  key={num}
+                >
+                  {" "}
+                  {num}{" "}
+                </p>
+              );
+            })}
+          </div>
+        `
         </div>
       </div>
-
+                {/**Table */}
       <div className="flex w-[100%] justify-between items-center">
-        <div id="catListTable" className="w-full text-sm text-gray-500">
-          <table className=" w-full text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <div id="catListTable" className="w-[100%] text-sm text-gray-500">
+          <table className=" w-[100%] text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <thead>
               <tr>
                 <th scope="col" className="p-4">
@@ -128,7 +217,7 @@ const Product = () => {
                   <td className="px-6 pl-3 py-4">
                     <a
                       href="#"
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      className="pl-10 font-medium text-blue-600 dark:text-blue-500 hover:underline"
                     >
                       Edit
                     </a>
