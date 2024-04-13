@@ -105,7 +105,6 @@ const Table = ({ data, isLoading }) => {
                             <th className="px-3 py-2">Action</th>
                         </tr>
                     </thead>
-
                     <tbody className="">
                         {isLoading && (
                             <tr className="text-center">
@@ -115,8 +114,8 @@ const Table = ({ data, isLoading }) => {
                             </tr>
                         )}
                         {data &&
-                            data.map((user) => (
-                                <tr key={user.id}>
+                            data.map((user, i) => (
+                                <tr key={i}>
                                     <td className="px-3 py-2">
                                         <input
                                             className="w-5 h-5 accent-purple-600"

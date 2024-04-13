@@ -20,16 +20,36 @@ import { useQuery } from "react-query";
 
 const CustomerList = () => {
     const [search, setSearch] = useState("");
+    const [page, setPage] = useState(0);
+    const [totalPages, setTotalPages] = useState(10);
+    const [limit, setLimit] = useState(10);
 
-    const api = "https://jsonplaceholder.typicode.com/users";
+    const getUsers = async ({ page, limit }) => {
+        const api = `https://jsonplaceholder.typicode.com/users?page=${page}&limit=${limit}`;
 
-    const getUsers = async () => {
         const res = await axios.get(api);
 
-        return res.data;
+        return [
+            ...res.data,
+            ...res.data,
+            ...res.data,
+            ...res.data,
+            ...res.data,
+        ];
     };
 
-    const { data, isLoading, isError, error } = useQuery("users", getUsers);
+    const { data, isLoading, isError, error } = useQuery(
+        ["users", page, limit],
+        () => getUsers(page, limit)
+    );
+
+    let start;
+    let end;
+
+    if (data) {
+        start = page * limit + 1;
+        end = Math.min((page + 1) * limit, data.length);
+    }
 
     return (
         <>
@@ -62,6 +82,51 @@ const CustomerList = () => {
                             </div>
                         </div>
                         <Table data={data} isLoading={isLoading} />
+                        <div className="table-footer">
+                            <div className="page-data-info">
+                                {data && (
+                                    <p>
+                                        Showing {start} to {end} of{" "}
+                                        {data.length} entries
+                                    </p>
+                                )}
+                            </div>
+                            <div className="pagination">
+                                <div className="pages">
+                                    <button
+                                        className="page-btn"
+                                        onClick={() => setPage(page - 1)}
+                                    >
+                                        Pre
+                                    </button>
+                                    <button
+                                        className="page-btn"
+                                        onClick={() => setPage(page)}
+                                    >
+                                        Pre
+                                    </button>
+                                    <button
+                                        className="page-btn"
+                                        onClick={() => setPage(page + 1)}
+                                    >
+                                        Next
+                                    </button>
+                                </div>
+                                <div className="limit">
+                                    <select
+                                        name="limit"
+                                        id="limit"
+                                        onChange={(e) =>
+                                            setLimit(e.target.value)
+                                        }
+                                    >
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
