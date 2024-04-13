@@ -2,7 +2,7 @@ import React from 'react';
 
 const CongratulationsCard = ({totalProfit}) => {
   return (
-    <div className="flex flex-col items-end w-[60%] ">
+    <div className="flex flex-col items-end w-[70%] ">
       <div className="card w-full  rounded-lg shadow-lg bg-[#312d4b] text-[#d4d4d4] ">
         <div className="flex w-full justify-between ">
           <div className="w-[60%] px-4  py-4">

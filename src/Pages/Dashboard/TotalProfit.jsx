@@ -149,12 +149,14 @@ const TotalProfit = () => {
       },
     },
   };
-  
+
   return (
     <div className=" flex flex-col justify-start w-full p-2 items-start ">
-      <div className=" flex  justify-start gap-2 w-full items-center text-2xl font-semibold text-[#d4d4d4e1] ">
+      <div className=" flex h-[30px] pb-3  justify-start gap-3 w-full items-end text-2xl font-semibold text-[#d4d4d4e1] ">
         <p>Total Profit </p>
-        <div className=" flex flex-col h-full  gap-0 text-sm justify-center items-center ">
+       
+       <div className=" flex justify-center items-center " >
+       <div className=" flex flex-col h-full  gap-0 text-sm justify-center items-center ">
           {totalProfit < 0 ? (
             <p className=" text-[#E2434B] "> {totalProfit.toFixed(2) * -1}% </p>
           ) : (
@@ -169,6 +171,8 @@ const TotalProfit = () => {
             color={totalProfit < 0 ? "#E2434B" : "#186F65"}
           />
         </div>
+       </div>
+       
       </div>
       <Line data={data} options={options}></Line>
     </div>
