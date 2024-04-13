@@ -11,8 +11,13 @@ import autoTable from "jspdf-autotable";
 
 import CustomerForm from "../Customer/CustomerForm";
 import data from "../../db/db.json";
+import {  useSelector,useDispatch } from "react-redux";
+import Icon from '@mdi/react';
 
 import "./Button.css";
+import { mdiSync } from "@mdi/js";
+import { setRender } from "../../redux/services/animateSlice";
+
 
 export const ExportButtons = () => {
     const [showDropDown, setShowDropDown] = useState(false);
@@ -105,3 +110,24 @@ export const AddNewUserButton = () => {
         </div>
     );
 };
+
+export const ReFreshButton = () => {
+
+    
+const { reRender } = useSelector((state) => state.animateSlice);
+
+
+
+
+const dispatch = useDispatch()
+
+return (
+    <div onClick={()=> dispatch(setRender(reRender+1))}  className=" shadow-md bg-[#312d4b] justify-between items-center px-2 py-1 rounded-md flex gap-2 text-[#d4d4d4] cursor-pointer  " >
+
+        <p>Refresh</p>
+        <Icon path={mdiSync} size={.8} color={'#e6e6eb'} />
+        
+        </div>
+)
+    
+}

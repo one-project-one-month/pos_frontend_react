@@ -5,7 +5,7 @@ import faker from 'faker';
 
 const SummaryCard = ({ title, icon, value, delta, color }) => {
   return (
-    <div className="flex h-[88%]   flex-col bg-[#312d4b] w-[50%] shadow-md px-3 py-4 rounded-md ">
+    <div className="flex h-[100%]   flex-col bg-[#312d4b] w-[50%] dashBoardCard px-3 py-4 rounded-md ">
       <div className="flex items-center justify-between mb-4">
         <div className="avatar">
           <div style={{

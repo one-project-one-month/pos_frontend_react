@@ -9,8 +9,8 @@ const SideBar = () => {
   const dispatch = useDispatch();
   const { menuItemArrow } = useSelector((state) => state.animateSlice);
   return (
-    <aside className="sideBarSection">
-      <div className="tracking-wide flex flex-col gap-3 w-full justify-start items-start">
+    <aside className=" flex fixed left-0 w-[20%] h-screen bg-[#28243d] rounded-br-md  py-2 ">
+      <div className="tracking-wide flex flex-col gap-3 w-full h-full bg-[#28243d] justify-start items-start">
         <NavLink
           to={"/"}
           className="cursor-pointer logo px-4 py-2 justify-center items-start font-bold text-[#9055fd]"
@@ -18,7 +18,7 @@ const SideBar = () => {
           <p>LOGO</p>
         </NavLink>
 
-        <div className="flex flex-col gap-1 justify-start items-center h-auto w-[90%]">
+        <div className="flex  flex-col gap-1 justify-start items-center h-auto w-[90%]">
           <div
             onClick={() => {
               dispatch(menuItemArrowOn({ menuItemArrow: !menuItemArrow }));

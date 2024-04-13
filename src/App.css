@@ -1,6 +1,6 @@
-/* .mainSection {
+.mainSection {
     @apply flex w-full h-screen justify-between items-start
-} */
+}
 
 @media print {
     /* Styles for printing, e.g., hiding unnecessary elements, adjusting layout */

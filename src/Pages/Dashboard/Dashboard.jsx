@@ -2,53 +2,54 @@ import CongratulationsCard from "./CongratulationsCard";
 import SummaryCards from "./SummaryCards";
 import TotalProfit from "./TotalProfit";
 import "./dashboard.css";
-import Icon from '@mdi/react';
-
 
 import "./utils";
 
-
-import {  useSelector,useDispatch } from "react-redux";
-import {  mdiSync } from "@mdi/js";
-import { setRender } from "../../redux/services/animateSlice";
-
-
+import { useSelector } from "react-redux";
+import Footer from "../../Common/Footer/Footer";
+import { ReFreshButton } from "../../Components/buttons/Buttons";
+import React from "react";
 
 const Dashboard = () => {
+  const { totalProfit } = useSelector((state) => state.authSlice);
 
-    const { totalProfit } = useSelector((state) => state.authSlice);
-    const { reRender } = useSelector((state) => state.animateSlice);
+  const type = [
+    {type:'bar'},{type:'line'},{type:'radar'},{type:'polar'}
+  ]
+
+      
 
 
-    const dispatch = useDispatch()
-
-  
+ 
 
   return (
     <section className=" dashBoardSection  ">
+      <ReFreshButton />
 
-        <div onClick={()=> dispatch(setRender(reRender+1))}  className=" shadow-sm bg-[#312d4b] justify-between items-center px-2 py-1 rounded-md flex gap-2 text-[#d4d4d4] cursor-pointer  " >
+      <div className=" relative flex w-full justify-end items-end gap-3 h-[400px]  ">
+        <CongratulationsCard totalProfit={totalProfit - 1.0} />
 
-        <p>Refresh</p>
-        <Icon path={mdiSync} size={.8} color={'#e6e6eb'} />
-        
-        </div>
+        <SummaryCards />
+      </div>
 
+      <div className=" flex flex-col gap-6   text-[#e6e6eb]  rounded-md  w-full h-auto ">
+        {/* <TotalProfit w={'full'} type={'line'} /> */}
+        <div id="chart" className=" flex flex-wrap gap-8 justify-between items-start  w-[100%] ">
+            {
+                type.map(({type}) => {
+                    return(
+                        <TotalProfit key={type} type={type} />
 
-
-        <div className=" relative flex w-full justify-end items-end gap-3 h-[400px]  " >
-
-          <CongratulationsCard  totalProfit={totalProfit}/>
-            
+                    )
+                })
+            }
        
-        <SummaryCards/>
-        </div>
-        
-      <div className=" flex dashBoardCard  text-[#e6e6eb] bg-[#312d4b] rounded-md p-4  w-full h-full ">
-        <div className=" flex justify-start items-start p-2 w-[50%] ">
-          <TotalProfit/>
+
+          
+          
         </div>
       </div>
+      <Footer />
     </section>
   );
 };
