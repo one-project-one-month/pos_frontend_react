@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setProductList } from '../../redux/ProductsService/authSlice';
 import Pagination from "./Pagination";
 import productDb from "../../db/db.json";
+import { useQuery } from 'react-query';
+import { useNavigate } from "react-router-dom";
 
 //Animate
 import {
@@ -10,7 +12,6 @@ import {
   exportSettingOn,
   pageOn,
   setPageNum,
-
 } from "../../redux/ProductsService/animateSlice";
 
 //icons
@@ -21,39 +22,47 @@ import { MdOutlineLocalPrintshop } from "react-icons/md";
 
 const Product = () => {
   const { products } = productDb;
-  const { addCatForm, page, exportSet, addCat, pageNum } = useSelector(state => state.animateSlice); // Corrected to state.animateSlice
+  const { addCatForm, page, exportSet, pageNum } = useSelector(state => state.animateSlice);
   const dispatch = useDispatch();
 
   const pageCount = [7, 10, 20, 50, 70, 100];
+  const navigate = useNavigate();
 
-  const [isLoading, setIsLoading] = useState(false);
+  //fetch data using react useQuery 
+  const { isLoading, isError, data } = useQuery('products', async () => {
+    //simulate API call delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    return products;
+  });
+
+    {/**in here ,wil be fetch the actual endpoint, now I am using dummy data */}
+
+  // Dispatch the fetched data directly within useQuery
+  if (!isLoading && data) {
+    dispatch(setProductList(data));
+  }
+  if (isError) return <div>Error fetching data</div>;
+
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(5);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        dispatch(setProductList(products));
-        setIsLoading(false);
-      } catch (error) {
-        console.error('Error fetching product list:', error);
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [dispatch, products]);
-
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
-  // Calculate the index of the first and last products to display
+  //pagination
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  // Slice the products array to get the products for the current page
   const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
+  
+  const PrintTable = () => {
+    dispatch(exportSettingOn({ exportSet: !exportSet }));
+
+    navigate("/printtable");
+};
+
+
   return (
+
     <div className='flex flex-col gap-3 right-10 w-full top-[50px] h-auto justify-between items-start p-2 rounded-md bg-[#312d4b]'>
 
       <div className="   flex justify-between items-center w-full h-auto p-1 ">
@@ -153,10 +162,29 @@ const Product = () => {
               );
             })}
           </div>
-        `
+          {/* Export  */}
+          <div
+            style={{
+              visibility:
+                exportSet === true ? "visible" : "collapse",
+            }}
+            className="  flex flex-col justify-center items-center gap-3 absolute shadow-lg w-[25%] h-[150px] rounded bg-[#312d4b]  left-[25%] top-[100%] "
+          >
+            <div className=" cursor-pointer gap-1 w-full justify-start items-center flex p-2 rounded text-[#6c6d7b] ">
+              <MdOutlineLocalPrintshop className=" text-lg " />
+              <p
+                onClick={PrintTable}
+                className=" cursor-pointer text-lg "
+              >
+                Print
+              </p>
+              {/* Hidden printable content */}
+            </div>
+          </div>
+
         </div>
       </div>
-                {/**Table */}
+      {/**Table */}
       <div className="flex w-[100%] justify-between items-center">
         <div id="catListTable" className="w-[100%] text-sm text-gray-500">
           <table className=" w-[100%] text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

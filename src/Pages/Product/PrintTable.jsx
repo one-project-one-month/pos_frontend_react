@@ -1,8 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import {productList } from "../../redux/ProductsService/authSlice";
 
 const ProductTable = () => {
-  const { productList } = useSelector((state) => state.productSlice); // product data in your Redux state
+
+
+  const { productList } = useSelector((state) => state.productSlice); 
 
   return (
     <div className="flex w-full justify-between items-center">
