@@ -10,13 +10,14 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
-import { setExpense, setIncome, setTotalProfit } from "../../redux/services/authSlice";
+import {
+  setExpense,
+  setIncome,
+  setTotalProfit,
+} from "../../redux/services/authSlice";
 import { useEffect } from "react";
 import Icon from "@mdi/react";
-import {
-  mdiMenuDown,
-  mdiMenuUp,
-} from "@mdi/js";
+import { mdiMenuDown, mdiMenuUp } from "@mdi/js";
 
 ChartJs.register(
   LineElement,
@@ -42,18 +43,30 @@ const labels = [
 
 const TotalProfit = () => {
   const dispatch = useDispatch();
+  const { income, expense, totalProfit } = useSelector(
+    (state) => state.authSlice
+  );
+  const { reRender } = useSelector((state) => state.animateSlice);
 
   useEffect(() => {
     dispatch(setIncome(labels));
     dispatch(setExpense(labels));
-    dispatch(setTotalProfit(((income[labels.length - 1] - expense[labels.length - 1]) / 60) * 100))
+    dispatch(
+      setTotalProfit(
+        ((income[labels.length - 1] - expense[labels.length - 1]) / 60) * 100
+      )
+    );
   }, []);
 
-  const { income, expense,totalProfit } = useSelector((state) => state.authSlice);
-
-  console.table(expense[labels.length - 1], income[labels.length - 1]);
-
-  
+  useEffect(() => {
+    dispatch(setIncome(labels));
+    dispatch(setExpense(labels));
+    dispatch(
+      setTotalProfit(
+        ((income[labels.length - 1] - expense[labels.length - 1]) / 60) * 100
+      )
+    );
+  }, [reRender]);
 
   const data = {
     labels: labels,
@@ -136,6 +149,7 @@ const TotalProfit = () => {
       },
     },
   };
+  
   return (
     <div className=" flex flex-col justify-start w-full p-2 items-start ">
       <div className=" flex  justify-start gap-2 w-full items-center text-2xl font-semibold text-[#d4d4d4e1] ">

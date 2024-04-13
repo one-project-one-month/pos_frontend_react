@@ -2,7 +2,7 @@ import React from 'react';
 
 const CongratulationsCard = ({totalProfit}) => {
   return (
-    <div className="flex flex-col items-end w-[60%] mt-md-5 mt-lg-4 pt-md-2 pt-lg-0">
+    <div className="flex flex-col items-end w-[60%] ">
       <div className="card w-full  rounded-lg shadow-lg bg-[#312d4b] text-[#d4d4d4] ">
         <div className="flex w-full justify-between ">
           <div className="w-[60%] px-4  py-4">
@@ -12,7 +12,7 @@ const CongratulationsCard = ({totalProfit}) => {
           <div className=" w-[40%]  relative flex justify-end items-end px-4">
             <img
               src="/src/Images/illustration-john-2.png"
-              className="card-img-position w-full h-[130%] object-cover absolute bottom-0 right-0 scaleX-n1-rtl"
+              className="card-img-position w-full h-[140%] object-cover absolute bottom-0 right-0 scaleX-n1-rtl"
               alt="View Profile"
             />
           </div>

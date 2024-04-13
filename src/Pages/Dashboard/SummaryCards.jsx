@@ -5,7 +5,7 @@ import faker from 'faker';
 
 const SummaryCard = ({ title, icon, value, delta, color }) => {
   return (
-    <div className="flex   flex-col bg-[#312d4b] w-[45%] px-3 py-4 rounded-md ">
+    <div className="flex h-[88%]   flex-col bg-[#312d4b] w-[40%] shadow-md px-3 py-4 rounded-md ">
       <div className="flex items-center justify-between mb-4">
         <div className="avatar">
           <div style={{
@@ -43,7 +43,7 @@ const SummaryCard = ({ title, icon, value, delta, color }) => {
       </div>
       <h6 className="mb-2 text-xl font-medium ">{title}</h6>
       <div className="flex flex-wrap mb-2 pb-1 gap-2 items-center">
-        <h4 className="mb-0 text-lg font-medium ">{value}</h4>
+        <h4 className=" text-lg font-medium ">{value}</h4>
         <small style={{
             color:color
         }} className={`text-${color} mt-1`}>{delta}</small>
@@ -55,7 +55,7 @@ const SummaryCard = ({ title, icon, value, delta, color }) => {
 
 const SummaryCards = () => {
   return (
-    <div className="flex w-[40%] gap-3 p-2 text-[#d4d4d4d2] self-end place-self-end justify-self-end  justify-end">
+    <div className="flex w-[40%] gap-3  h-full text-[#d4d4d4d2] justify-end items-end">
       <SummaryCard
         title="Transactions"
         icon={<Icon path={mdiTrendingUp} size={1} color={'white'} />}
