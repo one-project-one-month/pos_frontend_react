@@ -12,7 +12,7 @@ const CongratulationsCard = ({totalProfit}) => {
           <div className=" w-[40%]  relative flex justify-end items-end px-4">
             <img
               src="/src/Images/illustration-john-2.png"
-              className="card-img-position w-full h-[140%] object-cover absolute bottom-0 right-0 scaleX-n1-rtl"
+              className="card-img-position w-full h-[130%] object-cover absolute bottom-0 right-0 scaleX-n1-rtl"
               alt="View Profile"
             />
           </div>
