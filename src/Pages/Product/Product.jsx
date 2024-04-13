@@ -44,8 +44,8 @@ const Product = () => {
   const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
   return (
-    <div className='flex flex-col gap-3 right-10 w-[77%] top-[50px] h-auto justify-between items-start p-2 rounded-md bg-[#312d4b]'>
-      <div className='flex gap-24 '>
+    <div className='flex flex-col gap-3 right-10 w-[100%] top-[50px] h-auto justify-between items-start p-2 rounded-md bg-[#312d4b]'>
+      <div className='flex  justify-between w-full '>
 
         <div className="border-2  px-2 mx-5 border-[#76728e] flex justify-center items-center rounded-md  h-[40px] ">
           <input

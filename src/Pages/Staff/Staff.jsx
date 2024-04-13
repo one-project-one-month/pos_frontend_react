@@ -30,14 +30,14 @@ const Staff = () => {
     }, []);
     return (
         <>
-            <div className=" bg-[#28243d] rounded-md p-2">
+            <div className=" bg-[#312d4b] shadow-md rounded-md p-3">
                 <div className="flex justify-between items-center">
                     <h2 className="text-white lg:text-3xl md:text-2xl sm:text-xl px-4 font-bold">
                         All Staff Lists
                     </h2>
                     <Link
                         to="/general/add"
-                        className="w-[120px] py-2 flex justify-center items-center bg-[#9055fd] rounded-md shadow-md shadow-slate-300 text-lg"
+                        className=" py-2 px-4 flex gap-3 justify-between items-center bg-[#9055fd] rounded-md shadow-md  text-lg"
                     >
                         <AiOutlinePlus size={20} />
                         <span>New Staff</span>

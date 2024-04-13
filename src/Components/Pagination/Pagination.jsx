@@ -35,12 +35,12 @@ const Pagination = ({setCurrentPage,itemPerPage,currentPage,currentIndex,staffs}
       };
   return (
     <>
-        <div className={`${currentIndex.length=== 0 ? 'hidden':"flex items-center justify-between bg-blue-400 w-[100%] h-[50px] mt-4 px-8"}`}>
-        <h2 className="font-semibold">Showing <span className="font-bold text-xl text-white">{currentIndex.length}</span> entries</h2>
+        <div className={`${currentIndex.length=== 0 ? 'hidden':"flex items-center justify-between bg-[#312d4b] w-[100%] h-[50px] mt-4 px-6"}`}>
+        <h2 className="font-semibold text-[#d4d4d4e6] ">Showing <span className="font-bold text-xl text-[#d4d4d4]">{currentIndex.length}</span> entries</h2>
             <div className="pagination">
                 <button
                     type="button"
-                    className="py-1 w-[40px] mr-1 cursor-pointer rounded-sm bg-black text-white dark:bg-white dark:text-black"
+                    className="py-1 px-3 mr-1 cursor-pointer rounded-sm bg-black text-white dark:bg-white dark:text-black"
                     onClick={prevClick}
                     disabled={currentPage === pages[0] ? true : false}
                 >
@@ -53,8 +53,8 @@ const Pagination = ({setCurrentPage,itemPerPage,currentPage,currentIndex,staffs}
                     type="button"
                     className={
                         currentPage === p
-                        ? " py-1 mr-1 w-[30px] cursor-pointer rounded-sm bg-red-600"
-                        : "py-1 w-[30px]  cursor-pointer rounded-sm bg-black text-white dark:bg-white dark:text-black mr-1"
+                        ? " py-1 mr-1 w-[30px] cursor-pointer rounded-sm bg-[#212121] text-[#d4d4d4]"
+                        : "py-1 w-[30px]  cursor-pointer rounded-sm bg-black text-[#d4d4d4] dark:bg-white dark:text-black mr-1"
                     }
                     key={index}
                     id={p}
@@ -69,7 +69,7 @@ const Pagination = ({setCurrentPage,itemPerPage,currentPage,currentIndex,staffs}
             })}
             <button
                 type="button"
-                className="py-1 w-[40px]  mr-1 cursor-pointer rounded-sm bg-black text-white dark:bg-white dark:text-black"
+                className="py-1 px-3  mr-1 cursor-pointer rounded-sm bg-black text-white dark:bg-white dark:text-black"
                 onClick={nextClick}
                 disabled={currentPage === pages[pages.length - 1] ? true : false}
             >
