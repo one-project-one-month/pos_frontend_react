@@ -36,11 +36,10 @@ const Dashboard = () => {
 
 
 
-        <div className=" flex w-full justify-end items-end gap-3 h-[400px]  " >
+        <div className=" relative flex w-full justify-end items-end gap-3 h-[400px]  " >
 
-            {
-                totalProfit > 0 &&  <CongratulationsCard totalProfit={totalProfit}/>
-            }
+          <CongratulationsCard  totalProfit={totalProfit}/>
+            
        
         <SummaryCards/>
         </div>
