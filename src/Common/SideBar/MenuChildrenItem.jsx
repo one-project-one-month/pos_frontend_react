@@ -16,7 +16,7 @@ const MenuChildrenItem = ({item,menuItemArrow}) => {
   >
     <NavLink
       to={item.route}
-      className=" rounded-r-full py-1 text-[#e6e6eb]  cursor-pointer menu-item flex  justify-start px-[23px] items-center gap-3 w-full "
+      className=" rounded-r-full py-2 text-[#e6e6eb]  cursor-pointer menu-item flex  justify-start px-[23px] items-center gap-3 w-full "
     >
       {item.icon ? (
         <div className=" w-[10%] h-full flex justify-center items-center  ">

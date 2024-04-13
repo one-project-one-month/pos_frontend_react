@@ -112,8 +112,8 @@ const Category = () => {
                             }
                             className=" flex justify-between px-3 items-center  bg-[#9055fd] cursor-pointer w-[40%] h-full rounded "
                         >
-                            <RiAddLine className=" text-lg " />
-                            <p className=" font-semibold text-[15px] tracking-wide ">
+                            <RiAddLine className=" text-lg text-[#d4d4d4] " />
+                            <p className=" font-semibold text-[#d4d4d4] text-[15px] tracking-wide ">
                                 ADD CATEGORY
                             </p>
                         </div>

@@ -6,16 +6,24 @@ import "./dashboard.css";
 import "./utils";
 
 
+import {  useSelector } from "react-redux";
 
 
 
 const Dashboard = () => {
+
+    const { totalProfit } = useSelector((state) => state.authSlice);
+
   
 
   return (
     <section className=" dashBoardSection  ">
-        <div className=" flex w-full justify-between items-center " >
-        <CongratulationsCard/>
+        <div className=" flex w-full justify-end items-center " >
+
+            {
+                totalProfit > 0 &&  <CongratulationsCard totalProfit={totalProfit}/>
+            }
+       
         <SummaryCards/>
         </div>
         
