@@ -15,7 +15,7 @@ function App() {
                     <section className="sidebar col-span-1 bg-[#28243d]">
                         <SideBar />
                     </section>
-                    <section className="col-span-4 bg-[#b4b4b4]">
+                    <section className="col-span-4 bg-[#28243d]">
                         <div className="">
                             <NavBar />
                         </div>

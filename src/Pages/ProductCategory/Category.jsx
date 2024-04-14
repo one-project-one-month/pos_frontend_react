@@ -53,12 +53,12 @@ const Category = () => {
     };
 
     return (
-        <div className="p-2 rounded-md bg-[#312d4b]">
+        <div className="p-2 rounded-md shadow-md bg-[#312d4b]">
             <div className="   flex justify-between items-center w-full h-auto p-1 ">
                 <div className="  border-2 px-2  border-[#76728e] flex justify-center items-center rounded-md w-[20%] h-[40px] ">
                     <input
                         placeholder="Search Category"
-                        className=" outline-none rounded-md bg-transparent w-full h-full "
+                        className=" text-[#d4d4d4e7] outline-none rounded-md bg-transparent w-full h-full "
                         type="text"
                         name=""
                         id=""
@@ -70,7 +70,7 @@ const Category = () => {
                             onClick={() => {
                                 dispatch(pageOn({ page: !page }));
                             }}
-                            className=" cursor-pointer flex justify-around items-center rounded w-[15%] h-full border border-[#76728e] "
+                            className=" text-[#d4d4d4] cursor-pointer flex justify-around items-center rounded w-[15%] h-full border border-[#76728e] "
                         >
                             <p>{pageNum}</p>
                             <TiArrowSortedDown
@@ -112,8 +112,8 @@ const Category = () => {
                             }
                             className=" flex justify-between px-3 items-center  bg-[#9055fd] cursor-pointer w-[40%] h-full rounded "
                         >
-                            <RiAddLine className=" text-lg " />
-                            <p className=" font-semibold text-[15px] tracking-wide ">
+                            <RiAddLine className=" text-lg text-[#d4d4d4] " />
+                            <p className=" font-semibold text-[#d4d4d4] text-[15px] tracking-wide ">
                                 ADD CATEGORY
                             </p>
                         </div>
@@ -178,7 +178,7 @@ const Category = () => {
                 id="catListTable"
                 className="w-full overflow-y-hidden text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
             >
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-[#312d4b] dark:text-gray-400">
                     <tr>
                         <th scope="col" className="p-4">
                             <div className="flex items-center">
@@ -215,7 +215,7 @@ const Category = () => {
                         return (
                             <tr
                                 key={catData.id}
-                                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                                className="bg-white border-b dark:bg-[#312d4b] dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                             >
                                 <td className="w-4 p-4">
                                     <div className="flex items-center">
@@ -260,7 +260,7 @@ const Category = () => {
                 {/* Hidden printable content */}
             </table>
 
-            <div className="flex w-full justify-between flex-row mx-1">
+            <div className="flex w-full justify-between py-3 flex-row mx-1">
                 <div className="w-full justify-between md:w-1/2 px-2">
                     <div
                         className="text-[#d4d4d4] text-sm font-light"
@@ -273,7 +273,7 @@ const Category = () => {
                 </div>
                 <div className="w-full md:w-1/2 px-2">
                     <div className="flex items-center justify-end">
-                        <ul className="pagination flex gap-3 list-none rounded-md">
+                        <ul className="pagination text-[#d4d4d4] flex gap-3 list-none rounded-md">
                             <li className="page-item disabled cursor-not-allowed">
                                 <a
                                     className="page-link px-1 py-2 rounded-l-md hover:bg-[#3f3c57] focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-[#9055fd] disabled:opacity-50"

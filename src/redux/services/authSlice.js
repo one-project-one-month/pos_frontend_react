@@ -1,8 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
+import faker from "faker";
 import Cookies from "js-cookie";
 
 const initialState = {
- categoryList:[]
+ categoryList:[],
+ totalProfit:0,
+    income:0,
+    expense:0,
+     labels : [
+      "2015",
+      "2016",
+      "2017",
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024",
+    ]
 };
 
 const STORAGE_KEY = 'Auth';
@@ -28,10 +44,19 @@ export const authSlice = createSlice({
     },
     setCategoryList: (state,{payload}) => {
       state.categoryList = payload.categoryList
-    }
+    },
+    setTotalProfit: (state, {payload}) => {
+      state.totalProfit = payload
+  },
+  setIncome:(state,{payload} ) => {
+      state.income = payload?.map(() => faker.datatype.number({ min: 10, max: 58 }) )
+  },
+  setExpense: (state,{payload} ) => {
+      state.expense = payload?.map(() => faker.datatype.number({ min: 10, max: 58 }) )
+  },
   },
 });
 
-export const { setLogin,setCategoryList } =
+export const { setLogin,setCategoryList, setExpense, setIncome , setTotalProfit } =
   authSlice.actions;
 export default authSlice.reducer;

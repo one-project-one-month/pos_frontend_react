@@ -54,7 +54,7 @@ const CustomerList = () => {
     return (
         <>
             <Toastbox />
-            <div className="bg-[#b4b4b4] ">
+            <div className="bg-transparent ">
                 <div className="grid 2xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-5">
                     <StackCardOne />
                     <StackCardTwo />

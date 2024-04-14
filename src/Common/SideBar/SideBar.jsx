@@ -3,16 +3,18 @@ import { NavLink } from "react-router-dom";
 import SideMenuItem from "./SideMenuItem";
 import SideMenu from "./SideMenu";
 import { menuItemArrowOn } from "../../redux/services/animateSlice";
-import { useDispatch, useSelector } from "react-redux"; 
+import { useDispatch, useSelector } from "react-redux";
 
 const SideBar = () => {
-  const dispatch = useDispatch(); // Getting dispatch function from useDispatch hook
-  const menuItemArrow = useSelector(state => state.animateSlice.menuItemArrow); // Getting menuItemArrow from Redux store state
-
+  const dispatch = useDispatch();
+  const { menuItemArrow } = useSelector((state) => state.animateSlice);
   return (
     <aside className="sideBarSection">
       <div className="tracking-wide flex flex-col gap-3 w-full justify-start items-start">
-        <NavLink to={"/"} className="cursor-pointer logo px-4 py-2 justify-center items-start font-bold text-[#9055fd]">
+        <NavLink
+          to={"/"}
+          className="cursor-pointer logo px-4 py-2 justify-center items-start font-bold text-[#9055fd]"
+        >
           <p>LOGO</p>
         </NavLink>
 
@@ -22,8 +24,7 @@ const SideBar = () => {
               dispatch(menuItemArrowOn({ menuItemArrow: !menuItemArrow }));
             }}
             className="flex w-[100%] justify-start gap-2 text-[#e6e6eb] hover:bg-[#3a3541] items-center pt-1 pb-2 px-4 cursor-pointer rounded-r-full"
-          >
-          </div>
+          ></div>
 
           <div
             style={{
@@ -31,8 +32,7 @@ const SideBar = () => {
               height: menuItemArrow === true ? "auto" : "0px",
             }}
             className="flex flex-col w-full justify-start items-center"
-          >
-          </div>
+          ></div>
         </div>
 
         {SideMenu?.map((side, index) => {

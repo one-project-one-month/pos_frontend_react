@@ -15,7 +15,7 @@ const SideMenuItem = ({ side }) => {
           onClick={() => {
             side.children && setMenuItemArrow(!menuItemArrow);
           }}
-          className=" menu-item flex w-[100%] justify-start gap-2 text-[#e6e6eb] hover:bg-[#3a3541] items-center pt-1 pb-2 px-4 cursor-pointer rounded-r-full "
+          className=" menu-item flex w-[100%] justify-start gap-2 text-[#e6e6eb] hover:bg-[#3a3541] items-center pt-2 pb-3 px-4 cursor-pointer rounded-r-full "
         >
           <div className=" w-[10%] h-full flex justify-center items-center  ">
             {side.icon}
@@ -41,7 +41,7 @@ const SideMenuItem = ({ side }) => {
           onClick={() => {
             side.children && setMenuItemArrow(!menuItemArrow);
           }}
-          className=" menu-item flex w-[100%] justify-start gap-2 text-[#e6e6eb] hover:bg-[#3a3541] items-center pt-1 pb-2 px-4 cursor-pointer rounded-r-full "
+          className=" menu-item flex w-[100%] justify-start gap-2 text-[#e6e6eb] hover:bg-[#3a3541] items-center pt-2 pb-3 px-4 cursor-pointer rounded-r-full "
         >
           <div className=" w-[10%] h-full flex justify-center items-center  ">
             {side.icon}

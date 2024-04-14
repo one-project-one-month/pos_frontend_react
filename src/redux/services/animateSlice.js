@@ -11,7 +11,8 @@ const initialState = {
   height: null,
   menuItemArrow: false,
   pageNum:7,
-  global:false
+  global:false,
+  reRender:0
 };
 
 const STORAGE_KEY = "Animate";
@@ -75,6 +76,9 @@ export const animateSlice = createSlice({
       state.width = payload.width;
       state.height = payload.height;
     },
+    setRender: (state, {payload}) => {
+      state.reRender = payload
+    }
   },
 });
 
@@ -87,6 +91,7 @@ export const {
   setArea,
   menuItemArrowOn,
   setPageNum,
-  GlobalOn
+  GlobalOn,
+  setRender
 } = animateSlice.actions;
 export default animateSlice.reducer;

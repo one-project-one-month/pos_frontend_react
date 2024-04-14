@@ -35,7 +35,6 @@ const Product = () => {
     return products;
   });
 
-    {/**in here ,wil be fetch the actual endpoint, now I am using dummy data */}
 
   // Dispatch the fetched data directly within useQuery
   if (!isLoading && data) {
@@ -62,6 +61,10 @@ const Product = () => {
 
 
   return (
+
+    <div className='flex flex-col gap-3 right-10 w-[100%] top-[50px] h-auto justify-between items-start p-2 rounded-md bg-[#312d4b]'>
+      <div className='flex  justify-between w-full '>
+
 
     <div className='flex flex-col gap-3 right-10 w-full top-[50px] h-auto justify-between items-start p-2 rounded-md bg-[#312d4b]'>
 
@@ -262,6 +265,9 @@ const Product = () => {
           />
         </div>
       </div>
+    </div>
+
+    </div>
     </div>
   );
 };
