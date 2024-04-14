@@ -2,6 +2,7 @@ import React from "react";
 import "./congratulate.css";
 
 const CongratulationsCard = ({ totalProfit }) => {
+  const total = totalProfit+1
   return (
     <div
       style={{
@@ -9,7 +10,7 @@ const CongratulationsCard = ({ totalProfit }) => {
         bottom: totalProfit < 0 ? "-100%" : "0%",
         zIndex: totalProfit < 0 ? -1 : 1,
       }}
-      className="flex absolute left-0 w-[68%] transition-l flex-col items-end  "
+      className="flex absolute left-0 w-[68%] transition-all flex-col items-end  "
     >
       <div className="card w-full  rounded-lg shadow-lg bg-[#312d4b] text-[#d4d4d4] ">
         <div className="flex w-full justify-between ">
@@ -18,7 +19,7 @@ const CongratulationsCard = ({ totalProfit }) => {
               Congratulations John!{" "}
             </h4>
             <p className="mb-0 w-full py-4 opacity-70 font-thin tracking-wider ">
-              You have done {totalProfit.toFixed(2)}% more sales today.
+              You have done {total.toFixed(2)}% more sales today.
               <br /> Check your new raising badge in your profile.
             </p>
           </div>

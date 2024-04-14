@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+    scrollbar-width: none;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
 body {
     /* background-color: #28243d; */
 }
