@@ -13,8 +13,8 @@ const Shop = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const search = params.get('search');
-  const navigate = useNavigate();
-  const [isEdit, setIsEdit] = useState(false);
+  const navigate = useNavigate(); 
+  const [isEdit, setIsEdit] = useState(false);     
   const [isSave, setIsSave] = useState(false);
   const [currentId, setCurrentId] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
@@ -86,7 +86,7 @@ const Shop = () => {
               return item;
             })
           );
-        }
+          }
       } catch (error) {
         console.error(error);
       }
@@ -108,7 +108,7 @@ const Shop = () => {
   const editHandler = (index,id) => {
     setCurrentId(id)
     setCurrentIndex(index)
-    setIsEdit(true)
+    setIsEdit(true) 
     setShop({
       shopCode :datas[index].shopCode,
       shopName :datas[index].shopName,
@@ -117,7 +117,7 @@ const Shop = () => {
     })
   }
   return (
-    <div>
+    <div className='absolute h-full w-[80%] right-2 top-[70px]'>
       <div className='bg-white border-b-2 border-gray-200'>
         <ul className='flex justify-between items-center p-3 mx-auto'>
           <li className='w-full'>
@@ -133,7 +133,7 @@ const Shop = () => {
                   className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-3 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                   placeholder='Search shop name'
                   required
-                  value={shopName}
+                  value={shopName} 
                   onChange={(e) => setShopName(e.target.value)}
                 />
                 {shopName && <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 absolute top-3 right-3" onClick={()=>setShopName('')}>
@@ -158,12 +158,12 @@ const Shop = () => {
                     strokeLinejoin='round'
                     strokeWidth='2'
                     d='m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z'
-                  />
-                </svg>
+                  /> 
+                </svg>  
                 <span className='sr-only'>Search</span>
               </button>
             </form>
-          </li>
+          </li> 
           <li className='w-full text-right'>
             <Link
               to={'/general/shops/newshop'}
@@ -228,11 +228,11 @@ const Shop = () => {
             ))}
         </div>
       </div>
-      {isEdit && (
+      {isEdit && ( 
         <Editform
-          newShopCode={shop.shopCode}
-          newShopName={shop.shopName}
+          newShopCode={shop.shopCode}     
           newShopmobileNo={shop.mobileNo}
+          newShopName={shop.shopName}
           newShopAddress={shop.address}
           changeHandler={changeHandler}
           discardChanges={discardChanges}
@@ -258,5 +258,4 @@ const Shop = () => {
     </div>
   );
 };
-
 export default Shop;

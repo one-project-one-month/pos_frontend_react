@@ -156,7 +156,7 @@
       "shopCode": "SH001",
       "shopName": "Anycall",
       "mobileNo": "123456789",
-      "address": "Yangon"
+      "address": "MDY"
     },
     {
       "id": 2,
@@ -188,7 +188,7 @@
     },
     {
       "shopCode": "SH006",
-      "shopName": "ABC",
+      "shopName": "GG",
       "mobileNo": "0987654321",
       "address": "MDY",
       "id": 6
