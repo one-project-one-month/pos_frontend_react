@@ -4,7 +4,7 @@ import { FaUser, FaUserPlus, FaUserCheck, FaUserClock } from "react-icons/fa";
 
 export const StackCardOne = () => {
     return (
-        <div className="card bg-white rounded-lg overflow-hidden shadow-2xl">
+        <div className="card bg-[#312d4b] rounded-lg overflow-hidden shadow-2xl">
             <div className="card-inner p-5">
                 <div className="flex justify-between">
                     <div className="card-info">
@@ -28,7 +28,7 @@ export const StackCardOne = () => {
 
 export const StackCardTwo = () => {
     return (
-        <div className="card bg-white rounded-lg overflow-hidden shadow-2xl">
+        <div className="card bg-[#312d4b] rounded-lg overflow-hidden shadow-2xl">
             <div className="card-inner p-5">
                 <div className="flex justify-between">
                     <div className="card-info">
@@ -52,7 +52,7 @@ export const StackCardTwo = () => {
 
 export const StackCardThree = () => {
     return (
-        <div className="card bg-white rounded-lg overflow-hidden shadow-2xl">
+        <div className="card bg-[#312d4b] rounded-lg overflow-hidden shadow-2xl">
             <div className="card-inner p-5">
                 <div className="flex justify-between">
                     <div className="card-info">
@@ -76,7 +76,7 @@ export const StackCardThree = () => {
 
 export const StackCardFour = () => {
     return (
-        <div className="card bg-white rounded-lg overflow-hidden shadow-2xl">
+        <div className="card bg-[#312d4b] rounded-lg overflow-hidden shadow-2xl">
             <div className="card-inner p-5">
                 <div className="flex justify-between">
                     <div className="card-info">
