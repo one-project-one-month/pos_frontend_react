@@ -5,28 +5,35 @@ import "slick-carousel/slick/slick-theme.css";
 import './invoice.css'
 
 const NextArrow = (props) => {
-  const {onClick} = props
-  return(
-    <div onClick={onClick}>
-      <button className='absolute top-[0px] -right-[40px] bg-white z-40 w-8 h-8 rounded-full 
-      flex items-center justify-center g-white shadow-[-1px_-1px_10px_rgb(0,0,0,0.3)] hover:bg-blue-100'>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="blue" className="w-4 h-4">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-        </svg>
-      </button>
+  const {onClick} = props;
+  console.log(onClick);
+  return (
+    <div className="z-50">
+      {onClick && (
+        <button onClick={onClick} className='absolute top-[3px] -right-[0px] bg-white border
+         border-gray-300  z-40 w-8 h-8 rounded-full gg
+          flex items-center justify-center hover:bg-gray-100'>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="black" className="w-4 h-4">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
+      )}
     </div>
-  )
+  );
 }
 
 const PrevArrow = (props) => {
   const {onClick} = props
   return(
-    <div onClick={onClick}>
-      <button className='absolute top-[0px] -left-[40px] bg-white z-40 w-8 h-8 rounded-full flex items-center justify-center g-white shadow-[-1px_-1px_10px_rgb(0,0,0,0.3)] hover:bg-blue-100'>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="blue" className="w-4 h-4 flex items-center justify-center">
+    <div>
+      {onClick && (
+        <button onClick={onClick} className='absolute top-[3px] -left-[0px] bg-white border 
+        border-gray-300 gg z-40 w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100'>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="black" className="w-4 h-4 flex items-center justify-center">
           <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
         </svg>
       </button>
+      ) }
     </div>
   )
 }
@@ -43,10 +50,10 @@ function Carousel({categories}) {
   };
 
   return (
-    <div className="px-3 py-1 w-full mx-auto mt-6 mb-6" >
+    <div className="w-full mx-auto mt-6 mb-6" >
       <Slider {...settings}>
         {categories && categories.map((category)=>(
-          <div key={category.id} className="p-2 text-sm font-semibold bg-white rounded-lg">
+          <div key={category.id} className="p-2 text-sm font-semibold bg-white rounded">
             <div>{category.productCategoryName}</div>
           </div>
         ))}

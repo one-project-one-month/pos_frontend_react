@@ -100,7 +100,7 @@ const AddNewInvoice = () => {
                     <div key={category.id} className="bg-white px-3 py-2 text-sm rounded shadow">{category.productCategoryName}</div>
                   ))}
                 </div> */}
-                <div className="px-6">
+                <div>
                  <Carousel categories={categories}/>
                 </div>
                 {datas && <div>{datas[0]?.productName}</div>}
