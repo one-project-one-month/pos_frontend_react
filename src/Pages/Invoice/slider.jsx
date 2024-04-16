@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -6,7 +6,6 @@ import './invoice.css'
 
 const NextArrow = (props) => {
   const {onClick} = props;
-  console.log(onClick);
   return (
     <div className="z-50">
       {onClick && (
@@ -39,6 +38,9 @@ const PrevArrow = (props) => {
 }
 
 function Carousel({categories}) {
+
+  const [click, setClick] = useState(null);
+
   const settings = {
     dots: false,
     infinite: false,
@@ -49,12 +51,21 @@ function Carousel({categories}) {
     nextArrow : <NextArrow/>
   };
 
+  const clickHandler = (id)=> {
+    setClick(id)
+    console.log(id);
+  }
+
   return (
     <div className="w-full mx-auto mt-6 mb-6" >
       <Slider {...settings}>
+        <div className={`p-2 text-sm max-w-fit ${!click ? 'bg-blue-500 text-white' : 'bg-white text-black'} text-center rounded`} onClick={()=>setClick(null)}>All</div>
         {categories && categories.map((category)=>(
-          <div key={category.id} className="p-2 text-sm font-semibold bg-white rounded">
-            <div>{category.productCategoryName}</div>
+          <div key={category.id}>
+            <div className={`-ml-[148px] p-2 text-sm w-full text-center font-semibold rounded cursor-pointer 
+              ${category.id === click ? 'bg-blue-500 text-white' :'bg-white'}`} onClick={()=>clickHandler(category.id)}>
+              {category.productCategoryName}
+            </div>
           </div>
         ))}
       </Slider>
