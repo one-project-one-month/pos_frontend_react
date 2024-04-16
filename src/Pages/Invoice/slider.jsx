@@ -11,7 +11,7 @@ const NextArrow = (props) => {
     <div className="z-50">
       {onClick && (
         <button onClick={onClick} className='absolute top-[3px] -right-[0px] bg-white border
-         border-gray-300  z-40 w-8 h-8 rounded-full gg
+         border-gray-300  z-40 w-8 h-8 rounded-full slider
           flex items-center justify-center hover:bg-gray-100'>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="black" className="w-4 h-4">
             <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
@@ -28,7 +28,7 @@ const PrevArrow = (props) => {
     <div>
       {onClick && (
         <button onClick={onClick} className='absolute top-[3px] -left-[0px] bg-white border 
-        border-gray-300 gg z-40 w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100'>
+        border-gray-300 slider z-40 w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100'>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="black" className="w-4 h-4 flex items-center justify-center">
           <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
         </svg>
