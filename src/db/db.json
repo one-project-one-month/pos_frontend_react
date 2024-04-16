@@ -312,5 +312,42 @@
       "townshipCode": "BOS",
       "address": "707 Pine St, Villageville, USA"
     }
-  ]
+  ],
+  "items" : [
+    {
+        "id": 1,
+        "name": "orange",
+        "description": "fruit",
+        "cost": 10
+      
+    },
+    {
+        "id": 2,
+        "name": "apple",
+        "description": "fruit",
+        "cost": 10
+    },       
+    {
+        "id": 2,
+        "name": "chocolate",
+        "description": "Grocery items",
+        "cost": 5
+       
+    },
+    {
+        "id": 2,
+        "name": "T-shirt",
+        "description": "wear",
+        "cost": 25
+        
+    },
+    {
+        "id": 2,
+        "name": "sneaker",
+        "description": "foot wear",
+        "cost": 35
+       
+    }
+]
+
 }
