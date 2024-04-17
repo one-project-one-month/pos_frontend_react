@@ -18,31 +18,33 @@ const AddNewInvoice = () => {
     const searchValue = params.get('search');
     const navigate = useNavigate();
 
-    const isSuccessfull = useSelector((state) => state.newShopReducer.isSuccessful);
-
     const searchHandler = () => {
         navigate('/invoice/add?search=' + productName);
       };
 
-      const fetchData = async (url, setData, successMessage, failureMessage) => {
+      const fetchData = async (url, setData) => {
         try {
             const { data } = await axios.get(url);
             setData(data);
-            toast.success(successMessage);
+            // toast.success(successMessage);
         } catch (error) {
             console.error(error);
-            toast.error(failureMessage);
+            // toast.error(failureMessage);
         }
     };
     
     useEffect(() => {
         const url = `http://localhost:3000/products${searchValue ? `?q=${searchValue}` : ''}`;
-        fetchData(url, setDatas, "Products fetched successfully!", "Failed to fetch products!");
+        fetchData(url, setDatas, 
+        // "Products fetched successfully!", "Failed to fetch products!"
+        );
     }, [searchValue]);
     
     useEffect(() => {
         const url = 'http://localhost:3000/productCategories';
-        fetchData(url, setCategories, "Product categories fetched successfully!", "Failed to fetch product categories!");
+        fetchData(url, setCategories, 
+        // "Product categories fetched successfully!", "Failed to fetch product categories!"
+        );
     }, []);
 
 
@@ -93,17 +95,20 @@ const AddNewInvoice = () => {
                                 <span className='sr-only'>Search</span>     
                             </button>
                         </form>
-                    </li> 
-                </ul> 
-                {/* <div className="w-full mt-6 mb-10 flex items-center gap-5">
-                  {categories && categories.map((category)=>(
-                    <div key={category.id} className="bg-white px-3 py-2 text-sm rounded shadow">{category.productCategoryName}</div>
-                  ))}
-                </div> */}
-                <div>
-                 <Carousel categories={categories}/>
+                    </li>
+                </ul>
+                <Carousel categories={categories}/>
+                <div className="flex items-center gap-2 flex-wrap">
+                    {datas && datas.map((data)=>(
+                        <div key={data.id} className="w-[262px] p-2 bg-white space-y-2">
+                            <div className="font-semibold">{data.productName}</div>
+                            <div className="p-1 max-w-fit bg-gray-100 text-gray-700 text-xs rounded">        
+                                {data.productCategoryCode}
+                            </div>
+                            <div className="text-blue-400 font-semibold text-sm">${data.price}</div>
+                        </div>
+                    ))}
                 </div>
-                {datas && <div>{datas[0]?.productName}</div>}
             </div>
             <ToastContainer
             position='top-center'

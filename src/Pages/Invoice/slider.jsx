@@ -39,7 +39,7 @@ const PrevArrow = (props) => {
 
 function Carousel({categories}) {
 
-  const [click, setClick] = useState(null);
+  const [id, setId] = useState(null);
 
   const settings = {
     dots: false,
@@ -51,19 +51,15 @@ function Carousel({categories}) {
     nextArrow : <NextArrow/>
   };
 
-  const clickHandler = (id)=> {
-    setClick(id)
-    console.log(id);
-  }
-
   return (
     <div className="w-full mx-auto mt-6 mb-6" >
       <Slider {...settings}>
-        <div className={`p-2 text-sm max-w-fit ${!click ? 'bg-blue-500 text-white' : 'bg-white text-black'} text-center rounded`} onClick={()=>setClick(null)}>All</div>
+        <div className={`p-2 text-sm max-w-fit ${!id ? 'bg-blue-500 text-white' : 'bg-white text-black'} text-center rounded`} onClick={()=>setId(null)}>All</div>
         {categories && categories.map((category)=>(
           <div key={category.id}>
             <div className={`-ml-[148px] p-2 text-sm w-full text-center font-semibold rounded cursor-pointer 
-              ${category.id === click ? 'bg-blue-500 text-white' :'bg-white'}`} onClick={()=>clickHandler(category.id)}>
+              ${category.id === id ? 'bg-blue-500 text-white' :'bg-white'}`} 
+              onClick={()=>setId(category.id)}>
               {category.productCategoryName}
             </div>
           </div>
