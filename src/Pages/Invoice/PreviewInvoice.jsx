@@ -1,4 +1,6 @@
-import "./invoice.css";
+import Quantity from './Quantity';
+
+
 const PreviewInvoice = () => {
   return (
     <section className=" text-[#d4d4d4] InvoiceSection top-[70px] overflow-hidden rounded-md">
@@ -8,5 +10,10 @@ const PreviewInvoice = () => {
     </section>
   );
 };
+    <div>
+       <Quantity />
+    </div>
+  )
+}
 
-export default PreviewInvoice;
+export default PreviewInvoice
