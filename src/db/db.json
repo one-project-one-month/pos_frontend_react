@@ -206,6 +206,13 @@
       "mobileNo": "0987654321",
       "address": "MDY",
       "id": 8
+    },
+    {
+      "shopCode": "SH009",
+      "shopName": "Nan Da Lae",
+      "mobileNo": "0987654321",
+      "address": "Samut Prakan",
+      "id": 9
     }
   ],
   "customers": [
