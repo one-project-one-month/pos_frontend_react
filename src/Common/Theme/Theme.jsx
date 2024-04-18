@@ -8,10 +8,30 @@ import {
   setThemeEditor,
 } from "../../redux/services/animateSlice";
 import { MdOutlineClose, MdOutlineSave } from "react-icons/md";
+import faker from "faker";
+import chroma from "chroma-js";
 
 const Theme = () => {
   const color = useSelector((state) => state.animateSlice);
   const dispatch = useDispatch();
+
+  
+
+  const generateColors = () => {
+
+    const rang1 = faker.datatype.hexaDecimal(6).slice(2,8)
+    const rang2 = faker.datatype.hexaDecimal(8).slice(3,9)
+   const col = chroma.scale([`#${rang1}`,'#181818'])
+   .mode('lch').colors(6)
+
+
+   dispatch(setBgColor(col[0]))
+
+   dispatch(setCardBgColor(col[1]))
+   dispatch(setTextColor(col[5]))
+
+  };
+
 
   return (
     <div
@@ -77,17 +97,35 @@ const Theme = () => {
         </div>
       </div>
 
+      <div className=" flex justify-between gap-8 items-center " >
       <div
         style={{
           backgroundColor: color.bgColor,
           color: color.textColor,
         }}
-        onClick={() => dispatch(saveTheme(true))}
+        onClick={() =>{ dispatch(saveTheme(true))
+            dispatch(setThemeEditor(false))
+        }}
         className=" flex justify-center cursor-pointer font-medium items-center w-[200px] gap-2 px-2 py-3 rounded  "
       >
         <p>Save Theme</p>
         <MdOutlineSave />
       </div>
+
+      <div
+        style={{
+          backgroundColor: color.bgColor,
+          color: color.textColor,
+        }}
+        onClick={generateColors}
+        className=" flex justify-center cursor-pointer font-medium items-center w-[200px] gap-2 px-2 py-3 rounded  "
+      >
+        <p>Generate Theme</p>
+        <MdOutlineSave />
+      </div>
+      </div>
+
+     
     </div>
   );
 };
