@@ -7,13 +7,11 @@ const PreviewInvoice = () => {
       <div className="InvoiceCard flex gap-5 items-center p-4 w-full h-auto ">
         Preview inVoince
       </div>
+      <div>
+        <Quantity />
+      </div>
     </section>
   );
 };
-    <div>
-       <Quantity />
-    </div>
-  )
-}
 
 export default PreviewInvoice
