@@ -40,7 +40,7 @@ const NewShop = () => {
   }
 
   return (
-   <div className='bg-gray-50 h-full py-10 overflow-hidden'>
+   <div className='bg-gray-50 h-full py-10 overflow-hidden absolute w-[80%] right-2 top-[70px]'>
     <form className="max-w-xl mx-auto bg-white p-5 rounded-lg border border-gray-100">
       <div className="w-full px-3 mb-6 ">
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
