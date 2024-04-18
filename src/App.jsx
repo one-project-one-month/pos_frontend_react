@@ -7,16 +7,28 @@ import NotFound from "./Pages/NotFound/NotFound";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import AddCategory from "./Pages/ProductCategory/AddCategory";
 import Footer from "./Common/Footer/Footer";
+import { ThemeChangerButton } from "./Components/buttons/Buttons";
+import Theme from "./Common/Theme/Theme";
+import { bgColor } from "./redux/services/animateSlice";
+import {  useSelector } from "react-redux";
 
 function App() {
+  const color = useSelector((state) => state.animateSlice);
+
   return (
-    <section className="w-full flex justify-end items-end h-screen max-h-screen overflow-x-auto relative bg-[#28243d]">
+    <section style={{
+      backgroundColor:`${color.bgColor}`
+    }} className="w-full flex justify-end items-end h-screen max-h-screen overflow-y-auto overflow-x-hidden relative ">
       <BrowserRouter>
         
           <SideBar />
           <NavBar />
+
+          <ThemeChangerButton/>
+
+          <Theme/>
           
-          <div className="p-5 top-[50px] w-full flex justify-between items-center   h-full bg-transparent ">
+          <div className="p-5 top-[50px] w-full flex justify-between items-center overflow-x-hidden  h-full bg-transparent ">
           
             <Routes>
               <Route path="/" element={<Dashboard />} />

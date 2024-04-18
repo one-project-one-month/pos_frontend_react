@@ -6,11 +6,12 @@ import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Modal from "react-modal";
 
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 import CustomerForm from "./CustomerForm";
 import { Notify } from "../toastify/Toastify";
@@ -20,6 +21,9 @@ Modal.setAppElement("#root");
 const Table = ({ data, isLoading }) => {
     const [showForm, setShowForm] = useState(false);
     const [modalIsOpen, setIsOpen] = useState(false);
+
+    const color = useSelector((state) => state.animateSlice);
+
 
     const navigate = useNavigate();
     const queryClient = useQueryClient();
@@ -115,7 +119,9 @@ const Table = ({ data, isLoading }) => {
                         )}
                         {data &&
                             data.map((user, i) => (
-                                <tr key={i}>
+                                <tr style={{
+                                    color:color.textColor
+                                }}  key={i}>
                                     <td className="px-3 py-2">
                                         <input
                                             className="w-5 h-5 accent-purple-600"
@@ -213,7 +219,7 @@ const Table = ({ data, isLoading }) => {
                 </table>
             </div>
             {showForm && (
-                <CustomerForm data={userData} setShowForm={setShowForm} />
+                <CustomerForm data={userData}  setShowForm={setShowForm} />
             )}
         </>
     );

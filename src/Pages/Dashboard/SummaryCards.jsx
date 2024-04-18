@@ -1,16 +1,21 @@
-import React from 'react';
-import Icon from '@mdi/react';
-import { mdiCurrencyUsd, mdiTrendingUp } from '@mdi/js';
-import faker from 'faker';
+import React from "react";
+import Icon from "@mdi/react";
+import { mdiCurrencyUsd, mdiTrendingUp } from "@mdi/js";
+import faker from "faker";
 
-const SummaryCard = ({ title, icon, value, delta, color }) => {
+const SummaryCard = ({ title, icon, value, delta, color,sumColor }) => {
   return (
-    <div className="flex h-[100%]   flex-col bg-[#312d4b] w-[50%] dashBoardCard px-3 py-4 rounded-md ">
+    <div style={{
+      backgroundColor: sumColor.cardBgColor,
+    }} className="flex h-[100%]   flex-col  w-[50%] dashBoardCard px-3 py-4 rounded-md ">
       <div className="flex items-center justify-between mb-4">
         <div className="avatar">
-          <div style={{
-            backgroundColor:color
-          }} className={` rounded-full p-1  shadow `}>
+          <div
+            style={{
+              backgroundColor: color,
+            }}
+            className={` rounded-full p-1  shadow `}
+          >
             {icon}
           </div>
         </div>
@@ -44,31 +49,43 @@ const SummaryCard = ({ title, icon, value, delta, color }) => {
       <h6 className="mb-2 text-xl font-medium ">{title}</h6>
       <div className="flex flex-wrap mb-2 pb-1 gap-2 items-center">
         <h4 className=" text-lg font-medium ">{value}</h4>
-        <small style={{
-            color:color
-        }} className={`text-${color} mt-1`}>{delta}</small>
+        <small
+          style={{
+            color: color,
+          }}
+          className={`text-${color} mt-1`}
+        >
+          {delta}
+        </small>
       </div>
-      <small className=' text-sm tracking-wider font-thin ' >{`Daily ${title}`}</small>
+      <small className=" text-sm tracking-wider font-thin ">{`Daily ${title}`}</small>
     </div>
   );
 };
 
-const SummaryCards = () => {
+const SummaryCards = ({sumColor}) => {
   return (
-    <div className="flex w-[30%]  gap-2  h-full text-[#d4d4d4d2] justify-end items-end">
+    <div
+      style={{
+        color: sumColor.textColor + "d2",
+      }}
+      className="flex w-[30%]  gap-2  h-full  justify-end items-end"
+    >
       <SummaryCard
         title="Transactions"
-        icon={<Icon path={mdiTrendingUp} size={1} color={'white'} />}
-        value={faker.datatype.number({ min: 0, max: 90 }) + 'k'}
-        delta={faker.datatype.number({ min: 0, max: 90 }) + '%'}
+        icon={<Icon path={mdiTrendingUp} size={1} color={"white"} />}
+        value={faker.datatype.number({ min: 0, max: 90 }) + "k"}
+        delta={faker.datatype.number({ min: 0, max: 90 }) + "%"}
         color="#5356FF"
+        sumColor={sumColor}
       />
       <SummaryCard
         title="Revenue"
-        icon={<Icon path={mdiCurrencyUsd} size={1} color={'white'} />}
-        value={faker.datatype.number({ min: 0, max: 90 }) + 'k'}
-        delta={faker.datatype.number({ min: 0, max: 90 }) + '%'}
+        icon={<Icon path={mdiCurrencyUsd} size={1} color={"white"} />}
+        value={faker.datatype.number({ min: 0, max: 90 }) + "k"}
+        delta={faker.datatype.number({ min: 0, max: 90 }) + "%"}
         color="#74E291"
+        sumColor={sumColor}
       />
     </div>
   );

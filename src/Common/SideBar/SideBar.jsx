@@ -8,9 +8,15 @@ import { useDispatch, useSelector } from "react-redux";
 const SideBar = () => {
   const dispatch = useDispatch();
   const { menuItemArrow } = useSelector((state) => state.animateSlice);
+  const color = useSelector((state) => state.animateSlice);
+
   return (
-    <aside className=" flex fixed left-0 w-[20%] h-screen bg-[#28243d] rounded-br-md  py-2 ">
-      <div className="tracking-wide flex flex-col gap-3 w-full h-full bg-[#28243d] justify-start items-start">
+    <aside style={{
+      backgroundColor:color.bgColor
+    }} className=" flex fixed left-0 w-[20%] h-screen  rounded-br-md  py-2 ">
+      <div style={{
+      backgroundColor:color.bgColor
+    }} className="tracking-wide flex flex-col gap-3 w-full h-full ] justify-start items-start">
         <NavLink
           to={"/"}
           className="cursor-pointer logo px-4 py-2 justify-center items-start font-bold text-[#9055fd]"
@@ -23,7 +29,12 @@ const SideBar = () => {
             onClick={() => {
               dispatch(menuItemArrowOn({ menuItemArrow: !menuItemArrow }));
             }}
-            className="flex w-[100%] justify-start gap-2 text-[#e6e6eb] hover:bg-[#3a3541] items-center pt-1 pb-2 px-4 cursor-pointer rounded-r-full"
+            style={{
+              backgroundColor:color.bgColor,
+              color:color.textColorDim
+            }
+          }
+            className="flex w-[100%] justify-start gap-2  hover:bg-[#3a3541] items-center pt-1 pb-2 px-4 cursor-pointer rounded-r-full"
           ></div>
 
           <div
@@ -36,7 +47,7 @@ const SideBar = () => {
         </div>
 
         {SideMenu?.map((side, index) => {
-          return <SideMenuItem side={side} key={index} />;
+          return <SideMenuItem color={color} side={side} key={index} />;
         })}
       </div>
     </aside>
