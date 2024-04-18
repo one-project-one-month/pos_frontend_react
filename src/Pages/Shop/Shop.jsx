@@ -146,14 +146,14 @@ const Shop = () => {
                 onClick={searchHandler}
               >
                 <svg
-                  className='w-4 h-4'
+                  className='w-4 h-4 '
                   aria-hidden='true'
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
                   viewBox='0 0 20 20'
                 >
                   <path
-                    stroke='white'
+                    stroke='blue'
                     strokeLinecap='round'
                     strokeLinejoin='round'
                     strokeWidth='2'
