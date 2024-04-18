@@ -4,6 +4,8 @@ import Cookies from "js-cookie";
 
 const initialState = {
  categoryList:[],
+ productList: [],
+
  totalProfit:0,
     income:0,
     expense:0,
@@ -42,6 +44,9 @@ export const authSlice = createSlice({
       Cookies.set(STORAGE_KEY, JSON.stringify(state.isLogin));
 
     },
+    setProductList: (state, { payload }) => {
+      state.productList = payload.productList;
+  },
     setCategoryList: (state,{payload}) => {
       state.categoryList = payload.categoryList
     },
@@ -57,6 +62,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setLogin,setCategoryList, setExpense, setIncome , setTotalProfit } =
+export const { setLogin,setCategoryList, setExpense, setIncome , setTotalProfit ,setProductList} =
   authSlice.actions;
 export default authSlice.reducer;

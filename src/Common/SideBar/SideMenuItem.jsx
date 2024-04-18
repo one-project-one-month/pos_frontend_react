@@ -2,20 +2,64 @@
 import { NavLink, useParams } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import MenuChildrenItem from "./MenuChildrenItem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const SideMenuItem = ({ side }) => {
+const SideMenuItem = ({ side, color }) => {
   const [menuItemArrow, setMenuItemArrow] = useState(false);
   const currentRoute = useParams();
+  const [isHover, setIsHover] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+
+  const menuItem = document.getElementById("menu-item");
+
+  const buttonStyles = {
+    color: color.textColor || "black",
+    backgroundImage: isHover
+      ? `linear-gradient(-90deg, ${color.bgColor}, ${color.cardBgColor}, ${color.bgColor})`
+      : isActive
+      ? `linear-gradient(-90deg, ${color.bgColor}, ${color.cardBgColor}, ${color.bgColor})`
+      : "none",
+  };
+
+  const sideBar = document.getElementById("side");
+
+  const navLinkElement = sideBar?.getElementsByTagName("a");
+
+  useEffect(() => {
+    for (let index = 0; index < navLinkElement?.length; index++) {
+      console.log(navLinkElement[index].classList);
+
+      const classList = navLinkElement[index]?.classList;
+
+      for (let v = 0; v < classList.length; v++) {
+        if (classList[v].includes("active"))
+          navLinkElement[
+            index
+          ].style.backgroundImage = `linear-gradient(-90deg, ${color.bgColor}, ${color.cardBgColor}, ${color.bgColor})`;
+      }
+    }
+  }, [isActive]);
+
+  const handleMouseEnter = () => setIsHover(true);
+
+  const handleMouseLeave = () => setIsHover(false);
   return (
-    <div className=" flex flex-col gap-1 justify-start items-center h-auto w-[90%] ">
+    <div
+      id="side"
+      className=" flex flex-col gap-1 justify-start items-center h-auto w-[90%] "
+    >
       {side.route ? (
         <NavLink
           to={side.route ? side.route : currentRoute}
           onClick={() => {
             side.children && setMenuItemArrow(!menuItemArrow);
+            setIsActive(!isActive);
           }}
-          className=" menu-item flex w-[100%] justify-start gap-2 text-[#e6e6eb] hover:bg-[#3a3541] items-center pt-2 pb-3 px-4 cursor-pointer rounded-r-full "
+          id="menu-item"
+          style={buttonStyles}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className=" menu-item flex w-[100%] justify-start gap-2   items-center pt-2 pb-3 px-4 cursor-pointer rounded-r-full "
         >
           <div className=" w-[10%] h-full flex justify-center items-center  ">
             {side.icon}
@@ -36,12 +80,15 @@ const SideMenuItem = ({ side }) => {
           )}
         </NavLink>
       ) : (
-        <div
+        <NavLink
           to={side.route ? side.route : currentRoute}
           onClick={() => {
             side.children && setMenuItemArrow(!menuItemArrow);
           }}
-          className=" menu-item flex w-[100%] justify-start gap-2 text-[#e6e6eb] hover:bg-[#3a3541] items-center pt-2 pb-3 px-4 cursor-pointer rounded-r-full "
+          style={buttonStyles}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className=" menu-item flex w-[100%] justify-start gap-2   items-center pt-2 pb-3 px-4 cursor-pointer rounded-r-full "
         >
           <div className=" w-[10%] h-full flex justify-center items-center  ">
             {side.icon}
@@ -60,7 +107,7 @@ const SideMenuItem = ({ side }) => {
               />
             </div>
           )}
-        </div>
+        </NavLink>
       )}
 
       {side.children &&
@@ -70,6 +117,7 @@ const SideMenuItem = ({ side }) => {
               menuItemArrow={menuItemArrow}
               key={index}
               item={item}
+              color={color}
             />
           );
         })}

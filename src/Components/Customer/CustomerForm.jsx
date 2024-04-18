@@ -5,10 +5,13 @@ import { useQuery, useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { Notify } from "../toastify/Toastify";
 import { AiFillCloseCircle } from "react-icons/ai";
+import { useSelector } from "react-redux";
 
 const CustomerForm = ({ setShowForm, data }) => {
     const queryClient = useQueryClient();
     const navigate = useNavigate();
+
+    const color = useSelector((state) => state.animateSlice);
 
     const api = "https://jsonplaceholder.typicode.com/users";
 
@@ -128,15 +131,19 @@ const CustomerForm = ({ setShowForm, data }) => {
 
     return (
         <>
-            <div
-                className="overlay fixed inset-0 bg-black opacity-75"
+            <div style={{
+                backgroundColor:color.bgColor
+            }}
+                className="overlay fixed inset-0  opacity-75"
                 onClick={() => {
                     setShowForm(false);
                     navigate("/general/customers");
                 }}
             ></div>
 
-            <div className="form-wrap opacity-100 bg-white absolute top-0 right-0 z-50 w-userForm h-full p-5">
+            <div style={{
+                color:color.bgColor
+            }} className="form-wrap opacity-100  absolute top-0 right-0 z-50 w-userForm h-full p-5">
                 <div className="title mb-5">
                     <h2 className="text-center text-3xl font-semibold">
                         Add New User
@@ -296,8 +303,11 @@ const CustomerForm = ({ setShowForm, data }) => {
                             </p>
                         )}
                     </div>
-                    <input
-                        className="bg-slate-400 px-5 py-2.5 text-white rounded-md"
+                    <input style={{
+                backgroundColor:color.bgColor,
+                color:color.bgColor,
+            }}
+                        className=" px-5 py-2.5  rounded-md"
                         type="submit"
                         value="Submit"
                     />
