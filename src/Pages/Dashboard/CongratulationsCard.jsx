@@ -15,7 +15,7 @@ const CongratulationsCard = ({ totalProfit,color }) => {
       <div style={{
         color:color.textColor,
         backgroundColor:color.cardBgColor
-      }} className="card w-full  rounded-lg shadow-lg ">
+      }} className="card w-full  rounded-lg shadow ">
         <div className="flex w-full justify-between ">
           <div className="w-[60%] px-4  py-4">
             <h4 className="card-title text-lg mb-4 text-truncate">
