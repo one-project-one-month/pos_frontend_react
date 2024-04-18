@@ -3,9 +3,9 @@ import { useState,useEffect} from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useSelector } from 'react-redux';
 import axios from "axios"
 import Carousel from "./slider";
+import { useParams } from "react-router-dom";
 
 
 const AddNewInvoice = () => {
@@ -17,28 +17,59 @@ const AddNewInvoice = () => {
     const params = new URLSearchParams(location.search);
     const searchValue = params.get('search');
     const navigate = useNavigate();
+    const {code : item} = useParams();
 
     const searchHandler = () => {
         navigate('/invoice/add?search=' + productName);
       };
 
-      const fetchData = async (url, setData) => {
+      const fetchData = async (url, updateData) => {
         try {
             const { data } = await axios.get(url);
-            setData(data);
+            updateData(data);
             // toast.success(successMessage);
-        } catch (error) {
+        }
+        catch (error) {
             console.error(error);
             // toast.error(failureMessage);
         }
     };
-    
+
     useEffect(() => {
-        const url = `http://localhost:3000/products${searchValue ? `?q=${searchValue}` : ''}`;
-        fetchData(url, setDatas, 
-        // "Products fetched successfully!", "Failed to fetch products!"
-        );
-    }, [searchValue]);
+        let url = 'http://localhost:3000/products';
+        const queryParams = [];
+    
+        if (searchValue) {
+            queryParams.push(searchValue);
+        }
+    
+        if (item) {
+            queryParams.push(item);
+        }
+
+        if (queryParams.length > 0) {
+            url += `?q=${queryParams.join('&')}`;
+        }
+
+        fetchData(url, setDatas);
+    
+    }, [searchValue, item]);
+
+    
+    
+    // useEffect(() => {
+    //     const url = `http://localhost:3000/products${searchValue ? `?q=${searchValue}` : ''}`;
+    //     fetchData(url, setDatas, 
+    //     // "Products fetched successfully!", "Failed to fetch products!"
+    //     );
+    // }, [searchValue]);
+
+    // useEffect(() => {
+    //     const url = `http://localhost:3000/products${selectedCategory ? `?q=${selectedCategory}` : ''}`;
+    //     fetchData(url, setDatas, 
+    //     // "Products fetched successfully!", "Failed to fetch products!"
+    //     );
+    // }, [selectedCategory]);
     
     useEffect(() => {
         const url = 'http://localhost:3000/productCategories';
@@ -46,8 +77,7 @@ const AddNewInvoice = () => {
         // "Product categories fetched successfully!", "Failed to fetch product categories!"
         );
     }, []);
-
-
+    
     return (
        <div className="absolute h-full w-[80%] right-2 top-[70px]">
         <section className=" InvoiceSection flex gap-3 overflow-hidden rounded-md bg-gray-100 h-[100vh] p-5">
@@ -68,9 +98,11 @@ const AddNewInvoice = () => {
                                 value={productName} 
                                 onChange={(e) => setProductName(e.target.value)}
                                 />
-                                {productName && <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 absolute top-3 right-3" onClick={()=>setProductName('')}>
+                                {productName && (
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 absolute top-[13px] right-3 cursor-pointer" onClick={()=>setProductName('')}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                                </svg>}
+                                </svg>
+                                )}
                             </div>
                             <button
                                 type='button'
@@ -97,12 +129,12 @@ const AddNewInvoice = () => {
                         </form>
                     </li>
                 </ul>
-                <Carousel categories={categories}/>
+                <Carousel categories={categories} item={item}/>
                 <div className="flex items-center gap-2 flex-wrap">
                     {datas && datas.map((data)=>(
-                        <div key={data.id} className="w-[262px] p-2 bg-white space-y-2">
+                        <div key={data.id} className="w-[262px] p-2 bg-white space-y-3 rounded">
                             <div className="font-semibold">{data.productName}</div>
-                            <div className="p-1 max-w-fit bg-gray-100 text-gray-700 text-xs rounded">        
+                            <div className="px-2 py-1 max-w-fit bg-teal-100 text-gray-700 text-xs rounded-sm">        
                                 {data.productCategoryCode}
                             </div>
                             <div className="text-blue-400 font-semibold text-sm">${data.price}</div>
