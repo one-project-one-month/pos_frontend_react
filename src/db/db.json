@@ -156,7 +156,7 @@
       "shopCode": "SH001",
       "shopName": "Anycall",
       "mobileNo": "123456789",
-      "address": "Yangon"
+      "address": "MDY"
     },
     {
       "id": 2,
@@ -188,7 +188,7 @@
     },
     {
       "shopCode": "SH006",
-      "shopName": "ABC",
+      "shopName": "G&G",
       "mobileNo": "0987654321",
       "address": "MDY",
       "id": 6
@@ -199,6 +199,20 @@
       "mobileNo": "0987654321",
       "address": "Samut prakan",
       "id": 7
+    },
+    {
+      "shopCode": "SH008",
+      "shopName": "BBB",
+      "mobileNo": "0987654321",
+      "address": "MDY",
+      "id": 8
+    },
+    {
+      "shopCode": "SH009",
+      "shopName": "Nan Da Lae",
+      "mobileNo": "0987654321",
+      "address": "Samut Prakan",
+      "id": 9
     }
   ],
   "customers": [
