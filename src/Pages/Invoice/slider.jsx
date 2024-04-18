@@ -71,7 +71,7 @@ function Carousel({categories,item}) {
         {categories && categories.map((category)=>(
           <div key={category.id}>
             <div
-              className={`-ml-[148px] p-2 text-sm w-full text-center font-semibold rounded cursor-pointer
+              className={`-ml-[148px] p-2 text-sm w-full border border-gray-200 text-center font-semibold rounded cursor-pointer
               ${category.productCategoryCode === item ? 'bg-blue-500 text-white' :'bg-white'}`} 
               onClick={()=>clickHandler(category.productCategoryCode)}>
               {category.productCategoryName}
