@@ -14,13 +14,11 @@ const Dashboard = () => {
   const { totalProfit } = useSelector((state) => state.authSlice);
 
   const type = [
-    {type:'bar'},{type:'line'},{type:'radar'},{type:'polar'}
-  ]
-
-      
-
-
- 
+    { type: "bar" },
+    { type: "line" },
+    { type: "radar" },
+    { type: "polar" },
+  ];
 
   return (
     <section className=" dashBoardSection  ">
@@ -34,19 +32,13 @@ const Dashboard = () => {
 
       <div className=" flex flex-col gap-6   text-[#e6e6eb]  rounded-md  w-full h-auto ">
         {/* <TotalProfit w={'full'} type={'line'} /> */}
-        <div id="chart" className=" flex flex-wrap gap-8 justify-between items-start  w-[100%] ">
-            {
-                type.map(({type}) => {
-                    return(
-                        <TotalProfit key={type} type={type} />
-
-                    )
-                })
-            }
-       
-
-          
-          
+        <div
+          id="chart"
+          className=" flex flex-wrap gap-8 justify-between items-start  w-[100%] "
+        >
+          {type.map(({ type }) => {
+            return <TotalProfit key={type} type={type} />;
+          })}
         </div>
       </div>
       <Footer />

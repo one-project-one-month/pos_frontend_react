@@ -142,7 +142,7 @@ const Shop = () => {
               </div>
               <button
                 type='button'
-                className='p-2.5 ms-2 text-sm font-medium text-blue-500 bg-white rounded-lg border border-blue-700 hover:bg-gray-50 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+                className='p-2.5 ms-2 text-sm font-medium text-blue-500 bg-white rounded-lg border border-[#9055fd] hover:bg-gray-50 focus:outline-none focus:ring-[#9055fd] dark:bg-[#9055fd] dark:hover:bg-[#9055fd] dark:focus:ring-[#9055fd]'
                 onClick={searchHandler}
               >
                 <svg
@@ -153,7 +153,7 @@ const Shop = () => {
                   viewBox='0 0 20 20'
                 >
                   <path
-                    stroke='currentColor'
+                    stroke='white'
                     strokeLinecap='round'
                     strokeLinejoin='round'
                     strokeWidth='2'
@@ -167,7 +167,7 @@ const Shop = () => {
           <li className='w-full text-right'>
             <Link
               to={'/general/shops/newshop'}
-              className='py-2.5 px-5 text-sm font-medium text-white focus:outline-none bg-blue-500 rounded-lg  hover:bg-blue-700 hover:text-white focus:z-10 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700'
+              className='py-2.5 px-5 text-sm font-medium text-white focus:outline-none bg-[#9055fd] rounded-lg  hover:bg-[#9055fd] hover:text-white focus:z-10 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-[#9055fd] transition-all dark:text-[#ecebeb] dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700'
             >
               Add New Shop
             </Link>

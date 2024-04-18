@@ -62,7 +62,7 @@ const Product = () => {
 
   return (
 
-    <div className='flex flex-col gap-3 right-10 w-[100%] top-[50px] h-auto justify-between items-start p-2 rounded-md bg-[#312d4b]'>
+    <div className='flex flex-col absolute gap-3 right-2 w-[80%] top-[70px] h-auto justify-between items-start p-2 rounded-md bg-[#312d4b]'>
       <div className='flex  justify-between w-full '>
 
 
@@ -81,17 +81,17 @@ const Product = () => {
 
         </div>
 
-        <div className=" relative flex justify-between items-center w-[40%] h-[45px] p-1 ">
+        <div className=" relative flex justify-between text-[#d4d4d4] items-center w-[40%] h-[45px] p-1 ">
           <>
             <div
               onClick={() => {
                 dispatch(pageOn({ page: !page }));
               }}
-              className=" cursor-pointer flex justify-around items-center rounded w-[15%] h-full border border-[#76728e] "
+              className=" text-[#d4d4d4] cursor-pointer flex justify-around items-center rounded w-[15%] h-full border border-[#76728e] "
             >
               <p>{pageNum}</p>
               <TiArrowSortedDown
-                className=" transition-all text-lg "
+                className=" transition-all text-lg text-[#d4d4d4] "
                 style={{
                   rotate: page === true ? "360deg" : "270deg",
                 }}
