@@ -1,7 +1,7 @@
 import React from "react";
 import "./congratulate.css";
 
-const CongratulationsCard = ({ totalProfit }) => {
+const CongratulationsCard = ({ totalProfit,color }) => {
   const total = totalProfit+1
   return (
     <div
@@ -12,7 +12,10 @@ const CongratulationsCard = ({ totalProfit }) => {
       }}
       className="flex absolute left-0 w-[68%] transition-all flex-col items-end  "
     >
-      <div className="card w-full  rounded-lg shadow-lg bg-[#312d4b] text-[#d4d4d4] ">
+      <div style={{
+        color:color.textColor,
+        backgroundColor:color.cardBgColor
+      }} className="card w-full  rounded-lg shadow-lg ">
         <div className="flex w-full justify-between ">
           <div className="w-[60%] px-4  py-4">
             <h4 className="card-title text-lg mb-4 text-truncate">

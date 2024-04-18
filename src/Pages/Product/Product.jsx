@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setProductList } from '../../redux/ProductsService/authSlice';
 import Pagination from "./Pagination";
 import productDb from "../../db/db.json";
 import { useQuery } from 'react-query';
@@ -12,13 +11,14 @@ import {
   exportSettingOn,
   pageOn,
   setPageNum,
-} from "../../redux/ProductsService/animateSlice";
+} from "../../redux/services/animateSlice";
 
 //icons
 import { RiAddLine } from "react-icons/ri";
 import { TiArrowSortedDown } from 'react-icons/ti';
 import { PiExportThin } from 'react-icons/pi';
 import { MdOutlineLocalPrintshop } from "react-icons/md";
+import { setProductList } from '../../redux/services/authSlice';
 
 const Product = () => {
   const { products } = productDb;

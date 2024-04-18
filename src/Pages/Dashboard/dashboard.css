@@ -1,5 +1,5 @@
 .dashBoardSection {
-  @apply flex flex-col gap-6 justify-start items-start absolute right-0 top-[60px] w-[80%]  h-[100%] bg-[#28243d00] rounded-br-md  p-2;
+  @apply flex flex-col gap-6 justify-start items-start absolute right-0 top-[60px] w-[80%]  h-[100%]  rounded-br-md  p-2;
 }
 
 .dashBoardCard {
