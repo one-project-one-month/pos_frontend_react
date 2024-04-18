@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setProductList } from '../../redux/ProductsService/authSlice';
+import { setProductList } from '../../redux/services/product/productAuth';
 import Pagination from "./Pagination";
 import productDb from "../../db/db.json";
 import { useQuery } from 'react-query';
@@ -12,7 +12,7 @@ import {
   exportSettingOn,
   pageOn,
   setPageNum,
-} from "../../redux/ProductsService/animateSlice";
+} from "../../redux/services/animateSlice";
 
 //icons
 import { RiAddLine } from "react-icons/ri";
@@ -62,7 +62,7 @@ const Product = () => {
 
   return (
 
-    <div className='flex flex-col gap-3 right-10 w-[100%] top-[50px] h-auto justify-between items-start p-2 rounded-md bg-[#312d4b]'>
+    <div className='flex flex-col gap-3 right-10 w-[80%] top-[50px] ml-[20%] h-auto justify-between items-start p-2 rounded-md bg-[#312d4b]'>
       <div className='flex  justify-between w-full '>
 
 
