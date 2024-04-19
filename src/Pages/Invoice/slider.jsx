@@ -6,12 +6,13 @@ import './invoice.css'
 import { useNavigate } from "react-router-dom";
 
 const NextArrow = (props) => {
+  console.log(props);
   const {onClick} = props;
   return (
     <div className="z-50">
       {onClick && (
-        <button onClick={onClick} className='absolute top-[2px] -right-[20px] bg-white border
-         border-gray-300  z-40 w-8 h-8 rounded-full slider
+        <button onClick={onClick} className='absolute top-[1px] -right-[20px] bg-white border
+         border-gray-300  z-40 w-9 h-9 rounded-full slider
           flex items-center justify-center hover:bg-gray-100'>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="black" className="w-4 h-4">
             <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
@@ -27,8 +28,8 @@ const PrevArrow = (props) => {
   return(
     <div>
       {onClick && (
-        <button onClick={onClick} className='absolute top-[2px] -left-[20px] bg-white border 
-        border-gray-300 slider z-40 w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100'>
+        <button onClick={onClick} className='absolute top-[1px] left-[4px] bg-white border 
+        border-gray-300 slider z-40 w-9 h-9 rounded-full flex items-center justify-center hover:bg-gray-100'>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="black" className="w-4 h-4 flex items-center justify-center">
           <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
         </svg>
@@ -42,15 +43,20 @@ function Carousel({categories,item}) {
 
   const navigate = useNavigate();
 
+  const slideWidth = "auto"; 
+  const slidesToShow = 5;
+  
   const settings = {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 3,
-    prevArrow : <PrevArrow/>,
-    nextArrow : <NextArrow/>
+    slidesToShow: slidesToShow,
+    slidesToScroll:3,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+    variableWidth: true,
   };
+
   const clickHandler = (code) => {
     navigate('/invoice/add/' +code)
   }
@@ -60,23 +66,21 @@ function Carousel({categories,item}) {
   }
 
   return (
-    <div className="w-full mx-auto mt-6 mb-6" >
+    <div className="w-[96%] mx-auto mt-6 mb-6 -ml-2" >
       <Slider {...settings}>
-        <div className={`p-2 text-sm max-w-fit 
+        <div className={`p-2 text-sm border border-gray-200
           ${!item? 'bg-blue-500 text-white' : 'bg-white text-black'}
           text-center rounded cursor-pointer`} 
-          onClick={clickALlHandler}>
+          onClick={clickALlHandler}  style={{ width: slideWidth  }}>
           All
         </div>
         {categories && categories.map((category)=>(
-          <div key={category.id}>
-            <div
-              className={`-ml-[148px] p-2 text-sm w-full border border-gray-200 text-center font-semibold rounded cursor-pointer
+            <div key={category.id}
+              className={`p-2 text-sm border border-gray-200 text-center font-semibold rounded cursor-pointer
               ${category.productCategoryCode === item ? 'bg-blue-500 text-white' :'bg-white'}`} 
               onClick={()=>clickHandler(category.productCategoryCode)}>
               {category.productCategoryName}
             </div>
-          </div>
         ))}
       </Slider>
     </div>
