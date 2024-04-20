@@ -38,11 +38,10 @@ ChartJs.register(
   Filler,
   ArcElement
 );
-let labels = []
+let labels = [];
 
 for (let index = 2019; index < 2025; index++) {
-    labels.push(index)
-    
+  labels.push(index);
 }
 
 const TotalProfit = ({ type, w }) => {
@@ -51,6 +50,8 @@ const TotalProfit = ({ type, w }) => {
     (state) => state.authSlice
   );
   const { reRender } = useSelector((state) => state.animateSlice);
+
+  const color = useSelector((state) => state.animateSlice);
 
   useEffect(() => {
     dispatch(setIncome(labels));
@@ -76,23 +77,29 @@ const TotalProfit = ({ type, w }) => {
       {
         data: income,
         label: "Income",
-        backgroundColor: type === "radar" || "polar" ? "#186F6557" : "#186F65",
-        borderColor: "#186F65",
-        pointBorderColor: "#d4d4d4",
+        backgroundColor:
+          type === "radar" || "polar"
+            ? `${color.upTrendColor}57`
+            : `${color.upTrendColor}`,
+        borderColor: `${color.upTrendColor}`,
+        pointBorderColor: `${color.textColor}`,
         pointBorderWidth: 0.3,
         borderWidth: 0.5,
-        tension: type !== 'line' ? 0 : 0.5,
+        tension: type !== "line" ? 0 : 0.5,
         borderRadius: type === "radar" || "polar" ? 0 : 100,
       },
       {
         data: expense,
         label: "Expense",
-        backgroundColor: type === "radar" || "polar" ? "#e2434b57" : "#E2434B",
-        borderColor: "#E2434B",
-        pointBorderColor: "#d4d4d4",
+        backgroundColor:
+          type === "radar" || "polar"
+            ? `${color.downTrendColor}57`
+            : `${color.downTrendColor}`,
+        borderColor: `${color.downTrendColor}`,
+        pointBorderColor: `${color.textColor}`,
         pointBorderWidth: 0.3,
         borderWidth: 0.5,
-        tension: type !== 'line' ? 0 : 0.5,
+        tension: type !== "line" ? 0 : 0.5,
         borderRadius: type === "radar" || "polar" ? 0 : 100,
       },
     ],
@@ -107,11 +114,11 @@ const TotalProfit = ({ type, w }) => {
 
     animations: {
       tension:
-        type !== 'line'
+        type !== "line"
           ? 0
           : {
               duration: 1000,
-              easing: 'linear',
+              easing: "linear",
               from: 0.4,
               to: 0.8,
               loop: true,
@@ -125,8 +132,7 @@ const TotalProfit = ({ type, w }) => {
         callbacks: {
           footer: (item) => {
             console.log(item);
-            const total =  item.reduce((prev,curr)=>  prev.raw - curr.raw )
-              
+            const total = item.reduce((prev, curr) => prev.raw - curr.raw);
 
             return total < 0
               ? "Total Loss: " + total + "K"
@@ -136,13 +142,11 @@ const TotalProfit = ({ type, w }) => {
       },
     },
     scales: {
-       
       x: {
         min: 2019,
         max: 2025,
         ticks: {
-          stepSize:1,
-          
+          stepSize: 1,
         },
         grid: {
           display: false,
@@ -166,35 +170,51 @@ const TotalProfit = ({ type, w }) => {
     <div
       style={{
         width: w === "full" ? "100%" : "48%",
+        backgroundColor: color.cardBgColor,
       }}
-      className=" flex dashBoardCard gap-3   flex-col justify-end  bg-[#312d4b] rounded-md  px-3 py-5 items-end "
+      className=" flex dashBoardCard gap-3   flex-col justify-end   rounded-md  px-3 py-5 items-end "
     >
-        <ReFreshButton/>
-      <div className=" flex h-[30px] pb-3  justify-start gap-3 w-full items-end text-2xl font-semibold text-[#d4d4d4e1] ">
+      <ReFreshButton />
+      <div
+        style={{
+          color: color.textColor + "e1",
+        }}
+        className=" flex h-[30px] pb-3  justify-start gap-3 w-full items-end text-2xl font-semibold  "
+      >
         <p>Total Profit </p>
 
         <div className=" flex justify-center items-center ">
           <div className=" flex flex-col h-full  gap-0 text-sm justify-center items-center ">
             {totalProfit < 0 ? (
-              <p className=" text-[#E2434B] ">
+              <p
+                style={{
+                  color: color.downTrendColor,
+                }}
+              >
                 {" "}
                 {totalProfit.toFixed(2) * -1}%{" "}
               </p>
             ) : (
-              <p className=" text-[#186F65] ">{totalProfit.toFixed(2)}%</p>
+              <p
+                style={{
+                  color: color.upTrendColor,
+                }}
+              >
+                {totalProfit.toFixed(2)}%
+              </p>
             )}
           </div>
 
-          <div className=" flex flex-col h-full  gap-0 text-sm justify-center items-center ">
+          <div className=" flex flex-col h-full transition-all  gap-0 text-sm justify-center items-center ">
             <Icon
               path={totalProfit < 0 ? mdiMenuDown : mdiMenuUp}
               size={1}
-              color={totalProfit < 0 ? "#E2434B" : "#186F65"}
+              color={
+                totalProfit < 0 ? color.downTrendColor : color.upTrendColor
+              }
             />
           </div>
         </div>
-
-        
       </div>
 
       {type === "bar" && <Bar data={data} options={options}></Bar>}

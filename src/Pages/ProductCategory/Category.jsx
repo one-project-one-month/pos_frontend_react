@@ -53,7 +53,7 @@ const Category = () => {
     };
 
     return (
-        <div className="p-2 rounded-md shadow-md bg-[#312d4b]">
+        <div className="p-2 rounded-md absolute top-[70px]  w-[80%] right-2 shadow-md bg-[#312d4b]">
             <div className="   flex justify-between items-center w-full h-auto p-1 ">
                 <div className="  border-2 px-2  border-[#76728e] flex justify-center items-center rounded-md w-[20%] h-[40px] ">
                     <input
@@ -64,7 +64,7 @@ const Category = () => {
                         id=""
                     />
                 </div>
-                <div className=" relative flex justify-between items-center w-[40%] h-[45px] p-1 ">
+                <div className=" relative flex text-[#d4d4d4] justify-between items-center w-[40%] h-[45px] p-1 ">
                     <>
                         <div
                             onClick={() => {

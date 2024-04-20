@@ -103,6 +103,11 @@ export const routes = [
                         Component: <AddNewInvoice />,
                     },
                     {
+                        path: "invoice/add/:code",
+                        handle: { title: "Create New Invoice" },
+                        Component: <AddNewInvoice />,
+                    },
+                    {
                         path: "invoice/preview",
                         handle: { title: "Invoice Preview" },
                         Component: <PreviewInvoice />,

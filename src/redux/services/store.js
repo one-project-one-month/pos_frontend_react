@@ -19,6 +19,7 @@ export const store = configureStore({
     animateSlice: animateSlice,
     newShopReducer : newShopReducer,
     productSlice: productReducer, 
+
     
   },
   // Adding the api middleware enables caching, invalidation, polling,

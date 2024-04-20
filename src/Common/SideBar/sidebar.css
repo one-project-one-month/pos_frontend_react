@@ -2,17 +2,16 @@
   @apply flex absolute left-0 w-[20%] h-screen bg-[#28243d] rounded-br-md  py-2;
 } */
 
-.menu-item.active,
+/* .menu-item.active,
 .menu-item:hover {
     font-weight: 600;
-    color: #e6e6eb;
     background-image: linear-gradient(
         -90deg,
-        rgb(144, 85, 253),
-        rgb(144, 85, 253, 0.8),
-        rgba(38, 37, 38, 0.479)
+        #9055fd,
+        #9055fdcc,
+        #2625267a
     );
-}
+} */
 
 .menu-item.active,
 :hover > div {
