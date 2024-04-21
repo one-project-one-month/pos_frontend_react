@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import {productList } from "../../redux/ProductsService/authSlice";
 
 const ProductTable = () => {
-
+ 
 
   const { productList } = useSelector((state) => state.productSlice); 
 
