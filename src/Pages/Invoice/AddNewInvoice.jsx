@@ -60,7 +60,7 @@ const AddNewInvoice = () => {
     
     return (
        <div className="absolute h-full w-[80%] right-2 top-[70px]">
-        <section className=" InvoiceSection flex gap-3 overflow-hidden rounded-md bg-gray-100 h-[100vh] p-5">
+        <section className=" InvoiceSection flex gap-3 overflow-hidden rounded-md bg-gray-50 h-[100vh] p-5">
             <div className="rounded-md p-4 w-[75%] h-fit"> 
 
                 <SearchInput productName={productName} setProductName={setProductName} searchHandler={searchHandler}/>
