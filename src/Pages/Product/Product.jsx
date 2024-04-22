@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { setProductList } from '../../redux/services/product/productAuth';
 import Pagination from "./Pagination";
 import productDb from "../../db/db.json";
 import { useQuery } from 'react-query';
@@ -18,7 +19,6 @@ import { RiAddLine } from "react-icons/ri";
 import { TiArrowSortedDown } from 'react-icons/ti';
 import { PiExportThin } from 'react-icons/pi';
 import { MdOutlineLocalPrintshop } from "react-icons/md";
-import { setProductList } from '../../redux/services/authSlice';
 
 const Product = () => {
   const { products } = productDb;
@@ -62,7 +62,7 @@ const Product = () => {
 
   return (
 
-    <div className='flex flex-col absolute gap-3 right-2 w-[80%] top-[70px] h-auto justify-between items-start p-2 rounded-md bg-[#312d4b]'>
+    <div className='flex flex-col gap-3 right-10 w-[80%] top-[50px] ml-[20%] h-auto justify-between items-start p-2 rounded-md bg-[#312d4b]'>
       <div className='flex  justify-between w-full '>
 
 
@@ -81,17 +81,17 @@ const Product = () => {
 
         </div>
 
-        <div className=" relative flex justify-between text-[#d4d4d4] items-center w-[40%] h-[45px] p-1 ">
+        <div className=" relative flex justify-between items-center w-[40%] h-[45px] p-1 ">
           <>
             <div
               onClick={() => {
                 dispatch(pageOn({ page: !page }));
               }}
-              className=" text-[#d4d4d4] cursor-pointer flex justify-around items-center rounded w-[15%] h-full border border-[#76728e] "
+              className=" cursor-pointer flex justify-around items-center rounded w-[15%] h-full border border-[#76728e] "
             >
               <p>{pageNum}</p>
               <TiArrowSortedDown
-                className=" transition-all text-lg text-[#d4d4d4] "
+                className=" transition-all text-lg "
                 style={{
                   rotate: page === true ? "360deg" : "270deg",
                 }}
