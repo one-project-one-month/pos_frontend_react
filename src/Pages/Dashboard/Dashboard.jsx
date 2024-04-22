@@ -25,10 +25,10 @@ const Dashboard = () => {
   return (
     <section style={{
       backgroundColor:bgColor
-    }} className=" dashBoardSection overflow-x-hidden   ">
+    }} className=" dashBoardSection    ">
       <ReFreshButton />
 
-      <div className=" relative flex overflow-x-hidden w-full justify-end items-end gap-3 h-[400px]  ">
+      <div className=" relative flex  w-full justify-end items-end gap-3 h-[400px]  ">
         <CongratulationsCard color={color} totalProfit={totalProfit - 1.0} />
 
         <SummaryCards sumColor={color} />

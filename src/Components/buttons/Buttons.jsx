@@ -139,8 +139,8 @@ export const ThemeChangerButton = () => {
     return(
         <div onClick={()=> dispatch(setThemeEditor(true))} style={{
             color:textColor + 'e1',
-            backgroundColor:cardBgColor
-        }} className=" fixed text-3xl z-[9999] rounded-l-md  p-4 top-[60px] cursor-pointer  " >
+            backgroundColor:cardBgColor+'57'
+        }} className=" fixed text-3xl z-[9999] backdrop-blur rounded-l-md  p-4 top-[60px] cursor-pointer  " >
             <MdDisplaySettings/>
         </div>
     )

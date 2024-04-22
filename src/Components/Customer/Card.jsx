@@ -19,7 +19,7 @@ export const StackCardOne = () => {
   } = useSelector((state) => state.animateSlice);
   return (
     <div
-      className={`card  rounded-lg overflow-hidden shadow-2xl bg-[${cardBgColor}]`}
+      className={`card  rounded-lg overflow-hidden shadow-md bg-[${cardBgColor}]`}
     >
       <div style={{
               color:textColor
@@ -70,7 +70,7 @@ export const StackCardTwo = () => {
 
   return (
     <div
-      className={`card  rounded-lg overflow-hidden shadow-2xl bg-[${cardBgColor}]`}
+      className={`card  rounded-lg overflow-hidden shadow-md bg-[${cardBgColor}]`}
     >
       <div style={{
               color:textColor
@@ -127,7 +127,7 @@ export const StackCardThree = () => {
     <div style={{
       color:textColor
     }}
-      className={`card  rounded-lg overflow-hidden shadow-2xl bg-[${cardBgColor}]`}
+      className={`card  rounded-lg overflow-hidden shadow-md bg-[${cardBgColor}]`}
     >
       <div className="card-inner p-5">
         <div className="flex justify-between">
@@ -180,7 +180,7 @@ export const StackCardFour = () => {
     <div style={{
       color:textColor
     }}
-      className={`card  rounded-lg overflow-hidden shadow-2xl bg-[${cardBgColor}]`}
+      className={`card  rounded-lg overflow-hidden shadow-md bg-[${cardBgColor}]`}
     >
       <div className="card-inner p-5">
         <div className="flex justify-between">
