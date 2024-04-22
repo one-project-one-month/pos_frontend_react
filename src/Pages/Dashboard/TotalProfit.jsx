@@ -172,7 +172,7 @@ const TotalProfit = ({ type, w }) => {
         width: w === "full" ? "100%" : "48%",
         backgroundColor: color.cardBgColor,
       }}
-      className=" flex dashBoardCard gap-3   flex-col justify-end   rounded-md  px-3 py-5 items-end "
+      className=" flex shadow gap-3   flex-col justify-end   rounded-md  px-3 py-5 items-end "
     >
       <ReFreshButton />
       <div

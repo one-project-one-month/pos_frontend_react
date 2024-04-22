@@ -7,7 +7,7 @@ const SummaryCard = ({ title, icon, value, delta, color,sumColor }) => {
   return (
     <div style={{
       backgroundColor: sumColor.cardBgColor,
-    }} className="flex h-[100%]   flex-col  w-[50%] dashBoardCard px-3 py-4 rounded-md ">
+    }} className="flex h-[100%]   flex-col  w-[50%] shadow px-3 py-4 rounded-md ">
       <div className="flex items-center justify-between mb-4">
         <div className="avatar">
           <div
