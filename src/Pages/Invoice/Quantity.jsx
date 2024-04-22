@@ -54,7 +54,7 @@ const Quantity = () => {
                         </tbody>
                     </table>
                             <div className='flex bg-[#8c8b99] rounded-lg mt-3  h-24'>
-                                <p></p>
+                               
                                 <p className='flex justify-end mt-3 ml-[80%]'>Total Price: {totalPrice || 0}</p> 
                             </div>
                 </div>
