@@ -6,7 +6,6 @@ import './invoice.css'
 import { useNavigate } from "react-router-dom";
 
 const NextArrow = (props) => {
-  console.log(props);
   const {onClick} = props;
   return (
     <div className="z-50">
@@ -45,7 +44,7 @@ function Carousel({categories,item}) {
 
   const slideWidth = "auto"; 
   const slidesToShow = 5;
-  
+
   const settings = {
     dots: false,
     infinite: false,

@@ -57,7 +57,8 @@ const AddNewInvoice = () => {
         // "Product categories fetched successfully!", "Failed to fetch product categories!"
         );
     }, []);
-    
+
+
     return (
        <div className="absolute h-full w-[80%] right-2 top-[70px]">
         <section className=" InvoiceSection flex gap-3 overflow-hidden rounded-md bg-gray-50 h-[100vh] p-5">
