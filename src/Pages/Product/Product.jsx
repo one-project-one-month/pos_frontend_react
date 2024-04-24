@@ -66,11 +66,13 @@ const Product = () => {
 
     <div 
      style={{
+      display: "flex",
+      flexDirection: "column",
+     
       backgroundColor:color.bgColor
   }}
     className='flex flex-col gap-3 right-10 w-[80%] top-[50px] ml-[20%] h-auto justify-between items-start p-2 rounded-md bg-[#312d4b]'>
-      <div 
-      
+      <div      
       className='flex  justify-between w-full '>
 
 
