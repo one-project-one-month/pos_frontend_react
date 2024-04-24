@@ -16,8 +16,8 @@ const AddNewInvoice = () => {
     const navigate = useNavigate();
     const { code: item } = useParams();
     const [subtotal, setSubtotal] = useState(0);
+    const [orderDetails, setOrderDetails] = useState([]);
 
-    {/**discount and tax */}
     const discountPercentage = 4; 
     const taxPercentage = 2; 
 
@@ -58,7 +58,8 @@ const AddNewInvoice = () => {
         fetchData(url, setCategories);
     }, []);
 
-    // Calculate subtotal
+
+
     useEffect(() => {
         if (datas && datas.length > 0) {
             const subTotal = datas.reduce((acc, curr) => acc + curr.price, 0);
@@ -66,13 +67,20 @@ const AddNewInvoice = () => {
         }
     }, [datas]);
 
-    // Calculate discount
+    //send order to orderDetails 
+    const addToOrder = (product) => {
+        setOrderDetails([...orderDetails, product]);
+    };
+    
+//calculateTotal is not directly used for UI ,used for the amount of computing orderDetails
+    const calculateTotal = () => {
+        const total = orderDetails.reduce((acc, product) => acc + product.price, 0);
+        return total;
+    };
+
+
     const discountAmount = (subtotal * discountPercentage) / 100;
-
-    // Calculate total tax
     const taxAmount = (subtotal * taxPercentage) / 100;
-
-    // Calculate total amount
     const totalAmount = subtotal - discountAmount + taxAmount;
 
     return (
@@ -81,14 +89,18 @@ const AddNewInvoice = () => {
                 <div className="rounded-md p-4 w-[75%] h-fit">
                     <SearchInput productName={productName} setProductName={setProductName} searchHandler={searchHandler} />
                     <Carousel categories={categories} item={item} />
-                    <Allproducts datas={datas} />
+                    <Allproducts datas={datas} addToOrder={addToOrder}/>
                 </div>
 
                 <div className="InvoiceCard bg-[#f1f1f1] flex flex-col rounded-md w-[27%] h-[100%]">
                     <h1 className="font-bold px-2 py-2">Order Details</h1>
                     <div>
-                        {datas.map((item, index) => (
-                            <div key={index}>{/* Render the item details here */}</div>
+                        {orderDetails.map((item, index) => (
+                            <div key={index}>
+                                <p>{item.name}</p>
+                                <p>{item.price}</p>
+                                <button></button>
+                            </div>
                         ))}
                     </div>
                     <div className="flex flex-col font-bold mx-5 mt-[35%]">
