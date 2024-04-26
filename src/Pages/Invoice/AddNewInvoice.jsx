@@ -99,7 +99,7 @@ const AddNewInvoice = () => {
                             <div key={index}>
                                 <p>{item.name}</p>
                                 <p>{item.price}</p>
-                                <button></button>
+                              
                             </div>
                         ))}
                     </div>
