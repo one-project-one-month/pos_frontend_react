@@ -1,7 +1,27 @@
+import React, { useEffect, useState } from "react";
 import sampleInvoice from "../../db/preview.json";
 //import { useSelector } from "react-redux";
+import axios from "axios";
 
 const PreviewInvoice = () => {
+  const [invoiceDetails, setInvoiceDetails] = useState();
+
+  const getData = async () => {
+    const invoiceDetailsUrl = "/src/db/preview.json";
+    await axios
+      .get(invoiceDetailsUrl)
+      .then((res) => {
+        setInvoiceDetails(res.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   //const color = useSelector((state) => state.animateSlice);
 
   const handlePrint = () => {
@@ -60,7 +80,8 @@ const PreviewInvoice = () => {
               </tr>
             </thead>
             <tbody>
-              {sampleInvoice.saleInvoice.itemList.map((item, index) => (
+              {invoiceDetails &&
+               invoiceDetails.saleInvoice.itemList.map((item, index) => (
                 <tr key={index}>
                   <td>{item.productName}</td>
                   <td className="text-right">{item.quantity.toLocaleString()}</td>
