@@ -6,6 +6,9 @@ import productDb from "../../db/db.json";
 import { useQuery } from 'react-query';
 import { useNavigate } from "react-router-dom";
 
+
+
+
 //Animate
 import {
   addCatFormOn,
@@ -23,6 +26,8 @@ import { RiAddLine } from "react-icons/ri";
 import { TiArrowSortedDown } from 'react-icons/ti';
 import { PiExportThin } from 'react-icons/pi';
 import { MdOutlineLocalPrintshop } from "react-icons/md";
+
+
 
 const Product = () => {
   const { products } = productDb;
@@ -66,9 +71,7 @@ const Product = () => {
 
     <div 
      style={{
-      display: "flex",
-      flexDirection: "column",
-     
+    
       backgroundColor:color.bgColor
   }}
     className='flex flex-col gap-3 right-10 w-[80%] top-[50px] ml-[20%] h-auto justify-between items-start p-2 rounded-md bg-[#312d4b]'>
@@ -233,7 +236,7 @@ const Product = () => {
         </div>
       </div>
       {/**Table */}
-      <div className="flex w-[100%] justify-between items-center">
+      <div className=" sm:flex flex-col  overflow-x-auto sm:overflow-x-hidden w-full  scrollbar-thin scrollbar-webkit  justify-between items-center" >
         <div id="catListTable" className="w-[100%] text-sm text-gray-500">
           <table
             style={{
@@ -328,6 +331,8 @@ const Product = () => {
             paginate={paginate}
             currentPage={currentPage}
           />
+
+       
         </div>
       </div>
     </div>
