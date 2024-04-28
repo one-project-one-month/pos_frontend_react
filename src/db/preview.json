@@ -1,0 +1,30 @@
+{
+    "saleInvoice": {
+        "totalAmount": 100.00,
+        "discount": 10.00,
+        "staffCode": "",
+        "tax": "",
+        "paymentType": "",
+        "customerAccountNo": "abc",
+        "paymentAmount": 90,
+        "receiveAmount": 100,
+        "change": 10,
+        "customerCode": "c123",
+        "saleInvoiceDatetime": "2024-04-08 10:00:00",
+        "voucherNo": "INV001",
+        "itemList": [
+            {
+                "productName": "Laptop",
+                "quantity": 1,
+                "price": 100,
+                "amount": 100
+            },
+            {
+                "productName": "Smartphone",
+                "quantity": 2,
+                "price": 500,
+                "amount": 1000
+            }
+        ]
+    }
+}
