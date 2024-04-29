@@ -7,8 +7,6 @@ import newShopReducer from "./Shop/newshopsucces";
 import productReducer from "./product/productAuth"; 
 
 
-
-
 export const store = configureStore({
   reducer: {
     // Add the generated reducer as a specific top-level slice
