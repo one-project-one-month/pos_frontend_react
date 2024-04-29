@@ -53,6 +53,7 @@ const Quantity = ({color}) => {
                                             style={{ width: '50px' }}
                                         />
                                     </td>
+                                    
                                     <td>{item.qty * item.cost || 0}</td> {/* Calculate price */}
                                 </tr>
                             ))}

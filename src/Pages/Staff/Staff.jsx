@@ -17,7 +17,7 @@ const Staff = () => {
 
   const getData = async () => {
     await axios
-      .get("https://pos-frontend-next-ruby.vercel.app/api/v1/staffs")
+      .get("https://pos-frontend-next-ruby.vercel.app/api/v1/products")
       .then((res) => {
         console.log(res.data.data.staffs);
         setStaffs(res.data.data.staffs);

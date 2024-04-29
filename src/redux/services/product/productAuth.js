@@ -44,6 +44,6 @@ export const productSlice = createSlice({
     }
 });
 
-export const { setLogin, setProductList  } = productSlice.actions;
+export const { setLogin, setProductList ,setTotalProfit , setIncome,  setExpense } = productSlice.actions;
 
 export default productSlice.reducer;
