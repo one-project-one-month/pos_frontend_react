@@ -17,6 +17,7 @@ import AddCategory from "./AddCategory";
 import { useGetProductsCategoryQuery } from "../../redux/api/AuthApi";
 import Pagination from "../Product/Pagination";
 import commerce from "../../../Commerce/commerce";
+import { LoadingTwo } from "../../Components/loading/Loading";
 
 const Category = () => {
   const { page, exportSet, addCat, pageNum, addCatForm } = useSelector(
@@ -29,6 +30,7 @@ const Category = () => {
   const pageCount = [7, 10, 20, 50, 70, 100];
 
   const [category, setCategory] = useState([]);
+  const [isLoading,setIsLoading] = useState(true)
 
   const fetchProducts = () => {
     commerce.categories
@@ -37,6 +39,7 @@ const Category = () => {
       })
       .then((products) => {
         setCategory(products.data);
+        setIsLoading(false)
       })
       .catch((error) => {
         console.log("There was an error fetching the products", error);
@@ -227,7 +230,13 @@ const Category = () => {
         </div>
       </div>
 
-      <table
+      {
+        isLoading ? <div  style={{
+          color: color.textColor,
+          backgroundColor: color.cardBgColor,
+        }} className=" flex justify-center p-2 items-center w-full  ">
+      <LoadingTwo isLoading={isLoading} />
+    </div> :   <table
         style={{
           color: color.textColor,
           backgroundColor: color.cardBgColor,
@@ -333,6 +342,9 @@ const Category = () => {
         </tbody>
         {/* Hidden printable content */}
       </table>
+      }
+
+    
 
       <Pagination
         productsPerPage={productsPerPage}
