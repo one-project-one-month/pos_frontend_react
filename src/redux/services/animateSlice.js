@@ -25,7 +25,9 @@ const initialState = {
   iconBgColor: "#9055fd25",
   iconColor: "#9055fd",
   themeEditor: false,
-  saveTheme:false
+  saveTheme:false,
+  classes:[],
+  id:0
 };
 
 const STORAGE_KEY = "AnimateSlice";
@@ -58,6 +60,10 @@ export const animateSlice = createSlice({
     saveTheme: (state, { payload }) => {
       state.saveTheme = payload;
       Cookies.set(STORAGE_KEY, JSON.stringify(state));
+
+    },
+    setClasses: (state, { payload }) => {
+      state.classes =payload
 
     },
     setPageNum: (state, { payload }) => {
@@ -128,6 +134,8 @@ export const animateSlice = createSlice({
 });
 
 export const {
+  setClasses,
+  classes,
   saveTheme,
   setThemeEditor,
   themeEditor,

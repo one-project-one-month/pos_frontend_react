@@ -1,20 +1,23 @@
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import NavBar from "./Common/Header/NavBar";
 import SideBar from "./Common/SideBar/SideBar";
+
 import { routes } from "./Route/data";
 import NotFound from "./Pages/NotFound/NotFound";
 import Dashboard from "./Pages/Dashboard/Dashboard";
-import AddCategory from "./Pages/ProductCategory/AddCategory";
-import Footer from "./Common/Footer/Footer";
 import { ThemeChangerButton } from "./Components/buttons/Buttons";
 import Theme from "./Common/Theme/Theme";
-import { bgColor } from "./redux/services/animateSlice";
 import {  useSelector } from "react-redux";
+import { useGetProductsCategoryQuery } from "./redux/api/AuthApi";
 
 function App() {
   const color = useSelector((state) => state.animateSlice);
 
+    const data = useGetProductsCategoryQuery()
+
+    console.log(data);
   return (
     <section style={{
       backgroundColor:`${color.bgColor}`

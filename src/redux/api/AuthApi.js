@@ -6,7 +6,7 @@ const token = "pk_test_c3Ryb25nLWpheS01OS5jbGVyay5hY2NvdW50cy5kZXYk";
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://github.com/sannlynnhtun-coding/pos_frontend_react/blob/main/src/db/",
+    baseUrl: "https://pos-frontend-next-ruby.vercel.app/api/v1",
   }),
 
   tagTypes: ["auth"],
@@ -48,9 +48,8 @@ export const authApi = createApi({
 
     getProductsCategory: builder.query({
       query: () => ({
-        url: "/db.json",
+        url: "/product-categories",
         method: "GET",
-        mode:'no-cors',
         // body: data,
       }),
       providesTags: ["auth"],

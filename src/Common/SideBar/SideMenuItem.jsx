@@ -2,43 +2,19 @@
 import { NavLink, useParams } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import MenuChildrenItem from "./MenuChildrenItem";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const SideMenuItem = ({ side, color }) => {
   const [menuItemArrow, setMenuItemArrow] = useState(false);
   const currentRoute = useParams();
   const [isHover, setIsHover] = useState(false);
-  const [isActive, setIsActive] = useState(false);
-
-  const menuItem = document.getElementById("menu-item");
 
   const buttonStyles = {
     color: color.textColor || "black",
     backgroundImage: isHover
       ? `linear-gradient(-90deg, ${color.bgColor}, ${color.cardBgColor}, ${color.bgColor})`
-      : isActive
-      ? `linear-gradient(-90deg, ${color.bgColor}, ${color.cardBgColor}, ${color.bgColor})`
       : "none",
   };
-
-  const sideBar = document.getElementById("side");
-
-  const navLinkElement = sideBar?.getElementsByTagName("a");
-
-  useEffect(() => {
-    for (let index = 0; index < navLinkElement?.length; index++) {
-      console.log(navLinkElement[index].classList);
-
-      const classList = navLinkElement[index]?.classList;
-
-      for (let v = 0; v < classList.length; v++) {
-        if (classList[v].includes("active"))
-          navLinkElement[
-            index
-          ].style.backgroundImage = `linear-gradient(-90deg, ${color.bgColor}, ${color.cardBgColor}, ${color.bgColor})`;
-      }
-    }
-  }, [isActive]);
 
   const handleMouseEnter = () => setIsHover(true);
 
@@ -53,7 +29,6 @@ const SideMenuItem = ({ side, color }) => {
           to={side.route ? side.route : currentRoute}
           onClick={() => {
             side.children && setMenuItemArrow(!menuItemArrow);
-            setIsActive(!isActive);
           }}
           id="menu-item"
           style={buttonStyles}

@@ -8,12 +8,11 @@ import "./utils";
 import { useSelector } from "react-redux";
 import Footer from "../../Common/Footer/Footer";
 import { ReFreshButton } from "../../Components/buttons/Buttons";
-import React from "react";
 
 const Dashboard = () => {
   const { totalProfit } = useSelector((state) => state.authSlice);
-  const { bgColor,textColor,textColorDim,buttonColor,borderColor,shadowColor }  = useSelector(state => state.animateSlice)
-  const color  = useSelector(state => state.animateSlice)
+  const { bgColor, textColor } = useSelector((state) => state.animateSlice);
+  const color = useSelector((state) => state.animateSlice);
 
   const type = [
     { type: "bar" },
@@ -23,9 +22,12 @@ const Dashboard = () => {
   ];
 
   return (
-    <section style={{
-      backgroundColor:bgColor
-    }} className=" dashBoardSection    ">
+    <section
+      style={{
+        backgroundColor: bgColor,
+      }}
+      className=" dashBoardSection    "
+    >
       <ReFreshButton />
 
       <div className=" relative flex  w-full justify-end items-end gap-3 h-[400px]  ">
@@ -34,9 +36,12 @@ const Dashboard = () => {
         <SummaryCards sumColor={color} />
       </div>
 
-      <div style={{
-        color:textColor
-      }} className=" flex flex-col gap-6     rounded-md  w-full h-auto ">
+      <div
+        style={{
+          color: textColor,
+        }}
+        className=" flex flex-col gap-6     rounded-md  w-full h-auto "
+      >
         {/* <TotalProfit w={'full'} type={'line'} /> */}
         <div
           id="chart"

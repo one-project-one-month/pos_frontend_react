@@ -172,7 +172,7 @@ const TotalProfit = ({ type, w }) => {
         width: w === "full" ? "100%" : "48%",
         backgroundColor: color.cardBgColor,
       }}
-      className=" flex shadow gap-3   flex-col justify-end   rounded-md  px-3 py-5 items-end "
+      className=" flex shadow gap-3    flex-col justify-end   rounded-md  px-3 py-5 items-end "
     >
       <ReFreshButton />
       <div
@@ -217,8 +217,9 @@ const TotalProfit = ({ type, w }) => {
         </div>
       </div>
 
-      {type === "bar" && <Bar data={data} options={options}></Bar>}
+      
       {type === "line" && <Line data={data} options={options}></Line>}
+      {type === "bar" && <Bar data={data} options={options}></Bar>}
       {type === "radar" && <Radar data={data} options={options}></Radar>}
       {type === "polar" && (
         <PolarArea data={data} options={options}></PolarArea>

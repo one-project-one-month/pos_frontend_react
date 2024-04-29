@@ -3,30 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCategoryList } from "../../redux/services/authSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useGetProductsCategoryQuery } from "../../redux/api/AuthApi";
 
 const PrintTable = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { categoryList } = useSelector((state) => state.authSlice);
+  const { currentData, isLoading } = useGetProductsCategoryQuery();
 
-  useEffect(() => {
-    const usefetchData = async () => {
-      try {
-        const response = await axios.get("/src/db/db.json");
-        dispatch(
-          setCategoryList({ categoryList: response.data.productCategories })
-        );
-      } catch (error) {
-        console.error(error);
-      } finally {
-        window.print();
-
-        navigate(-1);
-      }
-    };
-
-    usefetchData();
-  }, []);
+  const categoryList = currentData?.data.categories;
 
   return (
     <div className="w-[100%] bg-[#28243d] h-screen p-4  absolute right-0 top-[0px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
