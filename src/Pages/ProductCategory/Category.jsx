@@ -14,7 +14,6 @@ import axios from "axios";
 import { setCategoryList } from "../../redux/services/authSlice";
 import { useNavigate } from "react-router-dom";
 import AddCategory from "./AddCategory";
-import { useGetProductsCategoryQuery } from "../../redux/api/AuthApi";
 import Pagination from "../Product/Pagination";
 import commerce from "../../../Commerce/commerce";
 import { LoadingTwo } from "../../Components/loading/Loading";
@@ -23,6 +22,9 @@ const Category = () => {
   const { page, exportSet, addCat, pageNum, addCatForm } = useSelector(
     (state) => state.animateSlice
   );
+
+
+  
 
   const color = useSelector((state) => state.animateSlice);
   const dispatch = useDispatch();

@@ -1,12 +1,12 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-const token = "pk_test_c3Ryb25nLWpheS01OS5jbGVyay5hY2NvdW50cy5kZXYk";
+const token = "EAAAl3EeDX5q55nOBXna_YaXbeLG2NkwvxFZjFe1H926TehDxzck1x40uiTwZbub";
 
 // Define a service using a base URL and expected endpoints
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://pos-frontend-next-ruby.vercel.app/api/v1",
+    baseUrl: "https://connect.squareup.com/v2",
   }),
 
   tagTypes: ["auth"],
@@ -48,9 +48,11 @@ export const authApi = createApi({
 
     getProductsCategory: builder.query({
       query: () => ({
-        url: "/product-categories",
+        url: "/catalog/list",
         method: "GET",
         // body: data,
+        headers: { Authorization: `Bearer ${token}` },
+
       }),
       providesTags: ["auth"],
     }),
