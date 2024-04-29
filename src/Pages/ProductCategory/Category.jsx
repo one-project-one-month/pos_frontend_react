@@ -28,11 +28,10 @@ const Category = () => {
   const navigate = useNavigate();
   const pageCount = [7, 10, 20, 50, 70, 100];
 
-  const [category,setCategory] = useState([])
-
+  const [category, setCategory] = useState([]);
 
   const fetchProducts = () => {
-    commerce.products
+    commerce.categories
       .list({
         limit: pageNum,
       })
@@ -50,11 +49,9 @@ const Category = () => {
 
   useEffect(() => {
     fetchProducts();
-    console.log(pageNum);
   }, [pageNum]);
 
   const filteredCat = category;
-
 
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(pageNum);
@@ -147,10 +144,9 @@ const Category = () => {
               />
             </div>
 
-            <div
-              onClick={() =>
-                dispatch(addCatFormOn({ addCatForm: !addCatForm }))
-              }
+            <a
+             target="_blank"
+             href="https://dashboard.chec.io/categories/add"
               style={{
                 color: color.textColor,
                 backgroundColor: color.cardBgColor,
@@ -173,7 +169,7 @@ const Category = () => {
               >
                 ADD CATEGORY
               </p>
-            </div>
+            </a>
           </>
 
           {/* Page Count  */}
@@ -319,12 +315,13 @@ const Category = () => {
                 >
                   {catData.id}
                 </th>
-                <td className="px-6 py-4">{catData.permalink}</td>
+                <td className="px-6 py-4">{catData.slug}</td>
                 <td className="px-6 py-4">{catData.name}</td>
 
                 <td className="px-6 py-4">
                   <a
-                    href="#"
+                    target="_blank"
+                    href={`https://dashboard.chec.io/categories/${catData.id}`}
                     className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                   >
                     Edit

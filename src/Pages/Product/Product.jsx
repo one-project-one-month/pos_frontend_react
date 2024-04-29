@@ -23,6 +23,7 @@ import commerce from "../../../Commerce/commerce";
 
 const Product = () => {
   const [products, setProducts] = useState();
+  const [PID, setPID] = useState(0);
   const { addCatForm, page, exportSet, pageNum } = useSelector(
     (state) => state.animateSlice
   );
@@ -57,7 +58,6 @@ const Product = () => {
 
   useEffect(() => {
     fetchProducts();
-    console.log(pageNum);
   }, [pageNum]);
 
   // Dispatch the fetched data directly within useQuery
@@ -78,8 +78,6 @@ const Product = () => {
     indexOfFirstProduct,
     indexOfLastProduct
   );
-
-  console.log(currentProducts);
 
   const PrintTable = () => {
     dispatch(exportSettingOn({ exportSet: !exportSet }));
@@ -136,17 +134,16 @@ const Product = () => {
                     }}
                   />
                 </div>
-                <div
-                  onClick={() =>
-                    dispatch(addCatFormOn({ addCatForm: !addCatForm }))
-                  }
+                <a
+                  target="_blank"
+                  href="https://dashboard.chec.io/products/add"
                   className=" flex justify-between px-3 items-center  bg-[#9055fd] cursor-pointer w-[40%] h-full rounded "
                 >
                   <RiAddLine className=" text-lg " />
                   <p className=" font-semibold text-[15px] tracking-wide ">
-                    ADD CATEGORY
+                    ADD PRODUCT
                   </p>
-                </div>
+                </a>
               </>
 
               {/* Page Count  */}
@@ -261,7 +258,8 @@ const Product = () => {
                       <td className="pl-16">{product.categories[0]?.id}</td>
                       <td className="px-6 pl-3 py-4">
                         <a
-                          href="#"
+                          target="_blank"
+                          href={`https://dashboard.chec.io/products/${product.id}`}
                           className="pl-10 font-medium text-blue-600 dark:text-blue-500 hover:underline"
                         >
                           Edit
