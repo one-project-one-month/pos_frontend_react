@@ -9,11 +9,8 @@ import {
 import { PiExportThin } from "react-icons/pi";
 import { RiAddLine } from "react-icons/ri";
 import { MdOutlineLocalPrintshop } from "react-icons/md";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { setCategoryList } from "../../redux/services/authSlice";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AddCategory from "./AddCategory";
 import Pagination from "../Product/Pagination";
 import commerce from "../../../Commerce/commerce";
 import { LoadingTwo } from "../../Components/loading/Loading";
@@ -23,16 +20,13 @@ const Category = () => {
     (state) => state.animateSlice
   );
 
-
-  
-
   const color = useSelector((state) => state.animateSlice);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const pageCount = [7, 10, 20, 50, 70, 100];
 
   const [category, setCategory] = useState([]);
-  const [isLoading,setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchProducts = () => {
     commerce.categories
@@ -41,7 +35,7 @@ const Category = () => {
       })
       .then((products) => {
         setCategory(products.data);
-        setIsLoading(false)
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log("There was an error fetching the products", error);
@@ -150,8 +144,8 @@ const Category = () => {
             </div>
 
             <a
-             target="_blank"
-             href="https://dashboard.chec.io/categories/add"
+              target="_blank"
+              href="https://dashboard.chec.io/categories/add"
               style={{
                 color: color.textColor,
                 backgroundColor: color.cardBgColor,
@@ -232,121 +226,124 @@ const Category = () => {
         </div>
       </div>
 
-      {
-        isLoading ? <div  style={{
-          color: color.textColor,
-          backgroundColor: color.cardBgColor,
-        }} className=" flex justify-center p-2 items-center w-full  ">
-      <LoadingTwo isLoading={isLoading} />
-    </div> :   <table
-        style={{
-          color: color.textColor,
-          backgroundColor: color.cardBgColor,
-        }}
-        id="catListTable"
-        className="w-full overflow-y-hidden text-sm text-left rtl:text-right "
-      >
-        <thead
+      {isLoading ? (
+        <div
           style={{
             color: color.textColor,
             backgroundColor: color.cardBgColor,
           }}
-          className="text-xs text-gray-700 uppercase "
+          className=" flex justify-center p-2 items-center w-full  "
         >
-          <tr>
-            <th scope="col" className="p-4">
-              <div className="flex items-center">
-                <input
-                  id="checkbox-all-search"
-                  type="checkbox"
-                  style={{
-                    color: color.textColor,
-                    backgroundColor: color.cardBgColor,
-                  }}
-                  className="w-4 h-4 "
-                />
-                <label htmlFor="checkbox-all-search" className="sr-only">
-                  checkbox
-                </label>
-              </div>
-            </th>
-            <th scope="col" className="px-6 py-3">
-              ID
-            </th>
-            <th scope="col" className="px-6 py-3">
-              PRODUCTS CATEGORY CODE
-            </th>
-            <th scope="col" className="px-6 py-3">
-              PRODUCTS CATEGORY NAME
-            </th>
+          <LoadingTwo isLoading={isLoading} />
+        </div>
+      ) : (
+        <table
+          style={{
+            color: color.textColor,
+            backgroundColor: color.cardBgColor,
+          }}
+          id="catListTable"
+          className="w-full overflow-y-hidden text-sm text-left rtl:text-right "
+        >
+          <thead
+            style={{
+              color: color.textColor,
+              backgroundColor: color.cardBgColor,
+            }}
+            className="text-xs text-gray-700 uppercase "
+          >
+            <tr>
+              <th scope="col" className="p-4">
+                <div className="flex items-center">
+                  <input
+                    id="checkbox-all-search"
+                    type="checkbox"
+                    style={{
+                      color: color.textColor,
+                      backgroundColor: color.cardBgColor,
+                    }}
+                    className="w-4 h-4 "
+                  />
+                  <label htmlFor="checkbox-all-search" className="sr-only">
+                    checkbox
+                  </label>
+                </div>
+              </th>
+              <th scope="col" className="px-6 py-3">
+                ID
+              </th>
+              <th scope="col" className="px-6 py-3">
+                PRODUCTS CATEGORY CODE
+              </th>
+              <th scope="col" className="px-6 py-3">
+                PRODUCTS CATEGORY NAME
+              </th>
 
-            <th scope="col" className="px-6 py-3">
-              Action
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {categoryList?.map((catData) => {
-            return (
-              <tr
-                key={catData.id}
-                style={{
-                  color: color.textColor,
-                  backgroundColor: color.cardBgColor,
-                }}
-                className="bg-white border-b  dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-              >
-                <td className="w-4 p-4">
-                  <div className="flex items-center">
-                    <input
-                      value={catData.id}
-                      id="checkbox-table-search-1"
-                      type="checkbox"
-                      style={{
-                        color: color.textColor,
-                        backgroundColor: color.cardBgColor,
-                      }}
-                      className="w-4 h-4   border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label
-                      htmlFor="checkbox-table-search-1"
-                      className="sr-only"
-                    >
-                      checkbox
-                    </label>
-                  </div>
-                </td>
-                <th
-                  scope="row"
+              <th scope="col" className="px-6 py-3">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {categoryList?.map((catData) => {
+              return (
+                <tr
+                  key={catData.id}
                   style={{
                     color: color.textColor,
                     backgroundColor: color.cardBgColor,
                   }}
-                  className="px-6 py-4 font-medium  whitespace-nowrap "
+                  className="bg-white border-b  dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                 >
-                  {catData.id}
-                </th>
-                <td className="px-6 py-4">{catData.slug}</td>
-                <td className="px-6 py-4">{catData.name}</td>
-
-                <td className="px-6 py-4">
-                  <a
-                    target="_blank"
-                    href={`https://dashboard.chec.io/categories/${catData.id}`}
-                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                  <td className="w-4 p-4">
+                    <div className="flex items-center">
+                      <input
+                        value={catData.id}
+                        id="checkbox-table-search-1"
+                        type="checkbox"
+                        style={{
+                          color: color.textColor,
+                          backgroundColor: color.cardBgColor,
+                        }}
+                        className="w-4 h-4   border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label
+                        htmlFor="checkbox-table-search-1"
+                        className="sr-only"
+                      >
+                        checkbox
+                      </label>
+                    </div>
+                  </td>
+                  <th
+                    scope="row"
+                    style={{
+                      color: color.textColor,
+                      backgroundColor: color.cardBgColor,
+                    }}
+                    className="px-6 py-4 font-medium  whitespace-nowrap "
                   >
-                    Edit
-                  </a>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-        {/* Hidden printable content */}
-      </table>
-      }
+                    {catData.id}
+                  </th>
+                  <td className="px-6 py-4">{catData.slug}</td>
+                  <td className="px-6 py-4">{catData.name}</td>
 
-    
+                  <td className="px-6 py-4">
+                    <a
+                      target="_blank"
+                      href={`https://dashboard.chec.io/categories/${catData.id}`}
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Edit
+                    </a>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+          {/* Hidden printable content */}
+        </table>
+      )}
 
       <Pagination
         productsPerPage={productsPerPage}
