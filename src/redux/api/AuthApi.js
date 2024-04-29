@@ -1,6 +1,6 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-const token = "EAAAl3EeDX5q55nOBXna_YaXbeLG2NkwvxFZjFe1H926TehDxzck1x40uiTwZbub";
+const token = "";
 
 // Define a service using a base URL and expected endpoints
 export const authApi = createApi({
