@@ -1,6 +1,6 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-const token = "";
+// const token = "";
 
 // Define a service using a base URL and expected endpoints
 export const authApi = createApi({
@@ -33,7 +33,7 @@ export const authApi = createApi({
       query: () => ({
         url: "/user-logout",
         method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
+        // headers: { Authorization: `Bearer ${token}` },
       }),
     }),
     Environment: builder.query({
@@ -41,7 +41,7 @@ export const authApi = createApi({
         url: "/dev_browser",
         method: "POST",
         // body: data,
-        headers: { Authorization: `Bearer ${token}` },
+        // headers: { Authorization: `Bearer ${token}` },
       }),
       providesTags: ["auth"],
     }),
@@ -51,7 +51,7 @@ export const authApi = createApi({
         url: "/catalog/list",
         method: "GET",
         // body: data,
-        headers: { Authorization: `Bearer ${token}` },
+        // headers: { Authorization: `Bearer ${token}` },
 
       }),
       providesTags: ["auth"],
