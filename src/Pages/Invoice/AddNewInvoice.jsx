@@ -25,37 +25,55 @@ const AddNewInvoice = () => {
         navigate("/invoice/add?search=" + productName);
     };
 
-    const fetchData = async (url, updateData) => {
-        try {
-            const { data } = await axios.get(url);
-            updateData(data);
-        } catch (error) {
-            console.error(error);
-        }
-    };
+    // const fetchData = async (url, updateData) => {
+    //     try {
+    //         const {data} = await axios.get(url);
+    //         console.log(data?.data?.categories);
+    //         console.log(data);
+    //         // updateData(products);
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // };
 
     useEffect(() => {
-        let url = "http://localhost:3000/products";
-        const queryParams = [];
+        // let url = "http://localhost:3000/products";
+        const url = `https://pos-frontend-next-ruby.vercel.app/api/v1/products${searchValue ? `?name=${encodeURIComponent(searchValue)}` : ''}${item ? `${searchValue ? '&' : '?'}categoryCode=${encodeURIComponent(item)}` : ''}`;
 
-        if (searchValue) {
-            queryParams.push(searchValue);
+
+        // const queryParams = [];
+
+        // if (searchValue) {
+        //     queryParams.push(searchValue);
+        // }
+
+        // if (item) {
+        //     queryParams.push(item);
+        // }
+        // console.log(queryParams);
+        // if (queryParams.length > 0) {
+        //     url += `?q=${queryParams.join("&")}`;
+        // }
+
+        const fetchData = async() => {
+            const {data:{data:{products}}} = await axios.get(url)
+            console.log(products);
+            setDatas(products)
         }
-
-        if (item) {
-            queryParams.push(item);
-        }
-
-        if (queryParams.length > 0) {
-            url += `?q=${queryParams.join("&")}`;
-        }
-
-        fetchData(url, setDatas);
+        fetchData()
+        // fetchData(url, setDatas);
     }, [searchValue, item]);
 
     useEffect(() => {
-        const url = "http://localhost:3000/productCategories";
-        fetchData(url, setCategories);
+        // const url = "http://localhost:3000/productCategories";
+        const url = 'https://pos-frontend-next-ruby.vercel.app/api/v1/product-categories'
+        const fetchData = async() => {
+            const {data:{data:{categories}}} = await axios.get(url)
+            console.log(categories);
+            setCategories(categories)
+        }
+        fetchData()
+        // fetchData(url, setCategories);
     }, []);
 
     // Calculate subtotal
@@ -79,7 +97,7 @@ const AddNewInvoice = () => {
         <div className="absolute h-full w-[80%] right-2 top-[70px]">
             <section className="InvoiceSection flex gap-3 overflow-hidden rounded-md bg-gray-50 h-[100vh] p-5">
                 <div className="rounded-md p-4 w-[75%] h-fit">
-                    <SearchInput productName={productName} setProductName={setProductName} searchHandler={searchHandler} />
+                    <SearchInput productName={productName} setProductName={setProductName} searchHandler={searchHandler}/>
                     <Carousel categories={categories} item={item} />
                     <Allproducts datas={datas} />
                 </div>
@@ -87,7 +105,7 @@ const AddNewInvoice = () => {
                 <div className="InvoiceCard bg-[#f1f1f1] flex flex-col rounded-md w-[27%] h-[100%]">
                     <h1 className="font-bold px-2 py-2">Order Details</h1>
                     <div>
-                        {datas.map((item, index) => (
+                        {datas && datas.map((item, index) => (
                             <div key={index}>{/* Render the item details here */}</div>
                         ))}
                     </div>
