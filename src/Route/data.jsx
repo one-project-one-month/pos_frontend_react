@@ -14,6 +14,7 @@ import PrintTable from "../Pages/ProductCategory/PrintTable";
 import AddStaff from "../Pages/Staff/AddStaff";
 import NewShop from "../Pages/Shop/NewShop";
 import EditStaff from "../Pages/Staff/EditStaff";
+import AddProduct from "../Pages/Product/addProduct";
 
 export const routes = [
   {
@@ -81,6 +82,12 @@ export const routes = [
             handle: { title: "Product Category" },
             Component: <ProductCategory />,
           },
+          {
+            path: "products/addProduct",
+            handle: { title: "Add Product" },
+            Component: <AddProduct />,
+          },
+
         ],
       },
       {
