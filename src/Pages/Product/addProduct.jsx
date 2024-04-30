@@ -19,10 +19,10 @@ const AddCategory = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   console.log(newStaff);
+   console.log(AddCategory);
    await axios
-   .post("https://pos-frontend-next-ruby.vercel.app/api/v1/staffs")
-   .then((res)=> console.log(res.dats))
+   .post("https://pos-frontend-next-ruby.vercel.app/api/v1/products")
+   .then((res)=> console.log(res.data))
    .catch((err)=>console.log(err.message))
    navigate("/products")
   };
