@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
-const AddCategory = () => {
-  const [newCategory, setNewCategory] = useState({
- 
+const editProduct = () => {
+  const { productId } = useParams();
+  const [editData, setEditData] = useState({
     productCode: "",
     productName: "",
     price: "",
@@ -14,17 +14,31 @@ const AddCategory = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setNewCategory({ ...newCategory, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setEditData({ ...editData, [name]: value });
   };
+
+  const getData = async () => {
+    try {
+      const response = await axios.get(`https://pos-frontend-next-ruby.vercel.app/api/v1/staffs/${productId}`);
+      setEditData(response.data.data.staff);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   console.log(AddCategory);
-   await axios
-   .post("https://pos-frontend-next-ruby.vercel.app/api/v1/products", newCategory)
-   .then((res)=> console.log(res.data))
-   .catch((err)=>console.log(err.message))
-   navigate("/products")
+    try {
+      await axios.patch(`https://pos-frontend-next-ruby.vercel.app/api/v1/products/${productId}`, editData);
+      navigate("/products");
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -34,11 +48,8 @@ const AddCategory = () => {
         onSubmit={handleSubmit}
       >
         <div className="logo mt-2">
-          <h2 className="text-white text-center text-3xl font-bold">
-            Add category
-          </h2>
+          <h2 className="text-white text-center text-3xl font-bold">Edit Category</h2>
         </div>
-      
 
         <div className="flex flex-col m-4 mt-2">
           <label className="text-white text-xl">Product Code:</label>
@@ -46,6 +57,7 @@ const AddCategory = () => {
             type="text"
             placeholder="e.g. s01"
             name="productCode"
+            value={editData.productCode}
             className="w-[95%] mt-2 bg-transparent border-[#d4d4d48c] border-[2px] outline-none p-2 rounded-md text-white"
             onChange={handleChange}
           />
@@ -57,6 +69,7 @@ const AddCategory = () => {
               type="text"
               placeholder="Name"
               name="productName"
+              value={editData.productName}
               className="w-[90%] mt-2 bg-transparent border-[#d4d4d48c] border-[2px] outline-none p-2 rounded-md text-white"
               onChange={handleChange}
             />
@@ -67,6 +80,7 @@ const AddCategory = () => {
               type="text"
               placeholder="Price"
               name="price"
+              value={editData.price}
               className="w-[90%] mt-2 bg-transparent border-[#d4d4d48c] border-[2px] outline-none p-2 rounded-md text-white"
               onChange={handleChange}
             />
@@ -79,6 +93,7 @@ const AddCategory = () => {
               type="text"
               placeholder="Category"
               name="productCategory"
+              value={editData.productCategory}
               className="w-[90%] mt-2 bg-transparent border-[#d4d4d48c] border-[2px] outline-none p-2 rounded-md text-white"
               onChange={handleChange}
             />
@@ -95,4 +110,4 @@ const AddCategory = () => {
   );
 };
 
-export default AddCategory;
+export default editProduct;

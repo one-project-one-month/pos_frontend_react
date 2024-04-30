@@ -310,12 +310,12 @@ const Product = () => {
                       <td className="pl-10">{product.price}</td>
                       <td className="pl-16">{product.productCategoryCode}</td>
                       <td className="px-6 pl-3 py-4">
-                        <a
-                          href="#"
+                        <Link
+                          to="/products/editProduct"
                           className="pl-10 font-medium text-blue-600 dark:text-blue-500 hover:underline"
                         >
                           Edit
-                        </a>
+                        </Link>
                       </td>
                     </tr>
                   ))}

@@ -15,6 +15,7 @@ import AddStaff from "../Pages/Staff/AddStaff";
 import NewShop from "../Pages/Shop/NewShop";
 import EditStaff from "../Pages/Staff/EditStaff";
 import AddProduct from "../Pages/Product/addProduct";
+import editProduct from "../Pages/Product/editProduct";
 
 export const routes = [
   {
@@ -86,6 +87,10 @@ export const routes = [
             path: "products/addProduct",
             handle: { title: "Add Product" },
             Component: <AddProduct />,
+          },{
+            path: "products/editProduct",
+            handle: { title: "Edit Product" },
+            Component: <editProduct />,
           },
 
         ],
