@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setProductList } from '../../redux/services/product/productAuth';
 import Pagination from "./Pagination";
-import productDb from "../../db/db.json";
-import { useQuery } from 'react-query';
+
 import { useNavigate } from "react-router-dom";
+import axios from "axios"
+
+
 
 //Animate
 import {
@@ -14,9 +16,7 @@ import {
   setPageNum,
   
 } from "../../redux/services/animateSlice";
-import {
- 
-} from "../../redux/services/animateSlice";
+
 
 //icons
 import { RiAddLine } from "react-icons/ri";
@@ -24,35 +24,44 @@ import { TiArrowSortedDown } from 'react-icons/ti';
 import { PiExportThin } from 'react-icons/pi';
 import { MdOutlineLocalPrintshop } from "react-icons/md";
 
+
+
 const Product = () => {
-  const { products } = productDb;
+ 
   const { addCatForm, page, exportSet, pageNum } = useSelector(state => state.animateSlice);
   const dispatch = useDispatch();
+  const {productList }= useSelector(state => state.productAuth)  || {};
 
   const color = useSelector((state)=> state.animateSlice)
   const pageCount = [7, 10, 20, 50, 70, 100];
   const navigate = useNavigate();
 
-  // Fetch data using react-query
-  const { data } = useQuery('products', async () => {
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    return products;
-  });
 
-  // Dispatch the fetched data directly within useQuery
-  if (data) {
-    dispatch(setProductList(data));
+const fetchData = async () => {
+  try {
+    const res = await axios.get("https://pos-frontend-next-ruby.vercel.app/api/v1/products");
+    dispatch(setProductList(res.data));
+  } catch(error) {
+    console.error('Error fetching data:', error);
   }
+};
+
+// Fetch data when component mounts
+useEffect(() => {
+  fetchData();
+}, [dispatch]);
+
+
 
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(5);
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
-  //pagination
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  // Pagination
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = productList ? productList.slice(indexOfFirstProduct, indexOfLastProduct) : [];
 
   
   const PrintTable = () => {
@@ -66,11 +75,11 @@ const Product = () => {
 
     <div 
      style={{
+    
       backgroundColor:color.bgColor
   }}
     className='flex flex-col gap-3 right-10 w-[80%] top-[50px] ml-[20%] h-auto justify-between items-start p-2 rounded-md bg-[#312d4b]'>
-      <div 
-      
+      <div      
       className='flex  justify-between w-full '>
 
 
@@ -231,7 +240,7 @@ const Product = () => {
         </div>
       </div>
       {/**Table */}
-      <div className="flex w-[100%] justify-between items-center">
+      <div className=" sm:flex flex-col  overflow-x-auto sm:overflow-x-hidden w-full  scrollbar-thin scrollbar-webkit  justify-between items-center" >
         <div id="catListTable" className="w-[100%] text-sm text-gray-500">
           <table
             style={{
@@ -285,7 +294,7 @@ const Product = () => {
               </tr>
             </thead>
             <tbody>
-              {currentProducts.map((product) => (
+              {productList && productList.map((product) => (
                 <tr key={product.id} className='border-b border-gray-200'>
                   <td className="w-4 p-4">
                     <div className="flex items-center">
@@ -322,10 +331,11 @@ const Product = () => {
           </table>
           <Pagination
             productsPerPage={productsPerPage}
-            totalProducts={products.length}
+            totalProducts={productList ? productList.length : 0}
             paginate={paginate}
             currentPage={currentPage}
-          />
+            />
+
         </div>
       </div>
     </div>
