@@ -9,7 +9,7 @@ import axios from "axios";
 const NextArrow = (props) => {
   const {onClick} = props;
   return (
-    <div className="z-50">
+    <div>
       {onClick && (
         <button onClick={onClick} className='absolute top-[1px] -right-[20px] bg-white border
          border-gray-300  z-40 w-9 h-9 rounded-full slider

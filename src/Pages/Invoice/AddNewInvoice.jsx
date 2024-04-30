@@ -24,35 +24,8 @@ const AddNewInvoice = () => {
         navigate("/invoice/add?search=" + productName);
     };
 
-    // const fetchData = async (url, updateData) => {
-    //     try {
-    //         const {data} = await axios.get(url);
-    //         console.log(data?.data?.categories);
-    //         console.log(data);
-    //         // updateData(products);
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // };
-
     useEffect(() => {
-        // let url = "http://localhost:3000/products";
         const url = `https://pos-frontend-next-ruby.vercel.app/api/v1/products${searchValue ? `?name=${encodeURIComponent(searchValue)}` : ''}${item ? `${searchValue ? '&' : '?'}categoryCode=${encodeURIComponent(item)}` : ''}`;
-
-
-        // const queryParams = [];
-
-        // if (searchValue) {
-        //     queryParams.push(searchValue);
-        // }
-
-        // if (item) {
-        //     queryParams.push(item);
-        // }
-        // console.log(queryParams);
-        // if (queryParams.length > 0) {
-        //     url += `?q=${queryParams.join("&")}`;
-        // }
 
         const fetchData = async() => {
             const {data:{data:{products}}} = await axios.get(url)
@@ -60,7 +33,6 @@ const AddNewInvoice = () => {
             setDatas(products)
         }
         fetchData()
-        // fetchData(url, setDatas);
     }, [searchValue, item]);
 
     
