@@ -3,65 +3,104 @@ import faker from "faker";
 import Cookies from "js-cookie";
 
 const initialState = {
- categoryList:[],
- productList: [],
-
- totalProfit:0,
-    income:0,
-    expense:0,
-     labels : [
-      "2015",
-      "2016",
-      "2017",
-      "2018",
-      "2019",
-      "2020",
-      "2021",
-      "2022",
-      "2023",
-      "2024",
-    ]
+  categoryList: [],
+  productList: [],
+  totalProfit: 0,
+  income: 0,
+  expense: 0,
+  monthlyIncome: 0,
+  dailyIncome: 0,
+  monthlyExpense: 0,
+  dailyExpense: 0,
+  cash: 0,
+  wallet: 0,
 };
 
-const STORAGE_KEY = 'Auth';
+const STORAGE_KEY = "Auth";
 
 //____________________________________________________storedItems_____________________Null_____//
-const storedItems = Cookies.get(STORAGE_KEY) ? JSON.parse(Cookies.get(STORAGE_KEY)) : null;
+const storedItems = Cookies.get(STORAGE_KEY)
+  ? JSON.parse(Cookies.get(STORAGE_KEY))
+  : null;
 
 if (storedItems) {
-
   initialState.isLogin = storedItems;
-  
-
 }
 
 export const authSlice = createSlice({
   name: "authSlice",
   initialState,
   reducers: {
-    setLogin: (state,{payload})=> {
-      state.isLogin = payload
+    setLogin: (state, { payload }) => {
+      state.isLogin = payload;
       Cookies.set(STORAGE_KEY, JSON.stringify(state.isLogin));
-
     },
     setProductList: (state, { payload }) => {
       state.productList = payload.productList;
-  },
-    setCategoryList: (state,{payload}) => {
-      state.categoryList = payload.categoryList
     },
-    setTotalProfit: (state, {payload}) => {
-      state.totalProfit = payload
-  },
-  setIncome:(state,{payload} ) => {
-      state.income = payload?.map(() => faker.datatype.number({ min: 10, max: 58 }) )
-  },
-  setExpense: (state,{payload} ) => {
-      state.expense = payload?.map(() => faker.datatype.number({ min: 10, max: 58 }) )
-  },
+    setCategoryList: (state, { payload }) => {
+      state.categoryList = payload.categoryList;
+    },
+    setTotalProfit: (state, { payload }) => {
+      state.totalProfit = payload;
+    },
+    setIncome: (state, { payload }) => {
+      payload.incomeType === "total"
+        ? (state.income = payload?.labels[0]?.map(() =>
+            faker.datatype.number({ min: 10, max: 58 })
+          ))
+        : payload.incomeType === "month"
+        ? (state.monthlyIncome = payload?.labels[0]?.map(() =>
+            faker.datatype.number({ min: 10, max: 58 })
+          ))
+        : payload.incomeType === "daily"
+        ? (state.dailyIncome = payload?.labels[0]?.map(() =>
+            faker.datatype.number({ min: 10, max: 58 })
+          ))
+        : payload.incomeType === "cash"
+        ? (state.cash = payload?.labels[0]?.map(() =>
+            faker.datatype.number({ min: 10, max: 58 })
+          ))
+        : null;
+    },
+    setExpense: (state, { payload }) => {
+      payload.expenseType === "total"
+        ? (state.expense = payload?.labels[0]?.map(() =>
+            faker.datatype.number({ min: 10, max: 58 })
+          ))
+        : payload.expenseType === "month"
+        ? (state.monthlyExpense = payload?.labels[0]?.map(() =>
+            faker.datatype.number({ min: 10, max: 58 })
+          ))
+        : payload.expenseType === "daily"
+        ? (state.dailyExpense = payload?.labels[0]?.map(() =>
+            faker.datatype.number({ min: 10, max: 58 })
+          ))
+        : payload.expenseType === "wallet"
+        ? (state.wallet = payload?.labels[0]?.map(() =>
+            faker.datatype.number({ min: 10, max: 58 })
+          ))
+        : null;
+    },
   },
 });
 
-export const { setLogin,setCategoryList, setExpense, setIncome , setTotalProfit ,setProductList} =
-  authSlice.actions;
+export const {
+  setLogin,
+  setCategoryList,
+  setExpense,
+  setIncome,
+  setTotalProfit,
+  setProductList,
+  monthlyIncome,
+  dailyIncome,
+  monthlyExpense,
+  dailyExpense,
+  payMethod,
+  income,
+  expense,
+  cash,
+  wallet,
+  totalProfit,
+} = authSlice.actions;
 export default authSlice.reducer;

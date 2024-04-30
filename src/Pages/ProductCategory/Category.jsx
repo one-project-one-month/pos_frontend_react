@@ -1,7 +1,6 @@
 import { TiArrowSortedDown } from "react-icons/ti";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addCatFormOn,
   exportSettingOn,
   pageOn,
   setPageNum,
@@ -16,7 +15,7 @@ import commerce from "../../../Commerce/commerce";
 import { LoadingTwo } from "../../Components/loading/Loading";
 
 const Category = () => {
-  const { page, exportSet, addCat, pageNum, addCatForm } = useSelector(
+  const { page, exportSet, pageNum } = useSelector(
     (state) => state.animateSlice
   );
 

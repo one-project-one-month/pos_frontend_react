@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import NavBar from "./Common/Header/NavBar";
@@ -9,63 +8,56 @@ import NotFound from "./Pages/NotFound/NotFound";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import { ThemeChangerButton } from "./Components/buttons/Buttons";
 import Theme from "./Common/Theme/Theme";
-import {  useSelector } from "react-redux";
-import { useGetProductsCategoryQuery } from "./redux/api/AuthApi";
+import { useSelector } from "react-redux";
 
 function App() {
   const color = useSelector((state) => state.animateSlice);
 
-    const data = useGetProductsCategoryQuery()
-
-    console.log(data);
   return (
-    <section style={{
-      backgroundColor:`${color.bgColor}`
-    }} className="w-full flex justify-end items-end h-screen max-h-screen overflow-y-auto overflow-x-hidden relative ">
+    <section
+      style={{
+        backgroundColor: `${color.bgColor}`,
+      }}
+      className="w-full flex justify-end items-end h-screen max-h-screen overflow-y-auto overflow-x-hidden relative "
+    >
       <BrowserRouter>
-        
-          <SideBar />
-          <NavBar />
+        <SideBar />
+        <NavBar />
 
-          <ThemeChangerButton/>
+        <ThemeChangerButton />
 
-          <Theme/>
-          
-          <div className="p-5 top-[50px] w-full flex justify-between items-center overflow-x-hidden  h-full bg-transparent ">
-          
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/*" element={<NotFound />} />
-              {routes.map((route) =>
-                route.children.map((general, index) => {
-                  return (
-                    <>
-                      <Route
-                        key={index}
-                        path={general.path}
-                        element={general.Component}
-                      />
-                      {general?.children &&
-                        general.children.map((children, index) => {
-                          return (
-                            <Route
-                              key={index}
-                              path={children.path}
-                              element={children.Component}
-                            />
-                          );
-                        })}
-                    </>
-                  );
-                })
-              )}
-            </Routes>
-            
-          </div>
+        <Theme />
+
+        <div className="p-5 top-[50px] w-full flex justify-between items-center overflow-x-hidden  h-full bg-transparent ">
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/*" element={<NotFound />} />
+            {routes.map((route) =>
+              route.children.map((general, index) => {
+                return (
+                  <>
+                    <Route
+                      key={index}
+                      path={general.path}
+                      element={general.Component}
+                    />
+                    {general?.children &&
+                      general.children.map((children, index) => {
+                        return (
+                          <Route
+                            key={index}
+                            path={children.path}
+                            element={children.Component}
+                          />
+                        );
+                      })}
+                  </>
+                );
+              })
+            )}
+          </Routes>
+        </div>
       </BrowserRouter>
-      {/* <AddCategory /> */}
-
-
     </section>
   );
 }

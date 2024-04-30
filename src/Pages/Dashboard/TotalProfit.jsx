@@ -23,7 +23,6 @@ import {
 import { useEffect } from "react";
 import Icon from "@mdi/react";
 import { mdiMenuDown, mdiMenuUp } from "@mdi/js";
-import { ReFreshButton } from "../../Components/buttons/Buttons";
 
 ChartJs.register(
   LineElement,
@@ -38,41 +37,107 @@ ChartJs.register(
   Filler,
   ArcElement
 );
-let labels = [];
 
-for (let index = 2019; index < 2025; index++) {
-  labels.push(index);
-}
-
-const TotalProfit = ({ type, w }) => {
+const TotalProfit = ({
+  type,
+  w,
+  title,
+  width,
+  range,
+  label,
+  income,
+  expense
+}) => {
   const dispatch = useDispatch();
-  const { income, expense, totalProfit } = useSelector(
-    (state) => state.authSlice
-  );
+  const { totalProfit } = useSelector((state) => state.authSlice);
   const { reRender } = useSelector((state) => state.animateSlice);
 
   const color = useSelector((state) => state.animateSlice);
 
-  useEffect(() => {
-    dispatch(setIncome(labels));
-    dispatch(setExpense(labels));
-  }, []);
+  let labelf = () => {
+    for (let index = 0; index < label.length; index++) {
+      if (label[index].type === type) {
+        return [label[index].data];
+      }
+    }
+  };
+
+  const labels = labelf()
+  
+
 
   useEffect(() => {
     dispatch(
-      setTotalProfit(
-        ((income[labels.length - 1] - expense[labels.length - 1]) / 60) * 100
-      )
+      setIncome({
+        incomeType:
+          type === "radar"
+            ? "total"
+            : type === "line"
+            ? "month"
+            : type === "bar"
+            ? "daily"
+            : type === "polar"
+            ? "cash"
+            : null,
+        labels: labels,
+      })
     );
+    dispatch(
+      setExpense({
+        expenseType:
+          type === "radar"
+            ? "total"
+            : type === "line"
+            ? "month"
+            : type === "bar"
+            ? "daily"
+            : type === "polar"
+            ? "wallet"
+            : null,
+        labels: labels,
+      })
+    );
+  }, []);
+
+  useEffect(() => {
+    dispatch(setTotalProfit((income[labels.length - 1] / 60) * 100));
   }, [income]);
 
   useEffect(() => {
-    dispatch(setIncome(labels));
-    dispatch(setExpense(labels));
+    dispatch(
+      setIncome({
+        incomeType:
+          type === "radar"
+            ? "total"
+            : type === "line"
+            ? "month"
+            : type === "bar"
+            ? "daily"
+            : type === "polar"
+            ? "cash"
+            : null,
+        labels: labels,
+      })
+    );
+    dispatch(
+      setExpense({
+        expenseType:
+          type === "radar"
+            ? "total"
+            : type === "line"
+            ? "month"
+            : type === "bar"
+            ? "daily"
+            : type === "polar"
+            ? "wallet"
+            : null,
+        labels: labels,
+      })
+    );
   }, [reRender]);
 
   const data = {
-    labels: labels,
+    labels: labels.find(d => d),
     datasets: [
       {
         data: income,
@@ -131,7 +196,6 @@ const TotalProfit = ({ type, w }) => {
       tooltip: {
         callbacks: {
           footer: (item) => {
-            console.log(item);
             const total = item.reduce((prev, curr) => prev.raw - curr.raw);
 
             return total < 0
@@ -141,10 +205,10 @@ const TotalProfit = ({ type, w }) => {
         },
       },
     },
-    scales: {
+    scales: !width && {
       x: {
-        min: 2019,
-        max: 2025,
+        min: type === "radar" ? 2019 : 0,
+        max: type === "radar" ? 2025 : labels[0].length,
         ticks: {
           stepSize: 1,
         },
@@ -169,19 +233,27 @@ const TotalProfit = ({ type, w }) => {
   return (
     <div
       style={{
-        width: w === "full" ? "100%" : "48%",
+        width: width ? width : "37%",
         backgroundColor: color.cardBgColor,
+        // height: type === "line" ? "400px" : "auto",
+        paddingLeft: width ? "12px" : "12px",
+        paddingRight: width ? "2px" : "12px",
+        paddingTop: width ? "20px" : "20px",
+        paddingBottom: width ? "2px" : "20px",
       }}
-      className=" flex shadow gap-3    flex-col justify-end   rounded-md  px-3 py-5 items-end "
+      className=" flex shadow gap-3    flex-col justify-end   rounded-md  py-5 items-end "
     >
-      <ReFreshButton />
+      {/* { !width && <ReFreshButton />} */}
       <div
         style={{
           color: color.textColor + "e1",
+          fontSize: width ? "16px" : "20px",
+          paddingBottom: width ? "0px" : "12px",
+          height: width ? "15px" : "30px",
         }}
-        className=" flex h-[30px] pb-3  justify-start gap-3 w-full items-end text-2xl font-semibold  "
+        className=" flex h-[30px]   justify-start gap-3 w-full items-end  font-semibold  "
       >
-        <p>Total Profit </p>
+        <p>{title} </p>
 
         <div className=" flex justify-center items-center ">
           <div className=" flex flex-col h-full  gap-0 text-sm justify-center items-center ">
@@ -217,10 +289,13 @@ const TotalProfit = ({ type, w }) => {
         </div>
       </div>
 
-      
-      {type === "line" && <Line data={data} options={options}></Line>}
+      {type === "line" && <Line data={data} options={options}>
+        
+        </Line>}
+      {type === "radar" && <Radar data={data} options={options}>
+      </Radar>}
       {type === "bar" && <Bar data={data} options={options}></Bar>}
-      {type === "radar" && <Radar data={data} options={options}></Radar>}
+
       {type === "polar" && (
         <PolarArea data={data} options={options}></PolarArea>
       )}
