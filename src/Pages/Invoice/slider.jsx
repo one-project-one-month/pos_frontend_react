@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState,useEffect} from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './invoice.css'
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const NextArrow = (props) => {
   const {onClick} = props;
@@ -38,9 +39,10 @@ const PrevArrow = (props) => {
   )
 }
 
-function Carousel({categories,item}) {
+function Carousel({item}) {
 
   const navigate = useNavigate();
+  const [categories, setCategories] = useState(null);
 
   const slideWidth = "auto"; 
   const slidesToShow = 5;
@@ -55,6 +57,16 @@ function Carousel({categories,item}) {
     nextArrow: <NextArrow />,
     variableWidth: true,
   };
+
+  useEffect(() => {
+    const url = 'https://pos-frontend-next-ruby.vercel.app/api/v1/product-categories'
+    const fetchData = async() => {
+        const {data:{data:{categories}}} = await axios.get(url)
+        console.log(categories);
+        setCategories(categories)
+    }
+    fetchData()
+}, []);
 
   const clickHandler = (code) => {
     navigate('/invoice/add/' +code)

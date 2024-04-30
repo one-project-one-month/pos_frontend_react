@@ -2,7 +2,7 @@ import React from 'react'
 
 const Allproducts = ({datas}) => {
   return (
-    <div className="flex items-center gap-2 flex-wrap h-[600px] overflow-scroll">
+    <div className="flex items-center gap-2 flex-wrap max-h-[600px] overflow-scroll">
        {datas && datas.map((data)=>(
             <div key={data.productId} className="w-[262px] p-2 bg-white space-y-3 border border-gray-200 rounded-md">
                 <div className="font-semibold">{data.productName}</div>

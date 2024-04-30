@@ -9,7 +9,6 @@ import Allproducts from "./Allproducts";
 const AddNewInvoice = () => {
     const [productName, setProductName] = useState("");
     const [datas, setDatas] = useState([]);
-    const [categories, setCategories] = useState(null);
     const location = useLocation();
     const params = new URLSearchParams(location.search);
     const searchValue = params.get("search");
@@ -64,17 +63,7 @@ const AddNewInvoice = () => {
         // fetchData(url, setDatas);
     }, [searchValue, item]);
 
-    useEffect(() => {
-        // const url = "http://localhost:3000/productCategories";
-        const url = 'https://pos-frontend-next-ruby.vercel.app/api/v1/product-categories'
-        const fetchData = async() => {
-            const {data:{data:{categories}}} = await axios.get(url)
-            console.log(categories);
-            setCategories(categories)
-        }
-        fetchData()
-        // fetchData(url, setCategories);
-    }, []);
+    
 
     // Calculate subtotal
     useEffect(() => {
@@ -98,7 +87,7 @@ const AddNewInvoice = () => {
             <section className="InvoiceSection flex gap-3 rounded-md bg-gray-50 h-[100vh] p-5">
                 <div className="rounded-md p-4 w-[75%] h-fit">
                     <SearchInput productName={productName} setProductName={setProductName} searchHandler={searchHandler}/>
-                    <Carousel categories={categories} item={item} />
+                    <Carousel item={item} />
                     <Allproducts datas={datas} />
                 </div>
 
