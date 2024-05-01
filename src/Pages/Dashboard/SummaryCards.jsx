@@ -2,12 +2,17 @@ import React from "react";
 import Icon from "@mdi/react";
 import { mdiCurrencyUsd, mdiTrendingUp } from "@mdi/js";
 import faker from "faker";
+import { useSelector } from "react-redux";
 
-const SummaryCard = ({ title, icon, value, delta, color,sumColor }) => {
+const SummaryCard = ({ title, icon, value, delta, color, sumColor }) => {
+  
   return (
-    <div style={{
-      backgroundColor: sumColor.cardBgColor,
-    }} className="flex h-[100%]   flex-col  w-[50%] shadow px-3 py-4 rounded-md ">
+    <div
+      style={{
+        backgroundColor: sumColor.cardBgColor,
+      }}
+      className="flex h-[100%]   flex-col  w-[50%] shadow px-3 py-4 rounded-md "
+    >
       <div className="flex items-center justify-between mb-4">
         <div className="avatar">
           <div
@@ -48,12 +53,12 @@ const SummaryCard = ({ title, icon, value, delta, color,sumColor }) => {
       </div>
       <h6 className="mb-2 text-xl font-medium ">{title}</h6>
       <div className="flex flex-wrap mb-2 pb-1 gap-2 items-center">
-        <h4 className=" text-lg font-medium ">{value}</h4>
+        <h4 className=" text-lg font-semibold ">{value}</h4>
         <small
           style={{
             color: color,
           }}
-          className={`text-${color} mt-1`}
+          className={`text-${color} font-medium text-pretty mt-1`}
         >
           {delta}
         </small>
@@ -63,7 +68,10 @@ const SummaryCard = ({ title, icon, value, delta, color,sumColor }) => {
   );
 };
 
-const SummaryCards = ({sumColor}) => {
+const SummaryCards = ({ sumColor }) => {
+  const { totalProfit, totalDailyProfit, totalMonthlyProfit, cash, wallet,income,expense } =
+    useSelector((state) => state.authSlice);
+    console.log(income[5]);
   return (
     <div
       style={{
@@ -74,17 +82,17 @@ const SummaryCards = ({sumColor}) => {
       <SummaryCard
         title="Transactions"
         icon={<Icon path={mdiTrendingUp} size={1} color={"white"} />}
-        value={faker.datatype.number({ min: 0, max: 90 }) + "k"}
-        delta={faker.datatype.number({ min: 0, max: 90 }) + "%"}
+        value={cash[1] + wallet[1] + "k"}
+        delta={(((cash[1] + wallet[1])/60)*100).toFixed(2) + "%"}
         color="#5356FF"
         sumColor={sumColor}
       />
       <SummaryCard
         title="Revenue"
         icon={<Icon path={mdiCurrencyUsd} size={1} color={"white"} />}
-        value={faker.datatype.number({ min: 0, max: 90 }) + "k"}
-        delta={faker.datatype.number({ min: 0, max: 90 }) + "%"}
-        color="#74E291"
+        value={income[5]-expense[5] + "k"}
+        delta={totalProfit.toFixed(2) + "%"}
+        color={totalProfit < 0 ? '#E2423B': "#74E291"}
         sumColor={sumColor}
       />
     </div>

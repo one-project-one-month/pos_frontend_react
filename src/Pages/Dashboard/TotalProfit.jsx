@@ -46,11 +46,23 @@ const TotalProfit = ({
   range,
   label,
   income,
-  expense
+  expense,
 }) => {
   const dispatch = useDispatch();
-  const { totalProfit } = useSelector((state) => state.authSlice);
+  const { totalProfit, totalDailyProfit, totalMonthlyProfit } = useSelector(
+    (state) => state.authSlice
+  );
   const { reRender } = useSelector((state) => state.animateSlice);
+
+  const profit =
+    type === "radar"
+      ? totalProfit
+      : type === "line"
+      ? totalMonthlyProfit
+      : type === "bar"
+      ? totalDailyProfit
+      : null;
+
 
   const color = useSelector((state) => state.animateSlice);
 
@@ -62,9 +74,7 @@ const TotalProfit = ({
     }
   };
 
-  const labels = labelf()
-  
-
+  const labels = labelf();
 
   useEffect(() => {
     dispatch(
@@ -100,7 +110,19 @@ const TotalProfit = ({
   }, []);
 
   useEffect(() => {
-    dispatch(setTotalProfit((income[labels.length - 1] / 60) * 100));
+    dispatch(
+      setTotalProfit({
+        profitType:
+          type === "radar"
+            ? "total"
+            : type === "line"
+            ? "month"
+            : type === "bar"
+            ? "daily"
+            : null,
+        income: ((income[labels.length ] )-(expense[labels.length ] )/ 60 * 100)
+      })
+    );
   }, [income]);
 
   useEffect(() => {
@@ -137,7 +159,7 @@ const TotalProfit = ({
   }, [reRender]);
 
   const data = {
-    labels: labels.find(d => d),
+    labels: labels.find((d) => d),
     datasets: [
       {
         data: income,
@@ -255,16 +277,17 @@ const TotalProfit = ({
       >
         <p>{title} </p>
 
-        <div className=" flex justify-center items-center ">
+        {
+          type !== 'polar' && <div className=" flex justify-center items-center ">
           <div className=" flex flex-col h-full  gap-0 text-sm justify-center items-center ">
-            {totalProfit < 0 ? (
+            { type !== 'polar' && profit < 0 ? (
               <p
                 style={{
                   color: color.downTrendColor,
                 }}
               >
                 {" "}
-                {totalProfit.toFixed(2) * -1}%{" "}
+                {profit?.toFixed(2) * -1}%{" "}
               </p>
             ) : (
               <p
@@ -272,28 +295,27 @@ const TotalProfit = ({
                   color: color.upTrendColor,
                 }}
               >
-                {totalProfit.toFixed(2)}%
+                {profit?.toFixed(2)}%
               </p>
             )}
           </div>
 
           <div className=" flex flex-col h-full transition-all  gap-0 text-sm justify-center items-center ">
             <Icon
-              path={totalProfit < 0 ? mdiMenuDown : mdiMenuUp}
+              path={profit < 0 ? mdiMenuDown : mdiMenuUp}
               size={1}
               color={
-                totalProfit < 0 ? color.downTrendColor : color.upTrendColor
+                profit < 0 ? color.downTrendColor : color.upTrendColor
               }
             />
           </div>
         </div>
+        }
+        
       </div>
 
-      {type === "line" && <Line data={data} options={options}>
-        
-        </Line>}
-      {type === "radar" && <Radar data={data} options={options}>
-      </Radar>}
+      {type === "line" && <Line data={data} options={options}></Line>}
+      {type === "radar" && <Radar data={data} options={options}></Radar>}
       {type === "bar" && <Bar data={data} options={options}></Bar>}
 
       {type === "polar" && (

@@ -8,7 +8,9 @@ const initialState = {
   totalProfit: 0,
   income: 0,
   expense: 0,
+  totalMonthlyProfit: 0,
   monthlyIncome: 0,
+  totalDailyProfit: 0,
   dailyIncome: 0,
   monthlyExpense: 0,
   dailyExpense: 0,
@@ -42,7 +44,14 @@ export const authSlice = createSlice({
       state.categoryList = payload.categoryList;
     },
     setTotalProfit: (state, { payload }) => {
-      state.totalProfit = payload;
+      payload.profitType === "total"
+        ? (state.totalProfit = payload.income)
+        : payload.profitType === "month"
+        ? (state.totalMonthlyProfit = payload.income)
+        : payload.profitType === "daily"
+        ? (state.totalDailyProfit = payload.income)
+        : null;
+
     },
     setIncome: (state, { payload }) => {
       payload.incomeType === "total"
@@ -102,5 +111,7 @@ export const {
   cash,
   wallet,
   totalProfit,
+  totalDailyProfit,
+  totalMonthlyProfit
 } = authSlice.actions;
 export default authSlice.reducer;
