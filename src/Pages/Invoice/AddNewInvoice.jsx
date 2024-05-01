@@ -35,10 +35,6 @@ const AddNewInvoice = () => {
         fetchData()
     }, [searchValue, item]);
 
-    
-
-
-
     useEffect(() => {
         if (datas && datas.length > 0) {
             const subTotal = datas.reduce((acc, curr) => acc + curr.price, 0);
