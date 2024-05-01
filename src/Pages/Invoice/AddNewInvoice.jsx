@@ -9,7 +9,6 @@ import Allproducts from "./Allproducts";
 const AddNewInvoice = () => {
     const [productName, setProductName] = useState("");
     const [datas, setDatas] = useState([]);
-    const [categories, setCategories] = useState(null);
     const location = useLocation();
     const params = new URLSearchParams(location.search);
     const searchValue = params.get("search");
@@ -25,38 +24,18 @@ const AddNewInvoice = () => {
         navigate("/invoice/add?search=" + productName);
     };
 
-    const fetchData = async (url, updateData) => {
-        try {
-            const { data } = await axios.get(url);
-            updateData(data);
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
     useEffect(() => {
-        let url = "http://localhost:3000/products";
-        const queryParams = [];
+        const url = `https://pos-frontend-next-ruby.vercel.app/api/v1/products${searchValue ? `?name=${encodeURIComponent(searchValue)}` : ''}${item ? `${searchValue ? '&' : '?'}categoryCode=${encodeURIComponent(item)}` : ''}`;
 
-        if (searchValue) {
-            queryParams.push(searchValue);
+        const fetchData = async() => {
+            const {data:{data:{products}}} = await axios.get(url)
+            console.log(products);
+            setDatas(products)
         }
-
-        if (item) {
-            queryParams.push(item);
-        }
-
-        if (queryParams.length > 0) {
-            url += `?q=${queryParams.join("&")}`;
-        }
-
-        fetchData(url, setDatas);
+        fetchData()
     }, [searchValue, item]);
 
-    useEffect(() => {
-        const url = "http://localhost:3000/productCategories";
-        fetchData(url, setCategories);
-    }, []);
+    
 
 
 
@@ -85,10 +64,10 @@ const AddNewInvoice = () => {
 
     return (
         <div className="absolute h-full w-[80%] right-2 top-[70px]">
-            <section className="InvoiceSection flex gap-3 overflow-hidden rounded-md bg-gray-50 h-[100vh] p-5">
+            <section className="InvoiceSection flex gap-3 rounded-md bg-gray-50 h-[100vh] p-5">
                 <div className="rounded-md p-4 w-[75%] h-fit">
                     <SearchInput productName={productName} setProductName={setProductName} searchHandler={searchHandler} />
-                    <Carousel categories={categories} item={item} />
+                    <Carousel item={item} />
                     <Allproducts datas={datas} addToOrder={addToOrder}/>
                 </div>
 
