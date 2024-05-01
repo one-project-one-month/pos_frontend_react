@@ -10,7 +10,7 @@ import Footer from "../../Common/Footer/Footer";
 import { ReFreshButton } from "../../Components/buttons/Buttons";
 
 const Dashboard = () => {
-  const { totalProfit } = useSelector((state) => state.authSlice);
+  const { totalProfit,totalDailyProfit } = useSelector((state) => state.authSlice);
   const { bgColor, textColor } = useSelector((state) => state.animateSlice);
   const color = useSelector((state) => state.animateSlice);
 
@@ -94,7 +94,7 @@ const Dashboard = () => {
       <ReFreshButton />
 
       <div className=" relative flex  w-full justify-end items-end gap-3 h-[400px]  ">
-        <CongratulationsCard color={color} totalProfit={totalProfit - 1.0} />
+        <CongratulationsCard color={color} totalProfit={totalDailyProfit - 1.0} />
 
         <SummaryCards sumColor={color} />
       </div>
