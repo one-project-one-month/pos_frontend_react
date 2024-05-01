@@ -1,7 +1,5 @@
-import React from "react";
 import Icon from "@mdi/react";
 import { mdiCurrencyUsd, mdiTrendingUp } from "@mdi/js";
-import faker from "faker";
 import { useSelector } from "react-redux";
 
 const SummaryCard = ({ title, icon, value, delta, color, sumColor }) => {
