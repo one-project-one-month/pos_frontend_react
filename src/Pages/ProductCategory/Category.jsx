@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import Pagination from "../Product/Pagination";
 import commerce from "../../../Commerce/commerce";
 import { LoadingTwo } from "../../Components/loading/Loading";
+import { useGetProductsCategoryQuery } from "../../redux/api/AuthApi";
 
 const Category = () => {
   const { page, exportSet, pageNum } = useSelector(
@@ -25,29 +26,14 @@ const Category = () => {
   const pageCount = [7, 10, 20, 50, 70, 100];
 
   const [category, setCategory] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
-  const fetchProducts = () => {
-    commerce.categories
-      .list({
-        limit: pageNum,
-      })
-      .then((products) => {
-        setCategory(products.data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.log("There was an error fetching the products", error);
-      });
-  };
+  const { data, isLoading, isSuccess } = useGetProductsCategoryQuery();
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    isSuccess === true && setCategory(data?.data.categories);
+  },[isSuccess]);
 
-  useEffect(() => {
-    fetchProducts();
-  }, [pageNum]);
+ 
 
   const filteredCat = category;
 
@@ -173,16 +159,19 @@ const Category = () => {
           {/* Page Count  */}
           <div
             style={{
+              backgroundColor: color.BgColor,
+
               visibility: page === true ? "visible" : "collapse",
             }}
-            className=" shadow-lg   flex flex-col justify-center items-center gap-3 absolute w-[15%] h-auto  rounded-md bg-[#312d4b]  top-[100%] "
+            className=" shadow-lg   flex flex-col justify-center items-center gap-3 absolute w-[15%] h-auto  rounded-md   top-[100%] "
           >
             {pageCount.map((num) => {
               return (
                 <p
                   style={{
+                    color: color.textColor,
                     backgroundColor:
-                      num === pageNum ? "#16b1ff" : "transparent",
+                      num === pageNum ? color.cardBgColor : "transparent",
                   }}
                   onClick={() => {
                     dispatch(setPageNum({ pageNum: num }));
@@ -225,7 +214,7 @@ const Category = () => {
         </div>
       </div>
 
-      {isLoading ? (
+      {!isSuccess ? (
         <div
           style={{
             color: color.textColor,
@@ -233,7 +222,7 @@ const Category = () => {
           }}
           className=" flex justify-center p-2 items-center w-full  "
         >
-          <LoadingTwo isLoading={isLoading} />
+          <LoadingTwo isLoading={isSuccess} />
         </div>
       ) : (
         <table
@@ -322,15 +311,15 @@ const Category = () => {
                     }}
                     className="px-6 py-4 font-medium  whitespace-nowrap "
                   >
-                    {catData.id}
+                    {catData.productCategoryId}
                   </th>
-                  <td className="px-6 py-4">{catData.slug}</td>
-                  <td className="px-6 py-4">{catData.name}</td>
+                  <td className="px-6 py-4">{catData.productCategoryCode}</td>
+                  <td className="px-6 py-4">{catData.productCategoryName}</td>
 
                   <td className="px-6 py-4">
                     <a
                       target="_blank"
-                      href={`https://dashboard.chec.io/categories/${catData.id}`}
+                      href={`https://dashboard.chec.io/categories/${catData.productCategoryId}`}
                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                     >
                       Edit

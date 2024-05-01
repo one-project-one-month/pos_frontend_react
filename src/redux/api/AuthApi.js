@@ -1,12 +1,12 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-// const token = "";
+const token = "pk_test_c3Ryb25nLWpheS01OS5jbGVyay5hY2NvdW50cy5kZXYk";
 
 // Define a service using a base URL and expected endpoints
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://connect.squareup.com/v2",
+    baseUrl: "https://pos-frontend-next-ruby.vercel.app/api/v1",
   }),
 
   tagTypes: ["auth"],
@@ -20,11 +20,11 @@ export const authApi = createApi({
       invalidatesTags: ["auth"],
     }),
 
-    login: builder.mutation({
-      query: (user) => ({
-        url: "/sign-in",
+    createProduct: builder.mutation({
+      query: (data) => ({
+        url: "/products",
         method: "POST",
-        body: user,
+        body: data,
       }),
       invalidatesTags: ["auth"],
     }),
@@ -33,7 +33,7 @@ export const authApi = createApi({
       query: () => ({
         url: "/user-logout",
         method: "POST",
-        // headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` },
       }),
     }),
     Environment: builder.query({
@@ -41,18 +41,24 @@ export const authApi = createApi({
         url: "/dev_browser",
         method: "POST",
         // body: data,
-        // headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` },
       }),
       providesTags: ["auth"],
     }),
 
     getProductsCategory: builder.query({
       query: () => ({
-        url: "/catalog/list",
+        url: "/product-categories",
         method: "GET",
         // body: data,
-        // headers: { Authorization: `Bearer ${token}` },
-
+      }),
+      providesTags: ["auth"],
+    }),
+    getProducts: builder.query({
+      query: () => ({
+        url: "/products",
+        method: "GET",
+        // body: data,
       }),
       providesTags: ["auth"],
     }),
@@ -68,5 +74,7 @@ export const {
   useLoginMutation,
   useLazyEnvironmentQuery,
   useLogoutMutation,
-  useGetProductsCategoryQuery
+  useGetProductsCategoryQuery,
+  useCreateProductMutation,
+  useGetProductsQuery
 } = authApi;

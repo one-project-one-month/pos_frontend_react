@@ -11,8 +11,8 @@ import { MdOutlineLocalPrintshop } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Pagination from "../Product/Pagination";
-import commerce from "../../../Commerce/commerce";
 import { LoadingTwo } from "../../Components/loading/Loading";
+import { useGetProductsQuery } from "../../redux/api/AuthApi";
 
 const Category = () => {
   const { page, exportSet, pageNum } = useSelector(
@@ -25,30 +25,15 @@ const Category = () => {
   const pageCount = [7, 10, 20, 50, 70, 100];
 
   const [category, setCategory] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
-  const fetchProducts = () => {
-    commerce.products
-      .list({
-        limit: pageNum,
-      })
-      .then((products) => {
-        setCategory(products.data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.log("There was an error fetching the products", error);
-      });
-  };
+  const { data, isLoading,isSuccess } = useGetProductsQuery();
+
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    isSuccess === true && setCategory(data?.data.products);
+  }, [isSuccess]);
 
-  useEffect(() => {
-    fetchProducts();
-  }, [pageNum]);
-
+ 
   const filteredCat = category;
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -174,15 +159,18 @@ const Category = () => {
           <div
             style={{
               visibility: page === true ? "visible" : "collapse",
+              color: color.textColor,
+
+              backgroundColor: color.cardBgColor + "57",
             }}
-            className=" shadow-lg   flex flex-col justify-center items-center gap-3 absolute w-[15%] h-auto  rounded-md bg-[#312d4b]  top-[100%] "
+            className=" shadow-lg   flex flex-col justify-center items-center gap-3 absolute w-[15%] h-auto  rounded-md   top-[100%] "
           >
             {pageCount.map((num) => {
               return (
                 <p
                   style={{
                     backgroundColor:
-                      num === pageNum ? "#16b1ff" : "transparent",
+                      num === pageNum ? color.cardBgColor : "transparent",
                   }}
                   onClick={() => {
                     dispatch(setPageNum({ pageNum: num }));
@@ -225,7 +213,7 @@ const Category = () => {
         </div>
       </div>
 
-      {isLoading ? (
+      {!isSuccess ? (
         <div
           style={{
             color: color.textColor,
@@ -326,11 +314,13 @@ const Category = () => {
                       }}
                       className="px-6 py-4 font-medium  whitespace-nowrap "
                     >
-                      {catData.id}
+                      {catData.productId}
                     </th>
-                    <td className="px-6 py-4">{catData.sku}</td>
-                    <td className="px-6 py-4">{catData.name}</td>
-                    <td className="px-6 py-4">{catData.categories[0]?.id}</td>
+                    <td className="px-6 py-4">{catData.productCode}</td>
+                    <td className="px-6 py-4">{catData.productName}</td>
+                    <td className="px-6 py-4">
+                      {catData.category?.productCategoryCode}
+                    </td>
 
                     <td className="px-6 py-4">
                       <a

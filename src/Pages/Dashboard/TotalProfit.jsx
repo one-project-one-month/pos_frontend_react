@@ -163,7 +163,7 @@ const TotalProfit = ({
     datasets: [
       {
         data: income,
-        label: "Income",
+        label: type === 'polar' ? 'Cash': "Income",
         backgroundColor:
           type === "radar" || "polar"
             ? `${color.upTrendColor}57`
@@ -174,10 +174,11 @@ const TotalProfit = ({
         borderWidth: 0.5,
         tension: type !== "line" ? 0 : 0.5,
         borderRadius: type === "radar" || "polar" ? 0 : 100,
+        mode:'redraw',
       },
       {
         data: expense,
-        label: "Expense",
+        label: type === 'polar' ? 'Wallet': "Income" ,
         backgroundColor:
           type === "radar" || "polar"
             ? `${color.downTrendColor}57`
@@ -188,11 +189,15 @@ const TotalProfit = ({
         borderWidth: 0.5,
         tension: type !== "line" ? 0 : 0.5,
         borderRadius: type === "radar" || "polar" ? 0 : 100,
+        mode:'redraw',
+
       },
     ],
   };
 
   const options = {
+    updateMode:'resize',
+    redraw:true,
     responsive: true,
     interaction: {
       intersect: false,
@@ -238,7 +243,7 @@ const TotalProfit = ({
           display: false,
         },
       },
-      y: {
+      y: type !== 'polar' && {
         min: 0,
         max: 60,
         ticks: {
@@ -314,12 +319,12 @@ const TotalProfit = ({
         
       </div>
 
-      {type === "line" && <Line data={data} options={options}></Line>}
-      {type === "radar" && <Radar data={data} options={options}></Radar>}
-      {type === "bar" && <Bar data={data} options={options}></Bar>}
+      {type === "line" && <Line redraw data={data} options={options}></Line>}
+      {type === "radar" && <Radar redraw data={data} options={options}></Radar>}
+      {type === "bar" && <Bar redraw data={data} options={options}></Bar>}
 
       {type === "polar" && (
-        <PolarArea data={data} options={options}></PolarArea>
+        <PolarArea redraw data={data} options={options}></PolarArea>
       )}
     </div>
   );

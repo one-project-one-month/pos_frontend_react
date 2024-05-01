@@ -10,7 +10,9 @@ import Footer from "../../Common/Footer/Footer";
 import { ReFreshButton } from "../../Components/buttons/Buttons";
 
 const Dashboard = () => {
-  const { totalProfit,totalDailyProfit } = useSelector((state) => state.authSlice);
+  const {  totalDailyProfit } = useSelector(
+    (state) => state.authSlice
+  );
   const { bgColor, textColor } = useSelector((state) => state.animateSlice);
   const color = useSelector((state) => state.animateSlice);
 
@@ -80,9 +82,8 @@ const Dashboard = () => {
     dailyExpense,
     monthlyExpense,
     cash,
-    wallet
+    wallet,
   } = useSelector((state) => state.authSlice);
-
 
   return (
     <section
@@ -94,7 +95,10 @@ const Dashboard = () => {
       <ReFreshButton />
 
       <div className=" relative flex  w-full justify-end items-end gap-3 h-[400px]  ">
-        <CongratulationsCard color={color} totalProfit={totalDailyProfit - 1.0} />
+        <CongratulationsCard
+          color={color}
+          totalProfit={totalDailyProfit - 1.0}
+        />
 
         <SummaryCards sumColor={color} />
       </div>
@@ -111,7 +115,6 @@ const Dashboard = () => {
           className=" flex flex-wrap  gap-[27px] justify-end items-start  w-[100%] "
         >
           {type.map(({ type, title, width, range }, index, data) => {
-          
             return (
               <TotalProfit
                 key={type}
