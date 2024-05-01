@@ -103,7 +103,7 @@ const AddNewInvoice = () => {
                             </div>
                         ))}
                     </div>
-                    <div className="flex flex-col font-bold mx-5 mt-[35%]">
+                    <div className=" flex flex-col font-bold mx-5 mt-[35%]">
                         <div className="border-b border-[#3d3636] bg-white w-[52] pb-4">
                             <div>
                                 <h3 className="inline-block mr-[3rem]">SubTotal</h3>
