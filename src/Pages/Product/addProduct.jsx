@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const AddCategory = () => {
   const [newCategory, setNewCategory] = useState({
- 
+
     productCode: "",
     productName: "",
     price: "",
@@ -19,13 +19,15 @@ const AddCategory = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   console.log(AddCategory);
-   await axios
-   .post("https://pos-frontend-next-ruby.vercel.app/api/v1/products", newCategory)
-   .then((res)=> console.log(res.data))
-   .catch((err)=>console.log(err.message))
-   navigate("/products")
+    console.log(newCategory); 
+    try {
+      await axios.post("https://pos-frontend-next-ruby.vercel.app/api/v1/products", newCategory);
+      navigate("/products");
+    } catch (err) {
+      console.log(err.message);
+    }
   };
+
 
   return (
     <div className="bg-[#28243d] absolute right-[25%] top-[30px] rounded-br-md p-2">
@@ -38,7 +40,7 @@ const AddCategory = () => {
             Add category
           </h2>
         </div>
-      
+
 
         <div className="flex flex-col m-4 mt-2">
           <label className="text-white text-xl">Product Code:</label>

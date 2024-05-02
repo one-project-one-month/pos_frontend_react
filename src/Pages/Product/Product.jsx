@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setProductList } from '../../redux/services/product/productAuth';
 import Pagination from "./Pagination";
-import addProduct from './addProduct';
 import { useNavigate } from "react-router-dom";
 import axios from "axios"
 import { Link } from 'react-router-dom';
