@@ -34,12 +34,13 @@ const Product = () => {
   const color = useSelector((state) => state.animateSlice)
   const pageCount = [7, 10, 20, 50, 70, 100];
   const navigate = useNavigate();
-
-
+  const [products, setProducts] = useState([]);
+  
   const fetchData = async () => {
     try {
       const res = await axios.get("https://pos-frontend-next-ruby.vercel.app/api/v1/products");
-      dispatch(setProductList(res.data));
+      const productData = res.data.data.products || [];
+      setProducts(productData);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -48,20 +49,18 @@ const Product = () => {
   // Fetch data when component mounts
   useEffect(() => {
     fetchData();
-  }, [dispatch]);
+  }, []);
 
-
-
+  
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(5);
+  const productsPerPage = 7;
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
   // Pagination
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = productList ? productList.slice(indexOfFirstProduct, indexOfLastProduct) : [];
-
+  const currentProducts = products ? products.slice(indexOfFirstProduct, indexOfLastProduct) : [];
 
 
 
@@ -71,13 +70,10 @@ const Product = () => {
     navigate("/printtable");
   };
 
-
-
   return (
 
     <div
       style={{
-
         backgroundColor: color.bgColor
       }}
       className='flex flex-col gap-3 right-10 w-[80%] top-[50px] ml-[20%] h-auto justify-between items-start p-2 rounded-md bg-[#312d4b]'>
@@ -264,9 +260,7 @@ const Product = () => {
                         </label>
                       </div>
                     </th>
-                    <th scope="col" className="p-4">
-                      ID
-                    </th>
+                  
                     <th scope="col" className="px-6 py-3">
                       Product Code
                     </th>
@@ -276,16 +270,14 @@ const Product = () => {
                     <th scope="col" className="px-6 py-3">
                       Price
                     </th>
-                    <th scope="col" className="px-6 py-3">
-                      productCategoryCode
-                    </th>
+                    
                     <th scope="col" className="px-6 py-3">
                       Actions
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {productList && productList.map((product) => (
+                  {currentProducts.map((product) => (
                     <tr key={product.id} className='border-b border-gray-200'>
                       <td className="w-4 p-4">
                         <div className="flex items-center">
@@ -303,14 +295,13 @@ const Product = () => {
                           </label>
                         </div>
                       </td>
-                      <td className="pl-5">{product.id}</td>
+                 
                       <td className="pl-14">{product.productCode}</td>
-                      <td className="pl-14">{product.productName}</td>
-                      <td className="pl-10">{product.price}</td>
-                      <td className="pl-16">{product.productCategoryCode}</td>
+                      <td className="pl-[10rem]">{product.productName}</td>
+                      <td className="pl-14">{product.price}</td>
                       <td className="px-6 pl-3 py-4">
                         <Link
-                          to="/products/editProduct"
+                          to="/products/EditProduct"
                           className="pl-10 font-medium text-blue-600 dark:text-blue-500 hover:underline"
                         >
                           Edit
@@ -322,7 +313,7 @@ const Product = () => {
               </table>
               <Pagination
                 productsPerPage={productsPerPage}
-                totalProducts={productList ? productList.length : 0}
+                totalProducts={products.length}
                 paginate={paginate}
                 currentPage={currentPage}
               />
