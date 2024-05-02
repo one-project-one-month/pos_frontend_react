@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
+import { useRef } from "react";
 
 const InvoiceList = () => {
     const [invoiceNumber,setInvoiceNumber] = useState ('')
@@ -17,12 +18,29 @@ const InvoiceList = () => {
 
     const [date, setDate] = useState([
         {
-          startDate: new Date(),
+          startDate: new Date('January 1, 2024 00:00:00'),
           endDate: addDays(new Date(), 7),
           key: 'selection'
         }
       ]);
 
+      const datRef = useRef(null)
+
+      useEffect(() => {
+        function handleClickOutside (event) {
+            console.log(event.target);
+           if(!datRef.current.contains(event.target)) {
+            setClick(false)
+           }
+        }
+        document.addEventListener('click',handleClickOutside)
+
+        return () => {
+        document.removeEventListener('click',handleClickOutside)
+        }
+
+      }, [])
+      
       const options = {
       year: 'numeric',
       month: 'long',
@@ -38,12 +56,13 @@ const InvoiceList = () => {
 
       useEffect(()=>{
         const fetchData= async() => {
-            const {data :{data :{saleInvoices}}} = await axios.get('https://pos-frontend-next-ruby.vercel.app/api/v1/sale-invoices')
-            console.log(saleInvoices);
+            const startDateString = date[0].startDate;
+            const endDateString = date[0].endDate;
+            const {data :{data :{saleInvoices}}} = await axios.get(`https://pos-frontend-next-ruby.vercel.app/api/v1/sale-invoices${date ? `?start=${startDateString}&end=${endDateString}`:''}`)
             setInvoiceLists(saleInvoices)
         }
         fetchData()
-      },[])
+      },[date])
 
       const itemsPerPage = 8;
       const [pages,setPages] = useState(0)
@@ -108,33 +127,35 @@ const InvoiceList = () => {
                             </div>
                         </form>
                     </li>
-                    <li className="w-[30%]">
-                        <button className="bg-white border border-gray-300 text-gray-900 text-sm
-                        rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
-                        p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
-                        dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 
-                        space-x-1 hover:border-blue-500"
-                        onClick={dateRangeHandler}>
-                            <span className="font-light text-gray-500">From :</span>
-                            <span>{currentStartDate}</span>
-                            <span> - </span>
-                            <span className="font-light text-gray-500">To :</span>
-                            <span>{currentEndDate}</span>
-                        </button>
-                    </li>
-                    {click && (
-                        <li className="absolute right-5 top-[122px]">          
-                        <DateRange
-                        editableDateInputs={true}
-                        onChange={item => setDate([item.selection])}
-                        moveRangeOnFirstSelection={false}
-                        ranges={date}
-                        />
+                    <div className="w-[30%] relative" ref={datRef}>
+                        <li>
+                            <button className="bg-white border border-gray-300 text-gray-900 text-sm
+                            rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
+                            p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                            dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 
+                            space-x-1 hover:border-blue-500"
+                            onClick={dateRangeHandler}>
+                                <span className="font-light text-gray-500">From :</span>
+                                <span>{currentStartDate}</span>
+                                <span> - </span>
+                                <span className="font-light text-gray-500">To :</span>
+                                <span>{currentEndDate}</span>
+                            </button>
                         </li>
-                    )}
+                        {click && (
+                            <li className="absolute right-0 top-[48px]">          
+                            <DateRange
+                            editableDateInputs={true}
+                            onChange={item => setDate([item.selection])}
+                            moveRangeOnFirstSelection={false}
+                            ranges={date}
+                            />
+                            </li>
+                        )}
+                    </div>
                    </ul>
                    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700
                     dark:text-gray-400">
                     <tr>
                         <th scope="col" className="px-6 py-3">Voucher Number</th>
