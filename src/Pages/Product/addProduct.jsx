@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const AddCategory = () => {
   const [newCategory, setNewCategory] = useState({
-
+    productID : "",
     productCode: "",
     productName: "",
     price: "",
@@ -40,7 +40,7 @@ const AddCategory = () => {
             Add category
           </h2>
         </div>
-
+      
 
         <div className="flex flex-col m-4 mt-2">
           <label className="text-white text-xl">Product Code:</label>
@@ -75,16 +75,7 @@ const AddCategory = () => {
           </div>
         </div>
         <div className="flex justify-center items-center w-[100%] px-4">
-          <div className="flex flex-col w-[50%]">
-            <label className="text-white text-xl">Product Category:</label>
-            <input
-              type="text"
-              placeholder="Category"
-              name="productCategory"
-              className="w-[90%] mt-2 bg-transparent border-[#d4d4d48c] border-[2px] outline-none p-2 rounded-md text-white"
-              onChange={handleChange}
-            />
-          </div>
+        
         </div>
         <div className="flex items-center justify-center my-4">
           <input

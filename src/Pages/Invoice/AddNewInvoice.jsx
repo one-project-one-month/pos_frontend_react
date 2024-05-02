@@ -30,6 +30,7 @@ const AddNewInvoice = () => {
     };
 
     useEffect(() => {
+        
         const url = `https://pos-frontend-next-ruby.vercel.app/api/v1/products${searchValue ? `?name=${encodeURIComponent(searchValue)}` : ''}${item ? `${searchValue ? '&' : '?'}categoryCode=${encodeURIComponent(item)}` : ''}`;
 
         const fetchData = async () => {
@@ -80,6 +81,12 @@ const AddNewInvoice = () => {
 
         console.log(' You are completed to pay')
     }
+    const deleteItem = (index) => {
+        const updatedOrderDetails = [...orderDetails];
+        updatedOrderDetails.splice(index, 1);
+        setOrderDetails(updatedOrderDetails);
+    };
+    
 
     return (
         <div className="absolute h-full w-[80%] right-2 top-[70px]">
@@ -98,6 +105,8 @@ const AddNewInvoice = () => {
                                 <p>{item.productName}</p>
                                 <p>Qty: {item.quantity}</p>
                                 <p>Price: ${item.price}</p>
+                                <button className="bg-blue-500  rounded-md mx-5 px-3 text-white mt-2 pointer hover:bg-blue-700"
+                                onClick={() => deleteItem(index)} >Delete</button>
                             </div>
                         ))}
                     </div>
