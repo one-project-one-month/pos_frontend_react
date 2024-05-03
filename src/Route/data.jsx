@@ -14,7 +14,7 @@ import PrintTable from "../Pages/ProductCategory/PrintTable";
 import AddStaff from "../Pages/Staff/AddStaff";
 import NewShop from "../Pages/Shop/NewShop";
 import EditStaff from "../Pages/Staff/EditStaff";
-import AddProduct from "../Pages/Product/addProduct";
+import AddProduct from "../Pages/Product/AddProduct";
 import EditProduct from "../Pages/Product/EditProduct";
 
 export const routes = [
