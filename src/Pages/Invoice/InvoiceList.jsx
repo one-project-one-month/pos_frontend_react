@@ -109,6 +109,7 @@ const InvoiceList = () => {
 
     const changeHandler =  (value) => {
     setInvoiceNumber(value);
+    setCurrentPage(0)
     const filtered = invoiceLists.filter(item => item.voucherNo.includes(value));
     setFilteredData(filtered);
     };
