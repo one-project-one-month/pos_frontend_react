@@ -43,6 +43,8 @@ const EditStaff = () => {
       .catch((err) => console.log(err.message));
     navigate("/general");
   };
+
+  
   return (
     <>
       <div className=" bg-[#28243d] absolute right-[25%] top-[30px] rounded-br-md  p-2">
