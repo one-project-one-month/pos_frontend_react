@@ -9,6 +9,7 @@ import axios from "axios";
 import moment from "moment";
 import { useRef } from "react";
 import { InvoiceSkeleton,TableSkeleton,PaginationSkeleton } from "../../Components/skeletons/InvoiceSkeleton";
+import { Link } from "react-router-dom";
 
 const InvoiceList = () => {
     const [invoiceNumber,setInvoiceNumber] = useState ('')
@@ -197,6 +198,7 @@ const InvoiceList = () => {
                         <th scope="col" className="px-6 py-3">Date</th>
                         <th scope="col" className="px-6 py-3">Staff Code</th>
                         <th scope="col" className="px-6 py-3">Payment Amount</th>
+                        <th scope="col" className="px-6 py-3"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -211,6 +213,11 @@ const InvoiceList = () => {
                         <td className="px-6 py-4">{moment(invoice.dateTime).format("DD MMMM, YYYY, hh:mma")}</td>
                         <td className="px-6 py-4">{invoice.staffCode}</td>
                         <td className="px-6 py-4">{invoice.paymentAmount}</td>
+                        <td className="px-6 py-4">
+                            <Link to={'/invoice/preview'} className="bg-slate-200 p-2 text-gray-800 text-xs rounded">
+                                Check Details
+                            </Link>
+                        </td>
                         </tr>
                     ))}
                     </tbody> 

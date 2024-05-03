@@ -41,8 +41,9 @@ const PrevArrow = (props) => {
 
 function Carousel({item}) {
 
-  const navigate = useNavigate();
   const [categories, setCategories] = useState(null);
+
+  const navigate = useNavigate();
 
   const slideWidth = "auto"; 
   const slidesToShow = 5;

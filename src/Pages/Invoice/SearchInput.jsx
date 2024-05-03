@@ -1,6 +1,27 @@
 import React from 'react'
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useNavigate,useLocation } from 'react-router-dom';
 
-const SearchInput = ({productName,setProductName,searchHandler}) => {
+const SearchInput = () => {
+
+  const [productName, setProductName] = useState("");
+
+  const navigate = useNavigate ();
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const value = params.get('search')
+
+  const searchHandler = () => {
+    navigate("/invoice/add?search=" + productName);
+  };
+
+  useEffect(()=> {
+    if(!value) {
+        setProductName('')
+    }
+  },[value])
+
   return (
     <ul className='flex justify-between items-center mx-auto'>
         <li className='w-full'>
