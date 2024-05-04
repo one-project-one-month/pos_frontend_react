@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState,useEffect} from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './invoice.css'
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { SliderSkeleton } from "../../Components/skeletons/InvoiceSkeleton";
 
 const NextArrow = (props) => {
   const {onClick} = props;
   return (
-    <div className="z-50">
+    <div>
       {onClick && (
         <button onClick={onClick} className='absolute top-[1px] -right-[20px] bg-white border
          border-gray-300  z-40 w-9 h-9 rounded-full slider
@@ -38,7 +40,9 @@ const PrevArrow = (props) => {
   )
 }
 
-function Carousel({categories,item}) {
+function Carousel({item,loading}) {
+
+  const [categories, setCategories] = useState(null);
 
   const navigate = useNavigate();
 
@@ -56,6 +60,16 @@ function Carousel({categories,item}) {
     variableWidth: true,
   };
 
+  useEffect(() => {
+    const url = 'https://pos-frontend-next-ruby.vercel.app/api/v1/product-categories'
+    const fetchData = async() => {
+        const {data:{data:{categories}}} = await axios.get(url)
+        console.log(categories);
+        setCategories(categories)
+    }
+    fetchData()
+}, []);
+
   const clickHandler = (code) => {
     navigate('/invoice/add/' +code)
   }
@@ -66,22 +80,26 @@ function Carousel({categories,item}) {
 
   return (
     <div className="w-[96%] mx-auto mt-6 mb-6 -ml-2" >
-      <Slider {...settings}>
-        <div className={`p-2 text-sm border border-gray-200
-          ${!item? 'bg-blue-500 text-white' : 'bg-white text-black'}
-          text-center rounded cursor-pointer`} 
-          onClick={clickALlHandler}  style={{ width: slideWidth  }}>
-          All
-        </div>
-        {categories && categories.map((category)=>(
-            <div key={category.id}
-              className={`p-2 text-sm border border-gray-200 text-center font-semibold rounded cursor-pointer
-              ${category.productCategoryCode === item ? 'bg-blue-500 text-white' :'bg-white'}`} 
-              onClick={()=>clickHandler(category.productCategoryCode)}>
-              {category.productCategoryName}
-            </div>
-        ))}
-      </Slider>
+      {loading? (
+        <SliderSkeleton/>
+      ):(
+        <Slider {...settings}>
+          <div className={`p-2 text-sm border border-gray-200
+            ${!item? 'bg-blue-500 text-white' : 'bg-white text-black'}
+            text-center rounded cursor-pointer`} 
+            onClick={clickALlHandler}  style={{ width: slideWidth  }}>
+            All
+          </div>
+          {categories && categories.map((category)=>(
+              <div key={category.productCategoryId}
+                className={`p-2 text-sm border border-gray-200 text-center font-semibold rounded cursor-pointer
+                ${category.productCategoryCode === item ? 'bg-blue-500 text-white' :'bg-white'}`} 
+                onClick={()=>clickHandler(category.productCategoryCode)}>
+                {category.productCategoryName}
+              </div>
+          ))}
+        </Slider>
+      )}
     </div>
   );
 }
