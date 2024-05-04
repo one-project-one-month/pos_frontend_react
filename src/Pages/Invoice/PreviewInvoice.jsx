@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import sampleInvoice from "../../db/preview.json";
 //import { useSelector } from "react-redux";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const PreviewInvoice = () => {
   const [invoiceDetails, setInvoiceDetails] = useState();
+  const [invoicePreview,setInvoicePreview] = useState();
+  const {saleInvoiceId} = useParams();
 
   const getData = async () => {
     const invoiceDetailsUrl = "/src/db/preview.json";
@@ -17,6 +20,23 @@ const PreviewInvoice = () => {
         console.log(err.message);
       });
   };
+
+  useEffect(()=> {
+    if(saleInvoiceId) {
+      const url = `https://pos-frontend-next-ruby.vercel.app/api/v1/sale-invoices/${saleInvoiceId}`
+      const fetchData = async() => {
+        try {
+          const res = await axios.get(url)
+          const {data :{data :{saleInvoice}}} = res
+          console.log(saleInvoice);
+          setInvoicePreview
+        } catch (error) {
+          console.error(error)
+        }
+      }
+      fetchData()
+    }
+  },[saleInvoiceId])
 
   useEffect(() => {
     getData();
