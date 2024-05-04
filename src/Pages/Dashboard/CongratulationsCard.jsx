@@ -41,7 +41,7 @@ const CongratulationsCard = ({ totalProfit, color }) => {
           </div>
           <div className="  w-[40%]  relative  justify-end items-end px-4">
             <img
-              src="/src/Images/illustration-john-2.png"
+              src="https://github.com/lizzy-km/pos_frontend_react/blob/main/src/Images/illustration-john-2.png"
               className="card-img-position flex w-full bottom-0 absolute h-[130%]  object-cover "
               alt="View Profile"
             />

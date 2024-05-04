@@ -298,6 +298,9 @@ const Category = () => {
                 PRODUCTS NAME
               </th>
               <th scope="col" className="px-6 py-3">
+                PRODUCTS PRICE
+              </th>
+              <th scope="col" className="px-6 py-3">
                 PRODUCTS CATEGORY CODE
               </th>
 
@@ -350,6 +353,8 @@ const Category = () => {
                     </th>
                     <td className="px-6 py-4">{catData.productCode}</td>
                     <td className="px-6 py-4">{catData.productName}</td>
+                    <td className="px-6 py-4">{catData.price}</td>
+
                     <td className="px-6 py-4">
                       {catData.category?.productCategoryCode}
                     </td>
