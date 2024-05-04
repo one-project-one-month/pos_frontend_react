@@ -1,91 +1,192 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { MdClose } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { GlobalOn, setPdId, setPdMod } from "../../redux/services/animateSlice";
+import {
+  useAddProductsMutation,
+  useGetProductsCategoryQuery,
+  useGetProductsQuery,
+  useUpdateProductsMutation,
+} from "../../redux/api/AuthApi";
 
-const AddCategory = () => {
-  const [newCategory, setNewCategory] = useState({
-    
-    productCode: "",
-    productName: "",
-    price: "",
-   
-  });
+const AddProduct = () => {
+  const { addPdForm, global, pdMod, pdId } = useSelector(
+    (state) => state.animateSlice
+  );
+  const dispatch = useDispatch();
 
-  const navigate = useNavigate();
+  const { data } = useGetProductsQuery(pdId);
+  const cat = useGetProductsCategoryQuery();
 
-  const handleChange = (e) => {
-    setNewCategory({ ...newCategory, [e.target.name]: e.target.value });
+  const catData = cat?.data?.data?.category
+
+  console.log(data);
+
+  const color = useSelector((state) => state.animateSlice);
+
+  const [catName, setCatName] = useState("");
+  const [catCode, setCatCode] = useState("");
+  const [catPrice,setCatPrice] = useState("")
+  const [catCat,setCatCat] = useState("")
+
+  const lastProduct =  pdMod === false ?  data?.data.products[data?.data.products?.length-1] : null
+
+  useEffect(() => {
+    pdMod === true ?  setCatName(data?.data.product?.productName) : setCatName(lastProduct?.productName)
+    setCatCode( pdMod === true ? data?.data.product?.productCode :lastProduct?.productCode)
+    setCatPrice(pdMod === true ? data?.data.product?.price :lastProduct?.price)
+    setCatCat(pdMod === true ? data?.data.product?.categoryCode :lastProduct?.categoryCode)
+  }, [data]);
+
+  const [addCat] = useAddProductsMutation();
+  const [updateCat] = useUpdateProductsMutation();
+
+  const addCategory = async () => {
+    const addData =
+      pdMod === true
+        ? await updateCat({
+            data: {
+              productCode: catCode,
+              productName: catName,
+              price: Number(catPrice),
+              categoryCode: `${catCat}`,
+            },
+            id: pdId,
+          })
+        : await addCat({
+          productCode: catCode,
+          productName: catName,
+          price: Number(catPrice) ,
+          categoryCode: `${catCat}`,
+          });
+
+    addData.data && dispatch(GlobalOn({ global: false }));
+
+    addData.data && window.location.reload(true);
+    addData.data && dispatch(setPdMod(false));
+
+    console.log(addData);
   };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(newCategory); 
-    try {
-      await axios.post("https://pos-frontend-next-ruby.vercel.app/api/v1/products", newCategory);
-      navigate("/products");
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
-
 
   return (
-    <div className="bg-[#28243d] absolute right-[25%] top-[30px] rounded-br-md p-2">
-      <form
-        className="w-[600px] h-[550px] mx-auto mt-4 py-4 rounded-lg shadow-md"
-        onSubmit={handleSubmit}
-      >
-        <div className="logo mt-2">
-          <h2 className="text-white text-center text-3xl font-bold">
-            Add category
-          </h2>
-        </div>
-      
+    <div
+      style={{
+        right: addPdForm === true ? "0" : "-100%",
+      }}
+      className=" z-[9999]  addPdForm flex flex-col justify-start items-center w-[23%] absolute bg-[#28243d] h-screen  top-0 "
+    >
+      <div className=" flex py-6 px-3 justify-between items-center w-full ">
+        <p className=" text-xl font-semibold text-[#d4d4d4] ">
+          {" "}
+          {pdMod === true ? "Update" : "Add"} Product
+        </p>
 
-        <div className="flex flex-col m-4 mt-2">
-          <label className="text-white text-xl">Product Code:</label>
+        <MdClose
+          onClick={() =>{ dispatch(GlobalOn({ global: true })),
+          dispatch(setPdId(false))
+        }
+        }
+          className=" text-[#d4d4d4]  cursor-pointer text-xl "
+        />
+      </div>
+
+      <div
+        style={{
+          color: color.textColor,
+          backgroundColor: color.cardBgColor,
+        }}
+        className=" w-full flex justify-start items-start flex-col gap-5 "
+      >
+        {pdMod === false && (
+          <div className=" w-[90%] flex flex-col justify-start items-start gap-2 p-2 ">
+            <label htmlFor="categoryCode">Product Code : </label>
+            <input
+              required
+              style={{
+                color: color.textColor,
+                backgroundColor: color.cardBgColor,
+                border: `1px solid ${color.textColor} `,
+              }}
+              value={catCode}
+              onChange={(e) => setCatCode(e.target.value)}
+              className=" p-1 outline-none rounded   "
+              type="text"
+              name="categoryCode"
+              id=""
+            />
+          </div>
+        )}
+
+        <div className=" w-[90%] flex flex-col justify-start items-start gap-2 p-2 ">
+          <label htmlFor="categoryName">Product Name : </label>
           <input
+            required
+            style={{
+              color: color.textColor,
+              backgroundColor: color.cardBgColor,
+              border: `1px solid ${color.textColor} `,
+            }}
+            value={catName}
+            onChange={(e) => setCatName(e.target.value)}
+            className=" p-1 outline-none rounded   "
             type="text"
-            placeholder="e.g. s01"
-            name="productCode"
-            className="w-[95%] mt-2 bg-transparent border-[#d4d4d48c] border-[2px] outline-none p-2 rounded-md text-white"
-            onChange={handleChange}
+            name="categoryName"
+            id=""
           />
         </div>
-        <div className="flex justify-center items-center w-[100%] px-4">
-          <div className="flex flex-col w-[50%]">
-            <label className="text-white text-xl">Product Name:</label>
-            <input
-              type="text"
-              placeholder="Name"
-              name="productName"
-              className="w-[90%] mt-2 bg-transparent border-[#d4d4d48c] border-[2px] outline-none p-2 rounded-md text-white"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="flex flex-col w-[50%]">
-            <label className="text-white text-xl">Price:</label>
-            <input
-              type="text"
-              placeholder="Price"
-              name="price"
-              className="w-[90%] mt-2 bg-transparent border-[#d4d4d48c] border-[2px] outline-none p-2 rounded-md text-white"
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-        <div className="flex justify-center items-center w-[100%] px-4">
-        
-        </div>
-        <div className="flex items-center justify-center my-4">
+
+        <div className=" w-[90%] flex flex-col justify-start items-start gap-2 p-2 ">
+          <label htmlFor="categoryName">Product Price : </label>
           <input
-            type="submit"
-            className="w-[60%] bg-[#9055fd] text-[#eae9e9] tracking-wide font-medium py-2 rounded-lg cursor-pointer border-0 outline-none"
+            required
+            style={{
+              color: color.textColor,
+              backgroundColor: color.cardBgColor,
+              border: `1px solid ${color.textColor} `,
+            }}
+            value={catPrice}
+            onChange={(e) => setCatPrice(e.target.value)}
+            className=" p-1 outline-none rounded   "
+            type="number"
+            name="categoryName"
+            id=""
           />
         </div>
-      </form>
+
+        <div className=" w-[90%] flex flex-col justify-start items-start gap-2 p-2 ">
+          <label htmlFor="categoryCode"> Category Code : </label>
+          <input
+            required
+            style={{
+              color: color.textColor,
+              backgroundColor: color.cardBgColor,
+              border: `1px solid ${color.textColor} `,
+            }}
+            value={catCat}
+            onChange={(e) => setCatCat(e.target.value.toString())}
+            className=" p-1 outline-none rounded   "
+            type="text"
+            name="categoryCode"
+            id=""
+          />
+        </div>
+
+        <div className=" w-[90%] flex flex-col justify-start items-start gap-2 p-2 ">
+          <div
+            style={{
+              color: color.textColor,
+              backgroundColor: color.BgColor,
+              border: `1px solid ${color.textColor} `,
+            }}
+            onClick={addCategory}
+            className=" rounded flex justify-center items-center px-3 py-2 "
+          >
+            <p> {pdMod === true ? "Update" : "Add"} </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default AddCategory;
+export default AddProduct;

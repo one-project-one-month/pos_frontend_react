@@ -1,9 +1,14 @@
 import { TiArrowSortedDown } from "react-icons/ti";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  addCatFormOn,
+  addPdForm,
+  addPdFormOn,
   exportSettingOn,
   pageOn,
   setPageNum,
+  setPdId,
+  setPdMod,
 } from "../../redux/services/animateSlice";
 import { PiExportThin } from "react-icons/pi";
 import { RiAddLine } from "react-icons/ri";
@@ -71,6 +76,13 @@ const Category = () => {
     dispatch(exportSettingOn({ exportSet: !exportSet }));
 
     navigate("/printtable");
+  };
+
+
+  const addProductData = (id) => {
+    dispatch(setPdId(id));
+    dispatch(addPdFormOn(true));
+    dispatch(setPdMod(true));
   };
 
   return (
@@ -145,9 +157,11 @@ const Category = () => {
               />
             </div>
 
-            <a
-              target="_blank"
-              href="https://dashboard.chec.io/products/add"
+            <div               onClick={() =>{ dispatch(addPdFormOn(true))
+            dispatch(setPdMod(false))
+            }}
+
+             
               style={{
                 color: color.textColor,
                 backgroundColor: color.cardBgColor,
@@ -170,7 +184,7 @@ const Category = () => {
               >
                 ADD PRODUCTS
               </p>
-            </a>
+            </div>
           </>
 
           {/* Page Count  */}
@@ -341,17 +355,16 @@ const Category = () => {
                     </td>
 
                     <td className="px-6 justify-center items-center flex  py-4">
-                      <a
+                      <div
+                      onClick={()=> addProductData(catData.productId)}
                         style={{
                           color: color.cardBgColor,
                           backgroundColor: color.textColor,
                         }}
-                        target="_blank"
-                        href={`https://dashboard.chec.io/categories/${catData.productCategoryId}`}
                         className="font-medium text-blue-600 w-[50px] h-[30px] flex justify-center items-center  text-center rounded-l dark:text-blue-500 hover:underline"
                       >
                         Edit
-                      </a>
+                      </div>
                       <MdOutlineDelete
                         style={{
                           color: color.textColor,

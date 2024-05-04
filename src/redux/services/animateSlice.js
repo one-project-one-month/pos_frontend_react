@@ -25,11 +25,14 @@ const initialState = {
   iconBgColor: "#9055fd25",
   iconColor: "#9055fd",
   themeEditor: false,
-  saveTheme:false,
-  classes:[],
-  id:0,
-  catId:'',
-  catMod:false
+  saveTheme: false,
+  classes: [],
+  id: 0,
+  catId: "",
+  catMod: false,
+  pdId: "",
+  pdMod: false,
+  addPdForm:false
 };
 
 const STORAGE_KEY = "AnimateSlice";
@@ -62,11 +65,9 @@ export const animateSlice = createSlice({
     saveTheme: (state, { payload }) => {
       state.saveTheme = payload;
       Cookies.set(STORAGE_KEY, JSON.stringify(state));
-
     },
     setClasses: (state, { payload }) => {
-      state.classes =payload
-
+      state.classes = payload;
     },
     setPageNum: (state, { payload }) => {
       state.pageNum = payload;
@@ -101,7 +102,8 @@ export const animateSlice = createSlice({
       state.page = false;
       state.addCat = false;
       state.addCatForm = false;
-      state.catMod=false
+      state.catMod = false;
+      state.addPdForm = false
     },
     pageOn: (state, { payload }) => {
       state.exportSet = false;
@@ -139,10 +141,29 @@ export const animateSlice = createSlice({
     setCatMod: (state, { payload }) => {
       state.catMod = payload;
     },
+    setPdId: (state, { payload }) => {
+      state.pdId = payload;
+    },
+    setPdMod: (state, { payload }) => {
+      state.pdMod = payload;
+    },
+    addPdFormOn: (state, { payload }) => {
+      state.addPdForm = payload;
+
+      state.exportSet = false;
+      state.page = false;
+      state.addCat = false;
+    },
   },
 });
 
 export const {
+  addPdForm,
+  addPdFormOn,
+  setPdMod,
+  setPdId,
+  pdId,
+  pdMod,
   catMod,
   setClasses,
   classes,
@@ -177,6 +198,6 @@ export const {
   setTextColor,
   catId,
   setCatId,
-  setCatMod
+  setCatMod,
 } = animateSlice.actions;
 export default animateSlice.reducer;
