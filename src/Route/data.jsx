@@ -6,7 +6,7 @@ import CustomerList from "../Pages/Customer/CustomerList";
 import Product from "../Pages/Product/Product";
 import ProductCategory from "../Pages/ProductCategory/Category";
 import Invoice from "../Pages/Invoice/Invoice";
-import InvoiceList from "../Pages/Invoice/InvoiceList";
+import InvoiceList from "../Pages/Invoice/InvocieList/InvoiceList";
 import AddNewInvoice from "../Pages/Invoice/AddNewInvoice";
 import PreviewInvoice from "../Pages/Invoice/PreviewInvoice";
 import HistoryPage from "../Pages/History/History";
