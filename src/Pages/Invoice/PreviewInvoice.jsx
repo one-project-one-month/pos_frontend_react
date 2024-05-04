@@ -24,6 +24,23 @@ const PreviewInvoice = () => {
       });
   };
 
+  useEffect(()=> {
+    if(saleInvoiceId) {
+      const url = `https://pos-frontend-next-ruby.vercel.app/api/v1/sale-invoices/${saleInvoiceId}`
+      const fetchData = async() => {
+        try {
+          const res = await axios.get(url)
+          const {data :{data :{saleInvoice}}} = res
+          console.log(saleInvoice);
+          setInvoicePreview
+        } catch (error) {
+          console.error(error)
+        }
+      }
+      fetchData()
+    }
+  },[saleInvoiceId])
+
   useEffect(() => {
     getData();
   }, []);

@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import Carousel from "./slider";
 import SearchInput from "./SearchInput";
 import Allproducts from "./Allproducts";
 
 const AddNewInvoice = () => {
-    const [productName, setProductName] = useState("");
     const [datas, setDatas] = useState([]);
+    const [loading,setLoading] = useState(false);
     const location = useLocation();
     const params = new URLSearchParams(location.search);
     const searchValue = params.get("search");
-    const navigate = useNavigate();
 
     const { code: item } = useParams();
     const [orderDetails, setOrderDetails] = useState([]);
@@ -25,18 +24,20 @@ const AddNewInvoice = () => {
     const discountPercentage = 4;
     const taxPercentage = 2;
 
-    const searchHandler = () => {
-        navigate("/invoice/add?search=" + productName);
-    };
-
     useEffect(() => {
         
         const url = `https://pos-frontend-next-ruby.vercel.app/api/v1/products${searchValue ? `?name=${encodeURIComponent(searchValue)}` : ''}${item ? `${searchValue ? '&' : '?'}categoryCode=${encodeURIComponent(item)}` : ''}`;
 
         const fetchData = async () => {
+           try {
+            setLoading(true)
             const { data: { data: { products } } } = await axios.get(url);
             console.log(products);
             setDatas(products);
+           } catch (error) {
+            console.log(error);
+           }
+           setLoading(false);
         };
         fetchData();
     }, [searchValue, item]);
@@ -86,15 +87,14 @@ const AddNewInvoice = () => {
         updatedOrderDetails.splice(index, 1);
         setOrderDetails(updatedOrderDetails);
     };
-    
 
     return (
         <div className="absolute h-full w-[80%] right-2 top-[70px]">
-            <section className="InvoiceSection flex gap-3 rounded-md bg-gray-50 h-[100vh] p-5">
-                <div className="rounded-md p-4 w-[75%] h-fit">
-                    <SearchInput productName={productName} setProductName={setProductName} searchHandler={searchHandler} />
-                    <Carousel item={item} />
-                    <Allproducts datas={datas} addToOrder={addToOrder}/>
+            <section className="InvoiceSection flex gap-3 overflow-hidden rounded-md bg-gray-50 h-[100vh] p-5">
+                <div className="rounded-md p-4 min-w-[75%] h-fit">
+                    <SearchInput/>
+                    <Carousel item={item} loading={loading} />
+                    <Allproducts datas={datas} loading={loading} addToOrder={addToOrder}/>
                 </div>
 
                 <div className="InvoiceCard  bg-[#eef0ec] flex flex-col  rounded-md w-[27%] h-[100%]">

@@ -9,6 +9,7 @@ import axios from "axios";
 import moment from "moment";
 import { useRef } from "react";
 import { InvoiceSkeleton,TableSkeleton,PaginationSkeleton } from "../../Components/skeletons/InvoiceSkeleton";
+import { Link } from "react-router-dom";
 
 const InvoiceList = () => {
     const [invoiceNumber,setInvoiceNumber] = useState ('')
@@ -114,8 +115,6 @@ const InvoiceList = () => {
     setFilteredData(filtered);
     };
 
-    console.log(slicedData);
-
     return (
         <section className="absolute h-full w-[80%] right-2 top-[70px]">
             <div className="flex gap-3 rounded-md bg-gray-50 h-[100vh] p-5">
@@ -197,23 +196,35 @@ const InvoiceList = () => {
                         <th scope="col" className="px-6 py-3">Date</th>
                         <th scope="col" className="px-6 py-3">Staff Code</th>
                         <th scope="col" className="px-6 py-3">Payment Amount</th>
+                        <th scope="col" className="px-6 py-3"></th>
                     </tr>
                     </thead>
                     <tbody>
-                    {slicedData.length === 0 && <div className='absolute w-full text-center mt-5'>
-                        Sorry,no data found
-                    </div> }
-                    {slicedData.length > 0 && slicedData.map((invoice) => (
-                        <tr key={invoice.saleInvoiceId} className=" bg-transparent">
-                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            {invoice.saleInvoiceDetails[0].voucherNo}
-                        </th>
-                        <td className="px-6 py-4">{moment(invoice.dateTime).format("DD MMMM, YYYY, hh:mma")}</td>
-                        <td className="px-6 py-4">{invoice.staffCode}</td>
-                        <td className="px-6 py-4">{invoice.paymentAmount}</td>
-                        </tr>
-                    ))}
-                    </tbody> 
+                        {slicedData.length === 0 && (
+                            <tr>
+                            <td colSpan="5" className="px-6 py-4 text-center">
+                                Sorry, no data found
+                            </td>
+                            </tr>
+                        )}
+                        {slicedData.length > 0 &&
+                            slicedData.map((invoice) => (
+                            <tr key={invoice.saleInvoiceId} className="bg-transparent">
+                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                {invoice.saleInvoiceDetails[0].voucherNo}
+                                </th>
+                                <td className="px-6 py-4">{moment(invoice.dateTime).format("DD MMMM, YYYY, hh:mma")}</td>
+                                <td className="px-6 py-4">{invoice.staffCode}</td>
+                                <td className="px-6 py-4">{invoice.paymentAmount}</td>
+                                <td className="px-6 py-4">
+                                <Link to={`/invoice/preview/${invoice.saleInvoiceId}`} className="bg-slate-200 p-2 text-gray-800 text-xs rounded">
+                                    Check Details
+                                </Link>
+                                </td>
+                            </tr>
+                            ))}
+                    </tbody>
+
                    </table>
                    )
                 }

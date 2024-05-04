@@ -206,6 +206,13 @@
       "mobileNo": "0987654321",
       "address": "Samut Prakan",
       "id": 9
+    },
+    {
+      "shopCode": "SH009",
+      "shopName": "Htet Nadi Hlaing",
+      "mobileNo": "0987654321",
+      "address": "BKK",
+      "id": 10
     }
   ],
   "customers": [
