@@ -75,9 +75,9 @@ const Category = () => {
   const PrintTable = () => {
     dispatch(exportSettingOn({ exportSet: !exportSet }));
 
-    navigate("/printtable");
+    navigate("/printtable")
+     // Allow document to load
   };
-
 
   const addProductData = (id) => {
     dispatch(setPdId(id));
@@ -157,11 +157,11 @@ const Category = () => {
               />
             </div>
 
-            <div               onClick={() =>{ dispatch(addPdFormOn(true))
-            dispatch(setPdMod(false))
-            }}
-
-             
+            <div
+              onClick={() => {
+                dispatch(addPdFormOn(true));
+                dispatch(setPdMod(false));
+              }}
               style={{
                 color: color.textColor,
                 backgroundColor: color.cardBgColor,
@@ -261,7 +261,7 @@ const Category = () => {
             color: color.textColor,
             backgroundColor: color.cardBgColor,
           }}
-          id="catListTable"
+          id="printableContent"
           className="w-full overflow-y-hidden text-sm   text-left rtl:text-right "
         >
           <thead
@@ -361,7 +361,7 @@ const Category = () => {
 
                     <td className="px-6 justify-center items-center flex  py-4">
                       <div
-                      onClick={()=> addProductData(catData.productId)}
+                        onClick={() => addProductData(catData.productId)}
                         style={{
                           color: color.cardBgColor,
                           backgroundColor: color.textColor,

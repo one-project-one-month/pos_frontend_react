@@ -1,17 +1,21 @@
 import { useEffect } from "react";
 import { useGetProductsQuery } from "../../redux/api/AuthApi";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const ProductTable = () => {
   const { data, isSuccess } = useGetProductsQuery();
   const { pageNum, bgColor } = useSelector((state) => state.animateSlice);
 
+  const navigate = useNavigate();
   const productLists = data?.data?.products;
 
   const productList = productLists?.slice(0, pageNum);
 
   useEffect(() => {
-    isSuccess === true && window.print();
+    window.focus();
+    window.print();
+    window.location.replace("/products");
   }, []);
 
   return (
