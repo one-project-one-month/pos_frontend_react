@@ -7,6 +7,7 @@ import {
   pageOn,
   setCatId,
   setCatMod,
+  setCurrentPage,
   setPageNum,
 } from "../../redux/services/animateSlice";
 import { PiExportThin } from "react-icons/pi";
@@ -22,7 +23,7 @@ import {
 } from "../../redux/api/AuthApi";
 
 const Category = () => {
-  const { page, exportSet, pageNum, addCatForm } = useSelector(
+  const { page, exportSet, pageNum, addCatForm,currentPage } = useSelector(
     (state) => state.animateSlice
   );
 
@@ -30,7 +31,6 @@ const Category = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const pageCount = [7, 10, 20, 50, 70, 100];
-  const [currentPage, setCurrentPage] = useState(1);
 
   const [category, setCategory] = useState([]);
 
@@ -45,7 +45,7 @@ const Category = () => {
   }, [isSuccess]);
 
   const [deleteCat, deleted] = useDeleteProductsCategoryMutation();
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => dispatch(setCurrentPage(pageNumber));
 
   useEffect(() => {
     deleted?.isSuccess === true && setCategory(data?.data.categories);

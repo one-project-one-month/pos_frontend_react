@@ -1,12 +1,19 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPageNumber } from '../../redux/services/animateSlice';
 
 const Pagination = ({ productsPerPage, totalProducts, paginate, currentPage }) => {
-  const pageNumbers = [];
-
+  const {pageNumber} = useSelector(state => state.animateSlice)
+  const pageNumbers =[]
+  const dispatch = useDispatch()
   for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
-    pageNumbers.push(i);
+    pageNumbers.push(i)
   }
+
+  useEffect(()=> {
+     pageNumbers.length && dispatch(setPageNumber(pageNumbers))
+  },[])
 
   return (
     <div className="pagination flex justify-end text-white h-10 px-3 gap-3 ">
@@ -17,7 +24,7 @@ const Pagination = ({ productsPerPage, totalProducts, paginate, currentPage }) =
       >
         Previous
       </button>
-      {pageNumbers.map((number) => (
+      {pageNumber?.map((number) => (
         <button 
           key={number}
           onClick={() => paginate(number)}

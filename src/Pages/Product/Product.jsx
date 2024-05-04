@@ -6,6 +6,7 @@ import {
   addPdFormOn,
   exportSettingOn,
   pageOn,
+  setCurrentPage,
   setPageNum,
   setPdId,
   setPdMod,
@@ -22,10 +23,9 @@ import {
   useGetProductsQuery,
 } from "../../redux/api/AuthApi";
 import { setProductList } from "../../redux/services/authSlice";
-import { toast } from "react-toastify";
 
 const Category = () => {
-  const { page, exportSet, pageNum } = useSelector(
+  const { page, exportSet, pageNum,currentPage } = useSelector(
     (state) => state.animateSlice
   );
 
@@ -44,7 +44,6 @@ const Category = () => {
 
   const [deletePd] = useDeleteProductsMutation();
 
-  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     dispatch(setProductList(data?.data.products));
@@ -55,14 +54,14 @@ const Category = () => {
     dispatch(setProductList([]));
     deleteData && dispatch(setProductList(data?.data.products));
 
-    console.log(deleteData);
   };
 
   const filteredCat = productList;
 
   const [productsPerPage] = useState(pageNum);
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => dispatch(setCurrentPage(pageNumber));
+
 
   //pagination
   const indexOfLastProduct = currentPage * pageNum;

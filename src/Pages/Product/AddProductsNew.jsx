@@ -20,7 +20,6 @@ const AddProductNew = () => {
 
   const catData = cat?.data?.data?.category
 
-  console.log(data);
 
   const color = useSelector((state) => state.animateSlice);
 
@@ -65,7 +64,6 @@ const AddProductNew = () => {
     addData.data && window.location.reload(true);
     addData.data && dispatch(setPdMod(false));
 
-    console.log(addData);
   };
 
   return (

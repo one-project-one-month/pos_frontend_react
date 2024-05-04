@@ -1,16 +1,23 @@
 import { useEffect } from "react";
 import { useGetProductsQuery } from "../../redux/api/AuthApi";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 const ProductTable = () => {
-  const { data, isSuccess } = useGetProductsQuery();
-  const { pageNum, bgColor } = useSelector((state) => state.animateSlice);
+  const { data } = useGetProductsQuery();
+  const { pageNum, bgColor,currentPage } = useSelector((state) => state.animateSlice);
 
-  const navigate = useNavigate();
   const productLists = data?.data?.products;
 
-  const productList = productLists?.slice(0, pageNum);
+
+ 
+  //pagination
+  const indexOfLastProduct = currentPage * pageNum;
+  const indexOfFirstProduct = indexOfLastProduct - pageNum;
+
+  const productList = productLists?.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   useEffect(() => {
     window.focus();
@@ -23,7 +30,7 @@ const ProductTable = () => {
       style={{
         backgroundColor: bgColor,
       }}
-      className="flex absolute top-[0px] z-[99999] h-screen right-0 mt-[70px] w-full justify-start items-start"
+      className="flex flex-col absolute top-[0px] z-[99999] h-screen right-0 mt-[70px] w-full justify-start items-start"
     >
       <div id="catListTable" className="w-full text-sm text-gray-500">
         <table className="w-full text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -59,6 +66,7 @@ const ProductTable = () => {
           </tbody>
         </table>
       </div>
+     
     </div>
   );
 };

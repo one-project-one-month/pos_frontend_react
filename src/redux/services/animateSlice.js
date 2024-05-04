@@ -32,7 +32,9 @@ const initialState = {
   catMod: false,
   pdId: "",
   pdMod: false,
-  addPdForm:false
+  addPdForm:false,
+  pageNumber:[],
+  currentPage:1
 };
 
 const STORAGE_KEY = "AnimateSlice";
@@ -154,10 +156,20 @@ export const animateSlice = createSlice({
       state.page = false;
       state.addCat = false;
     },
+    setPageNumber: (state, { payload }) => {
+      state.pageNumber = payload;
+    },
+    setCurrentPage: (state, { payload }) => {
+      state.currentPage = payload;
+    },
   },
 });
 
 export const {
+  currentPage,
+  setCurrentPage,
+  setPageNumber,
+  pageNumber,
   addPdForm,
   addPdFormOn,
   setPdMod,
