@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import './invoice.css'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { SliderSkeleton } from "../../Components/skeletons/InvoiceSkeleton";
 
 const NextArrow = (props) => {
   const {onClick} = props;
@@ -39,7 +40,7 @@ const PrevArrow = (props) => {
   )
 }
 
-function Carousel({item}) {
+function Carousel({item,loading}) {
 
   const [categories, setCategories] = useState(null);
 
@@ -79,22 +80,26 @@ function Carousel({item}) {
 
   return (
     <div className="w-[96%] mx-auto mt-6 mb-6 -ml-2" >
-      <Slider {...settings}>
-        <div className={`p-2 text-sm border border-gray-200
-          ${!item? 'bg-blue-500 text-white' : 'bg-white text-black'}
-          text-center rounded cursor-pointer`} 
-          onClick={clickALlHandler}  style={{ width: slideWidth  }}>
-          All
-        </div>
-        {categories && categories.map((category)=>(
-            <div key={category.productCategoryId}
-              className={`p-2 text-sm border border-gray-200 text-center font-semibold rounded cursor-pointer
-              ${category.productCategoryCode === item ? 'bg-blue-500 text-white' :'bg-white'}`} 
-              onClick={()=>clickHandler(category.productCategoryCode)}>
-              {category.productCategoryName}
-            </div>
-        ))}
-      </Slider>
+      {loading? (
+        <SliderSkeleton/>
+      ):(
+        <Slider {...settings}>
+          <div className={`p-2 text-sm border border-gray-200
+            ${!item? 'bg-blue-500 text-white' : 'bg-white text-black'}
+            text-center rounded cursor-pointer`} 
+            onClick={clickALlHandler}  style={{ width: slideWidth  }}>
+            All
+          </div>
+          {categories && categories.map((category)=>(
+              <div key={category.productCategoryId}
+                className={`p-2 text-sm border border-gray-200 text-center font-semibold rounded cursor-pointer
+                ${category.productCategoryCode === item ? 'bg-blue-500 text-white' :'bg-white'}`} 
+                onClick={()=>clickHandler(category.productCategoryCode)}>
+                {category.productCategoryName}
+              </div>
+          ))}
+        </Slider>
+      )}
     </div>
   );
 }

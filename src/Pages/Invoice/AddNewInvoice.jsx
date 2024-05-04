@@ -7,6 +7,7 @@ import Allproducts from "./Allproducts";
 
 const AddNewInvoice = () => {
     const [datas, setDatas] = useState([]);
+    const [loading,setLoading] = useState(false);
     const location = useLocation();
     const params = new URLSearchParams(location.search);
     const searchValue = params.get("search");
@@ -28,9 +29,15 @@ const AddNewInvoice = () => {
         const url = `https://pos-frontend-next-ruby.vercel.app/api/v1/products${searchValue ? `?name=${encodeURIComponent(searchValue)}` : ''}${item ? `${searchValue ? '&' : '?'}categoryCode=${encodeURIComponent(item)}` : ''}`;
 
         const fetchData = async () => {
+           try {
+            setLoading(true)
             const { data: { data: { products } } } = await axios.get(url);
             console.log(products);
             setDatas(products);
+           } catch (error) {
+            console.log(error);
+           }
+           setLoading(false);
         };
         fetchData();
     }, [searchValue, item]);
@@ -80,15 +87,14 @@ const AddNewInvoice = () => {
         updatedOrderDetails.splice(index, 1);
         setOrderDetails(updatedOrderDetails);
     };
-    
 
     return (
         <div className="absolute h-full w-[80%] right-2 top-[70px]">
-            <section className="InvoiceSection flex gap-3 rounded-md bg-gray-50 h-[100vh] p-5">
-                <div className="rounded-md p-4 w-[75%] h-fit">
+            <section className="InvoiceSection flex gap-3 overflow-hidden rounded-md bg-gray-50 h-[100vh] p-5">
+                <div className="rounded-md p-4 min-w-[75%] h-fit">
                     <SearchInput/>
-                    <Carousel item={item} />
-                    <Allproducts datas={datas} addToOrder={addToOrder}/>
+                    <Carousel item={item} loading={loading} />
+                    <Allproducts datas={datas} loading={loading} addToOrder={addToOrder}/>
                 </div>
 
                 <div className="InvoiceCard  bg-[#eef0ec] flex flex-col  rounded-md w-[27%] h-[100%]">
