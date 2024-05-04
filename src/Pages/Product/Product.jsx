@@ -301,7 +301,7 @@ const Product = () => {
                       <td className="pl-14">{product.price}</td>
                       <td className="px-6 pl-3 py-4">
                         <Link
-                          to="/products/EditProduct"
+                          to="/products/editProduct"
                           className="pl-10 font-medium text-blue-600 dark:text-blue-500 hover:underline"
                         >
                           Edit
