@@ -10,12 +10,16 @@ const PrintTable = () => {
   const categoryList = currentData?.data.categories.slice(0, pageNum);
 
   useEffect(()=> {
-    isSuccess === true&& window.print()  },[])
+    isSuccess === true&& window.print() 
+    window.focus();
+    window.print();
+    window.location.replace("/products/productcategories");
+   },[])
 
   return (
     <div style={{
       backgroundColor: bgColor,
-    }} className="w-[100%]  h-screen p-4  absolute right-0 top-[0px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    }} className="w-[100%]  h-screen p-4  z-[99999] absolute right-0 top-[0px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
       <table
         id="catListTable"
         className="w-[100%]   right-0 top-[0px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"

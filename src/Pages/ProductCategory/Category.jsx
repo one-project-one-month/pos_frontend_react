@@ -76,7 +76,7 @@ const Category = () => {
   const PrintTable = () => {
     dispatch(exportSettingOn({ exportSet: !exportSet }));
 
-    navigate("/printtable");
+    navigate("/printtableCat");
   };
 
   const addCategoryData = (id) => {

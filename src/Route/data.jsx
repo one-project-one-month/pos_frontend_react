@@ -16,6 +16,7 @@ import NewShop from "../Pages/Shop/NewShop";
 import EditStaff from "../Pages/Staff/EditStaff";
 import EditProduct from "../Pages/Product/editProduct";
 import ProductTable from "../Pages/Product/PrintTable";
+import PrintTable from "../Pages/ProductCategory/PrintTable";
 
 export const routes = [
   {
@@ -138,6 +139,12 @@ export const routes = [
 
         handle: { title: "Print Table" },
       },
+      {
+        path:"printtableCat",
+        Component: <PrintTable />,
+
+        handle: { title: "Print Table" },
+      }
     ],
   },
 ];
