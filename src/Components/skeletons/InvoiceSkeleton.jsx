@@ -30,10 +30,10 @@ export const AllProductsSkeleton = ({ itemsPerPage }) => {
               className="w-[262px] p-2 bg-slate-200 space-y-3 rounded-md animate-pulse"
             >
               <div className="font-semibold text-slate-200">gg</div>
-              <div className="px-2 py-1 max-w-fit bg-teal-100 text-slate-200 text-xs rounded-sm">
+              <div className="px-2 py-1 max-w-fit text-slate-200 text-xs rounded-sm">
                 wp
               </div>
-              <div className="text-blue-400 font-semibold text-sm text-slate-200">ggwp</div>
+              <div className="font-semibold text-sm text-slate-200">ggwp</div>
             </div>
           ))}
       </>
