@@ -10,11 +10,12 @@ import InvoiceList from "../Pages/Invoice/InvoiceList";
 import AddNewInvoice from "../Pages/Invoice/AddNewInvoice";
 import PreviewInvoice from "../Pages/Invoice/PreviewInvoice";
 import HistoryPage from "../Pages/History/History";
-import PrintTable from "../Pages/ProductCategory/PrintTable";
+// import PrintTable from "../Pages/ProductCategory/PrintTable";
 import AddStaff from "../Pages/Staff/AddStaff";
 import NewShop from "../Pages/Shop/NewShop";
 import EditStaff from "../Pages/Staff/EditStaff";
 import EditProduct from "../Pages/Product/editProduct";
+import ProductTable from "../Pages/Product/PrintTable";
 
 export const routes = [
   {
@@ -133,7 +134,7 @@ export const routes = [
       },
       {
         path: "printtable",
-        Component: <PrintTable />,
+        Component: <ProductTable />,
 
         handle: { title: "Print Table" },
       },

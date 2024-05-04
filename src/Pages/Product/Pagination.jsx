@@ -21,6 +21,9 @@ const Pagination = ({ productsPerPage, totalProducts, paginate, currentPage }) =
         <button 
           key={number}
           onClick={() => paginate(number)}
+          style={{
+            backgroundColor:currentPage === number ? '#8578e6' :''
+          }}
           className='hover:bg-[#8578e6] text-white px-3 mt-2 rounded-xl text-[16px]'
         >
           {number}
