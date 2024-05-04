@@ -1,9 +1,12 @@
 import { TiArrowSortedDown } from "react-icons/ti";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  GlobalOn,
   addCatFormOn,
   exportSettingOn,
   pageOn,
+  setCatId,
+  setCatMod,
   setPageNum,
 } from "../../redux/services/animateSlice";
 import { PiExportThin } from "react-icons/pi";
@@ -37,6 +40,10 @@ const Category = () => {
 
   useEffect(() => {
     isSuccess === true && setCategory(data?.data.categories);
+  }, [addCatForm]);
+
+  useEffect(() => {
+    isSuccess === true && setCategory(data?.data.categories);
   }, [isSuccess]);
 
   const [deleteCat, deleted] = useDeleteProductsCategoryMutation();
@@ -44,14 +51,16 @@ const Category = () => {
 
   useEffect(() => {
     deleted?.isSuccess === true && setCategory(data?.data.categories);
-  }, [deleted?.isSuccess]);
+
+  }, [deleted]);
 
   const deleteCategory = async (Cid) => {
     const deletedCat = await deleteCat(Cid);
-    setCategory([]);
 
-    deletedCat?.data && setCategory(data?.data.categories);
-    toast({ description: "✅ Successfully Deleted" });
+
+    deletedCat &&  window.location.replace('/products/productcategories')
+
+    deletedCat && setCategory(data?.data.categories);
   };
 
   const filteredCat = category;
@@ -70,6 +79,14 @@ const Category = () => {
     dispatch(exportSettingOn({ exportSet: !exportSet }));
 
     navigate("/printtable");
+  };
+
+  const addCategoryData = (id) => {
+    dispatch(setCatId(id));
+
+    console.log(id);
+    dispatch(addCatFormOn(true));
+    dispatch(setCatMod(true));
   };
 
   return (
@@ -237,7 +254,7 @@ const Category = () => {
           }}
           className=" flex justify-center p-2 items-center w-full  "
         >
-          <LoadingTwo isLoading={isSuccess} />
+          <LoadingTwo isLoading={isLoading} />
         </div>
       ) : (
         <table
@@ -332,17 +349,16 @@ const Category = () => {
                   <td className="px-6 py-4">{catData.productCategoryName}</td>
 
                   <td className="px-6 justify-center items-center flex  py-4">
-                    <a
+                    <div
                       style={{
                         color: color.cardBgColor,
                         backgroundColor: color.textColor,
                       }}
-                      target="_blank"
-                      href={`https://dashboard.chec.io/categories/${catData.productCategoryId}`}
-                      className="font-medium text-blue-600 w-[50px] h-[30px] flex justify-center items-center  text-center rounded-l dark:text-blue-500 hover:underline"
+                      onClick={() => addCategoryData(catData.productCategoryId)}
+                      className="font-medium cursor-pointer text-blue-600 w-[50px] h-[30px] flex justify-center items-center  text-center rounded-l dark:text-blue-500 "
                     >
                       Edit
-                    </a>
+                    </div>
                     <MdOutlineDelete
                       style={{
                         color: color.textColor,

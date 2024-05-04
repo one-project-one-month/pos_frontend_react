@@ -178,7 +178,7 @@ const TotalProfit = ({
       },
       {
         data: expense,
-        label: type === 'polar' ? 'Wallet': "Income" ,
+        label: type === 'polar' ? 'Wallet': "Expense" ,
         backgroundColor:
           type === "radar" || "polar"
             ? `${color.downTrendColor}57`

@@ -13,14 +13,13 @@ const Staff = () => {
 
   const lastIndex = currentPage * itemPerPage;
   const firstIndex = lastIndex - itemPerPage;
-  const currentIndex = staffs.slice(firstIndex, lastIndex);
+  const currentIndex = staffs?.slice(firstIndex, lastIndex);
 
   const getData = async () => {
     await axios
       .get("https://pos-frontend-next-ruby.vercel.app/api/v1/products")
       .then((res) => {
-        console.log(res.data.data.staffs);
-        setStaffs(res.data.data.staffs);
+        setStaffs(res?.data.data.staffs);
       })
       .catch((err) => {
         console.log(err.message);

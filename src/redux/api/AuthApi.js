@@ -63,9 +63,43 @@ export const authApi = createApi({
       }),
       invalidatesTags: ["auth"],
     }),
+    addProductsCategory: builder.mutation({
+      query: (data) => ({
+        url: `/product-categories`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["auth"],
+    }),
+    addProducts: builder.mutation({
+      query: (data) => ({
+        url: `/products`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["auth"],
+    }),
+    updateProducts: builder.mutation({
+      query: ({data,id}) => ({
+        url: `/products/${id}`,
+        method: "PATCH",
+        body: data,
+      }),
+      
+      invalidatesTags: ["auth"],
+    }),
+    updateCategory: builder.mutation({
+      query: ({data,id}) => ({
+        url: `/product-categories/${id}`,
+        method: "PATCH",
+        body: data,
+      }),
+      
+      invalidatesTags: ["auth"],
+    }),
     getProductsCategory: builder.query({
-      query: () => ({
-        url: "/product-categories",
+      query: (id) => ({
+        url: id?.length > 0 ? `/product-categories/${id}` : "/product-categories",
         method: "GET",
 
         // body: data,
@@ -96,5 +130,9 @@ export const {
   useCreateProductMutation,
   useGetProductsQuery,
   useDeleteProductsCategoryMutation,
-  useDeleteProductsMutation
+  useDeleteProductsMutation,
+  useAddProductsCategoryMutation,
+  useAddProductsMutation,
+  useUpdateProductsMutation,
+  useUpdateCategoryMutation
 } = authApi;

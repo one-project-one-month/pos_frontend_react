@@ -9,7 +9,7 @@ const NavBar = () => {
             backgroundColor:color.bgColor+'57',
             color:color.textColor
         }} className=" fixed  right-0 top-0 z-[999] backdrop-blur-sm  w-[80%] py-5 px-2  ">
-            <h1>Navbar</h1>
+            <h1></h1>
         </section>
     );
 };

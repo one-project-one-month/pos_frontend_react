@@ -37,7 +37,7 @@ const Table = ({ currentIndex }) => {
       <tbody className="text-white text-center  font-medium">
         {
           // eslint-disable-next-line react/prop-types
-          currentIndex.map((s) => {
+          currentIndex?.map((s) => {
             return (
               <tr
                 key={s.staffId}

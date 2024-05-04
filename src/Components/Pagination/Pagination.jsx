@@ -10,7 +10,7 @@ const Pagination = ({setCurrentPage,itemPerPage,currentPage,currentIndex,staffs}
     const pages = [];
 
 
-    for (let i = 1; i <= Math.ceil(staffs.length / itemPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(staffs?.length / itemPerPage); i++) {
         pages.push(i);
       }
 
@@ -35,8 +35,8 @@ const Pagination = ({setCurrentPage,itemPerPage,currentPage,currentIndex,staffs}
       };
   return (
     <>
-        <div className={`${currentIndex.length=== 0 ? 'hidden':"flex items-center justify-between bg-[#312d4b] w-[100%] h-[50px] mt-4 px-6"}`}>
-        <h2 className="font-semibold text-[#d4d4d4e6] ">Showing <span className="font-bold text-xl text-[#d4d4d4]">{currentIndex.length}</span> entries</h2>
+        <div className={`${currentIndex?.length=== 0 ? 'hidden':"flex items-center justify-between bg-[#312d4b] w-[100%] h-[50px] mt-4 px-6"}`}>
+        <h2 className="font-semibold text-[#d4d4d4e6] ">Showing <span className="font-bold text-xl text-[#d4d4d4]">{currentIndex?.length}</span> entries</h2>
             <div className="pagination">
                 <button
                     type="button"

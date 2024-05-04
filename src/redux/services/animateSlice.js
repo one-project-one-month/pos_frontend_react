@@ -27,7 +27,9 @@ const initialState = {
   themeEditor: false,
   saveTheme:false,
   classes:[],
-  id:0
+  id:0,
+  catId:'',
+  catMod:false
 };
 
 const STORAGE_KEY = "AnimateSlice";
@@ -99,6 +101,7 @@ export const animateSlice = createSlice({
       state.page = false;
       state.addCat = false;
       state.addCatForm = false;
+      state.catMod=false
     },
     pageOn: (state, { payload }) => {
       state.exportSet = false;
@@ -130,10 +133,17 @@ export const animateSlice = createSlice({
     setThemeEditor: (state, { payload }) => {
       state.themeEditor = payload;
     },
+    setCatId: (state, { payload }) => {
+      state.catId = payload;
+    },
+    setCatMod: (state, { payload }) => {
+      state.catMod = payload;
+    },
   },
 });
 
 export const {
+  catMod,
   setClasses,
   classes,
   saveTheme,
@@ -165,5 +175,8 @@ export const {
   iconBgColor,
   iconColor,
   setTextColor,
+  catId,
+  setCatId,
+  setCatMod
 } = animateSlice.actions;
 export default animateSlice.reducer;

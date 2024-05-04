@@ -37,7 +37,7 @@ const Category = () => {
     isSuccess === true && dispatch(setProductList(data?.data.products));
   }, [isSuccess]);
 
-  const [deletePd, deleted] = useDeleteProductsMutation();
+  const [deletePd] = useDeleteProductsMutation();
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -91,7 +91,7 @@ const Category = () => {
             style={{
               color: color.textColor,
             }}
-            placeholder="Search Category"
+            placeholder="Search Product"
             className="  outline-none rounded-md bg-transparent w-full h-full "
             type="text"
             name=""
