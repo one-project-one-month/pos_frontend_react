@@ -21,7 +21,7 @@ const EditProduct = () => {
   const getData = async () => {
     try {
       const response = await axios.get(`https://pos-frontend-next-ruby.vercel.app/api/v1/products/${productId}`);
-      setEditData(response.data.data.staff);
+      setEditData(response.data.data.products || []);
     } catch (error) {
       console.log(error.message);
     }

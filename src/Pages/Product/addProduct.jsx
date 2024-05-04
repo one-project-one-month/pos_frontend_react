@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 const AddCategory = () => {
   const [newCategory, setNewCategory] = useState({
-    productID : "",
+    
     productCode: "",
     productName: "",
     price: "",
-    productCategory: "",
+   
   });
 
   const navigate = useNavigate();
