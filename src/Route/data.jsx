@@ -120,7 +120,7 @@ export const routes = [
             Component: <AddNewInvoice />,
           },
           {
-            path: "invoice/preview",
+            path: "invoice/preview/:saleInvoiceId",
             handle: { title: "Invoice Preview" },
             Component: <PreviewInvoice />,
           },
