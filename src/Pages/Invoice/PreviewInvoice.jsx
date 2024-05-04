@@ -2,19 +2,22 @@ import React, { useEffect, useState } from "react";
 import sampleInvoice from "../../db/preview.json";
 //import { useSelector } from "react-redux";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const PreviewInvoice = () => {
-  const [invoiceDetails, setInvoiceDetails] = useState();
-  const [invoicePreview,setInvoicePreview] = useState();
-  const {saleInvoiceId} = useParams();
+  const { saleInvoiceId } = useParams();
+  const [saleInvoice, setSaleInvoice] = useState();
 
   const getData = async () => {
-    const invoiceDetailsUrl = "/src/db/preview.json";
+    const baseurl = "https://pos-frontend-next-ruby.vercel.app/api/v1/";
+    let saleInvoiceEndpoint = `sale-invoices/${saleInvoiceId}`;
+    const saleInvoiceUrl = `${baseurl}${saleInvoiceEndpoint}`;
+    console.log("test => " + saleInvoiceUrl);
     await axios
-      .get(invoiceDetailsUrl)
+      .get(saleInvoiceUrl)
       .then((res) => {
-        setInvoiceDetails(res.data);
+        console.log(res.data.data.saleInvoice);
+        setSaleInvoice(res.data.data.saleInvoice);
       })
       .catch((err) => {
         console.log(err.message);
@@ -70,19 +73,19 @@ const PreviewInvoice = () => {
               <tbody>
                 <tr>
                   <td className="w-[20%]">Voucher No:</td>
-                  <td className="w-[30%]">#{sampleInvoice.saleInvoice.voucherNo}</td>
+                  <td className="w-[30%]">#{saleInvoice && saleInvoice?.voucherNo}</td>
                   <td className="w-[20%]">Datetime:</td>
-                  <td className="w-[30%]">{sampleInvoice.saleInvoice.saleInvoiceDatetime}</td>
+                  <td className="w-[30%]">{saleInvoice && saleInvoice?.dateTime}</td>
                 </tr>
                 <tr>
                   <td className="w-[20%]">Customer:</td>
-                  <td className="w-[30%]">{sampleInvoice.saleInvoice.customerCode}</td>
+                  <td className="w-[30%]">{saleInvoice && saleInvoice?.customerCode}</td>
                   <td className="w-[20%]">Staff:</td>
-                  <td className="w-[30%]">{sampleInvoice.saleInvoice.staffCode || "Staff 1"}</td>
+                  <td className="w-[30%]">{saleInvoice && saleInvoice?.staff?.staffName}</td>
                 </tr>
                 <tr>
                   <td className="w-[20%]">Payment Type:</td>
-                  <td className="w-[30%]">{sampleInvoice.saleInvoice.paymentType || "Cash"}</td>
+                  <td className="w-[30%]">{saleInvoice && saleInvoice?.paymentType || "Cash"}</td>
                   <td className="w-[20%]"></td>
                   <td className="w-[30%]"></td>
                 </tr>
@@ -100,10 +103,10 @@ const PreviewInvoice = () => {
               </tr>
             </thead>
             <tbody>
-              {invoiceDetails &&
-               invoiceDetails.saleInvoice.itemList.map((item, index) => (
+              {saleInvoice &&
+               saleInvoice.saleInvoiceDetails.map((item, index) => (
                 <tr key={index}>
-                  <td>{item.productName}</td>
+                  <td>{item.product.productName}</td>
                   <td className="text-right">{item.quantity.toLocaleString()}</td>
                   <td className="text-right">${item.price.toLocaleString()}</td>
                   <td className="text-right">${item.amount.toLocaleString()}</td>
@@ -111,39 +114,39 @@ const PreviewInvoice = () => {
               ))}
               <tr className="border-t border-black border-dashed">
                 <td>Total</td>
-                <td className="text-right">{sampleInvoice.saleInvoice.itemList.reduce((acc, item) => acc + (item.quantity || 0), 0).toLocaleString()}</td>
+                <td className="text-right">{saleInvoice && saleInvoice.saleInvoiceDetails.reduce((acc, item) => acc + (item.quantity || 0), 0).toLocaleString()}</td>
                 <td></td>
-                <td className="text-right">{sampleInvoice.saleInvoice.totalAmount.toLocaleString()}</td>
+                <td className="text-right">${saleInvoice && saleInvoice.totalAmount.toLocaleString()}</td>
               </tr>
               <tr>
                 <td>Discount</td>
                 <td></td>
                 <td></td>
-                <td className="text-right">-{sampleInvoice.saleInvoice.discount.toLocaleString() || 0}</td>
+                <td className="text-right">-${saleInvoice && saleInvoice.discount.toLocaleString() || 0}</td>
               </tr>
               <tr>
                 <td>Tax</td>
                 <td></td>
                 <td></td>
-                <td className="text-right">{sampleInvoice.saleInvoice.tax.toLocaleString() || 0}</td>
+                <td className="text-right">${saleInvoice && saleInvoice.tax?.toLocaleString() || 0}</td>
               </tr>
               <tr className="border-t border-black border-dashed">
                 <td>Paid Amount</td>
                 <td></td>
                 <td></td>
-                <td className="text-right font-bold">{sampleInvoice.saleInvoice.receiveAmount.toLocaleString() || 0}</td>
+                <td className="text-right font-bold">${saleInvoice && saleInvoice.receiveAmount?.toLocaleString() || 0}</td>
               </tr>
               <tr className="border-t border-black border-dashed">
                 <td>Net Amount</td>
                 <td></td>
                 <td></td>
-                <td className="text-right font-bold">{sampleInvoice.saleInvoice.paymentAmount.toLocaleString() || 0}</td>
+                <td className="text-right font-bold">${saleInvoice && saleInvoice.paymentAmount?.toLocaleString() || 0}</td>
               </tr>
               <tr className="border-y border-black border-dashed">
                 <td>Change</td>
                 <td></td>
                 <td></td>
-                <td className="text-right font-bold">{sampleInvoice.saleInvoice.change.toLocaleString() || 0}</td>
+                <td className="text-right font-bold">${saleInvoice && saleInvoice.change?.toLocaleString() || 0}</td>
               </tr>
             </tbody>
           </table>
