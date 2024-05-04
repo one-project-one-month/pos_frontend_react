@@ -9,7 +9,7 @@ import {
   useUpdateProductsMutation,
 } from "../../redux/api/AuthApi";
 
-const AddProduct = () => {
+const AddProductNew = () => {
   const { addPdForm, global, pdMod, pdId } = useSelector(
     (state) => state.animateSlice
   );
@@ -189,4 +189,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default AddProductNew;

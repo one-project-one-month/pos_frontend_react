@@ -10,7 +10,7 @@ import { ThemeChangerButton } from "./Components/buttons/Buttons";
 import Theme from "./Common/Theme/Theme";
 import { useSelector } from "react-redux";
 import AddCategory from "./Pages/ProductCategory/AddCategory";
-import AddProduct from "./Pages/Product/addProduct";
+import AddProductNew from "./Pages/Product/AddProductsNew";
 
 function App() {
   const color = useSelector((state) => state.animateSlice);
@@ -61,7 +61,7 @@ function App() {
         </div>
       </BrowserRouter>
       <AddCategory/>
-      <AddProduct/>
+      <AddProductNew/>
     </section>
   );
 }
