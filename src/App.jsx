@@ -9,6 +9,7 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import { ThemeChangerButton } from "./Components/buttons/Buttons";
 import Theme from "./Common/Theme/Theme";
 import { useSelector } from "react-redux";
+import AddCategory from "./Pages/ProductCategory/AddCategory";
 
 function App() {
   const color = useSelector((state) => state.animateSlice);
@@ -58,6 +59,7 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
+      <AddCategory/>
     </section>
   );
 }

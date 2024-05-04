@@ -38,10 +38,10 @@ export const authSlice = createSlice({
       Cookies.set(STORAGE_KEY, JSON.stringify(state.isLogin));
     },
     setProductList: (state, { payload }) => {
-      state.productList = payload.productList;
+      state.productList = payload;
     },
     setCategoryList: (state, { payload }) => {
-      state.categoryList = payload.categoryList;
+      state.categoryList = payload;
     },
     setTotalProfit: (state, { payload }) => {
       payload.profitType === "total"

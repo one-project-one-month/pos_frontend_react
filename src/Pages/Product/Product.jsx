@@ -7,36 +7,54 @@ import {
 } from "../../redux/services/animateSlice";
 import { PiExportThin } from "react-icons/pi";
 import { RiAddLine } from "react-icons/ri";
-import { MdOutlineLocalPrintshop } from "react-icons/md";
+import { MdOutlineDelete, MdOutlineLocalPrintshop } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Pagination from "../Product/Pagination";
 import { LoadingTwo } from "../../Components/loading/Loading";
-import { useGetProductsQuery } from "../../redux/api/AuthApi";
+import {
+  useDeleteProductsMutation,
+  useGetProductsQuery,
+} from "../../redux/api/AuthApi";
+import { setProductList } from "../../redux/services/authSlice";
+import { toast } from "react-toastify";
 
 const Category = () => {
   const { page, exportSet, pageNum } = useSelector(
     (state) => state.animateSlice
   );
 
+  const { productList } = useSelector((state) => state.authSlice);
+
   const color = useSelector((state) => state.animateSlice);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const pageCount = [7, 10, 20, 50, 70, 100];
 
-  const [category, setCategory] = useState([]);
-
-  const { data, isLoading,isSuccess } = useGetProductsQuery();
-
+  const { data, isLoading, isSuccess } = useGetProductsQuery();
 
   useEffect(() => {
-    isSuccess === true && setCategory(data?.data.products);
+    isSuccess === true && dispatch(setProductList(data?.data.products));
   }, [isSuccess]);
 
- 
-  const filteredCat = category;
+  const [deletePd, deleted] = useDeleteProductsMutation();
 
   const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    dispatch(setProductList(data?.data.products));
+  }, [currentPage]);
+
+  const deleteProduct = async (Pid) => {
+    const deleteData = await deletePd(Pid);
+    dispatch(setProductList([]));
+    deleteData && dispatch(setProductList(data?.data.products));
+
+    console.log(deleteData);
+  };
+
+  const filteredCat = productList;
+
   const [productsPerPage] = useState(pageNum);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -165,7 +183,7 @@ const Category = () => {
             }}
             className=" shadow-lg   flex flex-col justify-center items-center gap-3 absolute w-[15%] h-auto  rounded-md   top-[100%] "
           >
-            {pageCount.map((num) => {
+            {pageCount?.map((num) => {
               return (
                 <p
                   style={{
@@ -173,7 +191,7 @@ const Category = () => {
                       num === pageNum ? color.cardBgColor : "transparent",
                   }}
                   onClick={() => {
-                    dispatch(setPageNum({ pageNum: num }));
+                    dispatch(setPageNum(num));
                     dispatch(pageOn({ page: !page }));
                   }}
                   className=" p-2 rounded w-full justify-center text-center cursor-pointer "
@@ -322,14 +340,26 @@ const Category = () => {
                       {catData.category?.productCategoryCode}
                     </td>
 
-                    <td className="px-6 py-4">
+                    <td className="px-6 justify-center items-center flex  py-4">
                       <a
+                        style={{
+                          color: color.cardBgColor,
+                          backgroundColor: color.textColor,
+                        }}
                         target="_blank"
-                        href={`https://dashboard.chec.io/products/${catData.id}`}
-                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                        href={`https://dashboard.chec.io/categories/${catData.productCategoryId}`}
+                        className="font-medium text-blue-600 w-[50px] h-[30px] flex justify-center items-center  text-center rounded-l dark:text-blue-500 hover:underline"
                       >
                         Edit
                       </a>
+                      <MdOutlineDelete
+                        style={{
+                          color: color.textColor,
+                          backgroundColor: color.downTrendColor,
+                        }}
+                        onClick={() => deleteProduct(catData.productId)}
+                        className=" cursor-pointer p-1  w-[50px] h-[30px] rounded-r text-2xl "
+                      />
                     </td>
                   </tr>
                 );
@@ -343,7 +373,7 @@ const Category = () => {
 
       <Pagination
         productsPerPage={productsPerPage}
-        totalProducts={category?.length}
+        totalProducts={productList?.length}
         paginate={paginate}
         currentPage={currentPage}
       />

@@ -11,7 +11,7 @@ const AddCategory = () => {
       style={{
         right: addCatForm === true ? "0" : "-100%",
       }}
-      className="  addCatForm flex flex-col justify-start items-center w-[23%] absolute bg-[#28243d] h-screen  top-0 "
+      className=" z-[9999]  addCatForm flex flex-col justify-start items-center w-[23%] absolute bg-[#28243d] h-screen  top-0 "
     >
       <div className=" flex py-6 px-3 justify-between items-center w-full ">
         <p className=" text-xl font-semibold text-[#d4d4d4] ">Add Category</p>

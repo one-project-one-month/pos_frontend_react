@@ -67,7 +67,7 @@ export const animateSlice = createSlice({
 
     },
     setPageNum: (state, { payload }) => {
-      state.pageNum = payload.pageNum;
+      state.pageNum = payload;
     },
     setBgColor: (state, { payload }) => {
       state.bgColor = payload;
@@ -107,14 +107,14 @@ export const animateSlice = createSlice({
       state.addCatForm = false;
     },
     addCatOn: (state, { payload }) => {
-      state.addCat = payload.addCatForm;
+      state.addCat = payload;
 
       state.exportSet = false;
       state.page = false;
       state.addCatForm = false;
     },
     addCatFormOn: (state, { payload }) => {
-      state.addCatForm = payload.addCatForm;
+      state.addCatForm = payload;
 
       state.exportSet = false;
       state.page = false;
