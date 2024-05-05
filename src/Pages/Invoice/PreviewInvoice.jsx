@@ -108,45 +108,45 @@ const PreviewInvoice = () => {
                 <tr key={index}>
                   <td>{item.product.productName}</td>
                   <td className="text-right">{item.quantity.toLocaleString()}</td>
-                  <td className="text-right">${item.price.toLocaleString()}</td>
-                  <td className="text-right">${item.amount.toLocaleString()}</td>
+                  <td className="text-right">{item.price.toLocaleString()}</td>
+                  <td className="text-right">{item.amount.toLocaleString()}</td>
                 </tr>
               ))}
               <tr className="border-t border-black border-dashed">
                 <td>Total</td>
                 <td className="text-right">{saleInvoice && saleInvoice.saleInvoiceDetails.reduce((acc, item) => acc + (item.quantity || 0), 0).toLocaleString()}</td>
                 <td></td>
-                <td className="text-right">${saleInvoice && saleInvoice.totalAmount.toLocaleString()}</td>
+                <td className="text-right">{saleInvoice && saleInvoice.totalAmount.toLocaleString()}</td>
               </tr>
               <tr>
                 <td>Discount</td>
                 <td></td>
                 <td></td>
-                <td className="text-right">-${saleInvoice && saleInvoice.discount.toLocaleString() || 0}</td>
+                <td className="text-right">-{saleInvoice && saleInvoice.discount.toLocaleString() || 0}</td>
               </tr>
               <tr>
                 <td>Tax</td>
                 <td></td>
                 <td></td>
-                <td className="text-right">${saleInvoice && saleInvoice.tax?.toLocaleString() || 0}</td>
+                <td className="text-right">{saleInvoice && saleInvoice.tax?.toLocaleString() || 0}</td>
               </tr>
               <tr className="border-t border-black border-dashed">
                 <td>Paid Amount</td>
                 <td></td>
                 <td></td>
-                <td className="text-right font-bold">${saleInvoice && saleInvoice.receiveAmount?.toLocaleString() || 0}</td>
+                <td className="text-right font-bold">{saleInvoice && saleInvoice.receiveAmount?.toLocaleString() || 0}</td>
               </tr>
               <tr className="border-t border-black border-dashed">
                 <td>Net Amount</td>
                 <td></td>
                 <td></td>
-                <td className="text-right font-bold">${saleInvoice && saleInvoice.paymentAmount?.toLocaleString() || 0}</td>
+                <td className="text-right font-bold">{saleInvoice && saleInvoice.paymentAmount?.toLocaleString() || 0}</td>
               </tr>
               <tr className="border-y border-black border-dashed">
                 <td>Change</td>
                 <td></td>
                 <td></td>
-                <td className="text-right font-bold">${saleInvoice && saleInvoice.change?.toLocaleString() || 0}</td>
+                <td className="text-right font-bold">{saleInvoice && saleInvoice.change?.toLocaleString() || 0}</td>
               </tr>
             </tbody>
           </table>
