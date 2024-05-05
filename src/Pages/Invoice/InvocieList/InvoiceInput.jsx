@@ -1,9 +1,13 @@
 import React from 'react'
 import { useState } from 'react'
 import { InvoiceSkeleton } from '../../../Components/skeletons/InvoiceSkeleton'
+import { useSelector } from 'react-redux'
+
 
 const InvoiceInput = ({invoiceLists,setFilteredData,setCurrentPage,loading}) => {
   const [invoiceNumber,setInvoiceNumber] = useState ('')
+
+  const { bgColor } = useSelector((state) => state.animateSlice);
   
   const changeHandler =  (value) => {
     setInvoiceNumber(value);
@@ -25,14 +29,25 @@ const InvoiceInput = ({invoiceLists,setFilteredData,setCurrentPage,loading}) => 
                 {loading ? (
                 <InvoiceSkeleton/>
                 ) : (
+                    // <input
+                    //     type='text'
+                    //     id='simple-search'
+                    //     className='bg-white border border-gray-300 text-gray-900 
+                    //     text-sm rounded-lg focus:ring-blue-500
+                    //     focus:border-blue-500 block 
+                    //     w-full ps-3 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white 
+                    //     dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                    //     placeholder='Search Invoice number here'
+                    //     required
+                    //     value={invoiceNumber} 
+                    //     onChange={(e)=>changeHandler(e.target.value)}
+                    // />
                     <input
                         type='text'
                         id='simple-search'
-                        className='bg-white border border-gray-300 text-gray-900 
-                        text-sm rounded-lg focus:ring-blue-500
-                        focus:border-blue-500 block 
-                        w-full ps-3 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white 
-                        dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                        className='text-sm rounded-lg block 
+                        w-full ps-3 p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 
+                        text-white focus:ring-blue-500 focus:border-blue-500'
                         placeholder='Search Invoice number here'
                         required
                         value={invoiceNumber} 
