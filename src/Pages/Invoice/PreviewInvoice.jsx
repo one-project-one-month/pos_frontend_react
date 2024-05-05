@@ -3,6 +3,7 @@ import sampleInvoice from "../../db/preview.json";
 //import { useSelector } from "react-redux";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import moment from "moment";
 
 const PreviewInvoice = () => {
   const { saleInvoiceId } = useParams();
@@ -66,7 +67,7 @@ const PreviewInvoice = () => {
                       <td className="w-[20%]">Voucher No:</td>
                       <td className="w-[30%]">#{saleInvoice && saleInvoice?.voucherNo}</td>
                       <td className="w-[20%]">Datetime:</td>
-                      <td className="w-[30%]">{saleInvoice && saleInvoice?.dateTime}</td>
+                      <td className="w-[30%]">{saleInvoice && moment(saleInvoice?.dateTime)?.format("DD MMM, YYYY, hh:mma")}</td>
                     </tr>
                     <tr>
                       <td className="w-[20%]">Customer:</td>
