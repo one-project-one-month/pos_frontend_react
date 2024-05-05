@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import sampleInvoice from "../../db/preview.json";
-//import { useSelector } from "react-redux";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import moment from "moment";
@@ -22,7 +20,7 @@ const PreviewInvoice = () => {
     } catch (err) {
       console.log(err.message);
     } finally {
-      setLoading(false); // Set loading to false regardless of success or failure
+      setLoading(false);
     }
   };
 
@@ -31,8 +29,6 @@ const PreviewInvoice = () => {
       getData();
     }
   }, [saleInvoiceId]);
-
-  //const color = useSelector((state) => state.animateSlice);
 
   const handlePrint = () => {
     const printContent = document.getElementById("invoice-preview");
@@ -46,7 +42,6 @@ const PreviewInvoice = () => {
     newWindow.print();
   };
 
-  //console.log(color);
   return (
     <div id="invoice-preview" className="bg-transparent top-[70px] overflow-y-hidden bg-[#312d4b] shadow-md absolute w-[80%] right-0 p-10 h-[91vh]">
       <div className="flex flex-col items-center justify-center w-full ">
