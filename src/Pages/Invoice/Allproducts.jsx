@@ -13,7 +13,7 @@ const Allproducts = ({ datas, addToOrder }) => {
 
                     <div className="font-semibold flex flex-row  items-center">
                         {data.productName}
-                        <button className='ml-[3rem] bg-[#262626] flex items-center justify-center w-[5rem] rounded-md text-white' onClick={() => handleClick(data)}>
+                        <button className='ml-[2rem] bg-[#262626] hover:bg-slate-500 flex items-center justify-center w-[5rem] rounded-md text-white' onClick={() => handleClick(data)}>
                             Add
                             <Plus  className="w-6 h-6 ml-1 text-[#eee9e9]" />
                         </button>
