@@ -4,6 +4,8 @@ import axios from "axios";
 import Carousel from "./slider";
 import SearchInput from "./SearchInput";
 import Allproducts from "./Allproducts";
+import { FaTimes } from 'react-icons/fa';
+
 
 const AddNewInvoice = () => {
     const [productName, setProductName] = useState("");
@@ -30,7 +32,7 @@ const AddNewInvoice = () => {
     };
 
     useEffect(() => {
-        
+
         const url = `https://pos-frontend-next-ruby.vercel.app/api/v1/products${searchValue ? `?name=${encodeURIComponent(searchValue)}` : ''}${item ? `${searchValue ? '&' : '?'}categoryCode=${encodeURIComponent(item)}` : ''}`;
 
         const fetchData = async () => {
@@ -77,7 +79,7 @@ const AddNewInvoice = () => {
     }, [orderDetails]);
 
 
-    const handlePayNow = () =>{
+    const handlePayNow = () => {
 
         console.log(' You are completed to pay')
     }
@@ -86,7 +88,9 @@ const AddNewInvoice = () => {
         updatedOrderDetails.splice(index, 1);
         setOrderDetails(updatedOrderDetails);
     };
-    
+
+
+
 
     return (
         <div className="absolute h-full w-[80%] right-2 top-[70px]">
@@ -94,19 +98,22 @@ const AddNewInvoice = () => {
                 <div className="rounded-md p-4 w-[75%] h-fit">
                     <SearchInput productName={productName} setProductName={setProductName} searchHandler={searchHandler} />
                     <Carousel item={item} />
-                    <Allproducts datas={datas} addToOrder={addToOrder}/>
+                    <Allproducts datas={datas} addToOrder={addToOrder} />
                 </div>
 
                 <div className="InvoiceCard  bg-[#eef0ec] flex flex-col  rounded-md w-[27%] h-[100%]">
                     <h1 className="font-bold px-2 py-2 mb-3 ">Order Details</h1>
                     <div className="overflow-y-auto max-h-[calc(100% - 100px)] ">
                         {orderDetails.map((item, index) => (
-                            <div key={index} className="shadow-md  w-[75%] border rounded-md border-[#7dc5bf] mb-3 font-bold border-[] py-3  gap-[0%] mx-5 px-5" >
+                            <div key={index} className="shadow-md  w-[75%] border  rounded-md border-[#7dc5bf] mb-3 font-bold border-[] py-3  gap-[0%] mx-5 px-5" >
+                                 <button className=" pointer text-[#a8a29e] hover:text-[#404040] pl-[10rem]"
+                                    onClick={() => deleteItem(index)} >    <FaTimes /></button>
                                 <p>{item.productName}</p>
-                                <p>Qty: {item.quantity}</p>
-                                <p>Price: ${item.price}</p>
-                                <button className="bg-blue-500  rounded-md mx-5 px-3 text-white mt-2 pointer hover:bg-blue-700"
-                                onClick={() => deleteItem(index)} >Delete</button>
+                                <p className="mb-3 mt-2">Qty: {item.quantity}
+                                    <span className="pl-8">Price : {item.price}</span>
+                                </p>
+                                <p className="border-t border-black pl-[4.9rem] "> Total : {item.price * item.quantity} </p>
+                               
                             </div>
                         ))}
                     </div>
