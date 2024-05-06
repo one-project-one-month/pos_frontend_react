@@ -84,16 +84,16 @@ function Carousel({item,loading}) {
         <SliderSkeleton/>
       ):(
         <Slider {...settings}>
-          <div className={`p-2 text-sm border border-gray-200
-            ${!item? 'bg-blue-500 text-white' : 'bg-white text-black'}
+          <div className={`p-2 text-sm border border-gray-700
+            ${!item? 'bg-gray-100 text-black' : 'bg-gray-700 text-gray-200'}
             text-center rounded cursor-pointer`} 
             onClick={clickALlHandler}  style={{ width: slideWidth  }}>
             All
           </div>
           {categories && categories.map((category)=>(
               <div key={category.productCategoryId}
-                className={`p-2 text-sm border border-gray-200 text-center font-semibold rounded cursor-pointer
-                ${category.productCategoryCode === item ? 'bg-blue-500 text-white' :'bg-white'}`} 
+                className={`p-2 text-sm border border-gray-700 text-center font-semibold rounded cursor-pointer
+                ${category.productCategoryCode === item ? 'bg-gray-100 text-black' :'bg-gray-700 text-gray-200'}`} 
                 onClick={()=>clickHandler(category.productCategoryCode)}>
                 {category.productCategoryName}
               </div>

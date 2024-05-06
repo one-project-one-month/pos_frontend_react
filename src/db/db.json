@@ -192,27 +192,6 @@
       "mobileNo": "0987654321",
       "address": "MDY",
       "id": 6
-    },
-    {
-      "shopCode": "SH007",
-      "shopName": "At Christ",
-      "mobileNo": "0987654321",
-      "address": "Samut prakan",
-      "id": 7
-    },
-    {
-      "shopCode": "SH009",
-      "shopName": "Nan Da Lae",
-      "mobileNo": "0987654321",
-      "address": "Samut Prakan",
-      "id": 9
-    },
-    {
-      "shopCode": "SH009",
-      "shopName": "Htet Nadi Hlaing",
-      "mobileNo": "0987654321",
-      "address": "BKK",
-      "id": 10
     }
   ],
   "customers": [
