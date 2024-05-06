@@ -21,7 +21,7 @@ const{totalPages,currentPage,slicedData,clickNext,clickPrev} = usePagination(dat
     ) : (slicedData && slicedData.map((data) => (
     <div key={data.productId} className="w-[262px] p-2 bg-gray-700 space-y-3 border border-gray-700 rounded-md cursor-pointer" onClick={() => handleClick(data)}>
       <div className="font-semibold text-gray-200">{data.productName}</div>
-      <div className="px-2 py-1 max-w-fit bg-teal-200 text-gray-700 text-xs rounded-sm">
+      <div className="px-2 py-1 max-w-fit bg-slate-300 text-gray-700 text-xs rounded-sm">
         {data.productCode}
       </div>
       <div className="text-blue-400 font-semibold text-sm">${data.price}</div>

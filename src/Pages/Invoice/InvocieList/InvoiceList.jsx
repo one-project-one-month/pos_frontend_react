@@ -13,7 +13,7 @@ import usePagination from "../../../Hooks/usePagination";
 const InvoiceList = () => {
     const [click,setClick] = useState (false)
 
-    const { bgColor } = useSelector((state) => state.animateSlice);
+    const { bgColor} = useSelector((state) => state.animateSlice);
 
     const [invoiceLists,setInvoiceLists] = useState ([])
 
@@ -78,7 +78,7 @@ const InvoiceList = () => {
              style={{
                background : bgColor
               }}
-            className="flex gap-3 rounded-md bg-gray-50 h-[100vh] p-5">
+            className="flex gap-3 rounded-md h-[100vh] p-5">
                 <div className="rounded-md w-full h-fit space-y-6">
                    <h3 className="text-2xl font-medium text-gray-300">Sale Invoices List</h3>
                    <ul className='flex justify-between mx-auto'>

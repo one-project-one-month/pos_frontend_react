@@ -39,7 +39,7 @@ const TableComponent = ({loading,slicedData}) => {
                         {invoice.paymentAmount}
                     </td>
                     <td className="px-6 py-3 flex items-center justify-center">
-                    <Link to={`/invoice/preview/${invoice.saleInvoiceId}`} className="bg-gray-300 px-4 p-2 text-center text-gray-800 text-xs rounded">
+                    <Link to={`/invoice/preview/${invoice.saleInvoiceId}`} className="bg-gray-100 px-4 p-2 text-center text-gray-800 text-xs rounded">
                         Detail
                     </Link>
                     </td>

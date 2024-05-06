@@ -4,28 +4,30 @@ import 'react-date-range/dist/theme/default.css'
 import { DateRange } from 'react-date-range';
 import { InvoiceSkeleton } from '../../../Components/skeletons/InvoiceSkeleton'
 import "../invoice.css"
+import { useSelector } from 'react-redux';
 
 const DateRangePicker = ({click,setClick,loading,date,setDate,datRef}) => {
 
   const dateRangeHandler = () => {
     setClick(!click)
   }
+
   const options = {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
     };
-    console.log(date);
+
   const currentStartDate = date[0].startDate.toLocaleDateString('en', options);
   const currentEndDate = date[0].endDate.toLocaleDateString('en', options);
-
+  
   return (
     <div className="min-w-[30%] relative" ref={datRef}>
         <li>
         {loading ? (
             <InvoiceSkeleton/>
         ) : (
-            // <button className="bg-white border border-gray-300 text-gray-900 text-sm
+            // <button className="bg-white border border-gray-7 text-gray-900 text-sm
             // rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
             // p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
             // dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 
@@ -56,6 +58,8 @@ const DateRangePicker = ({click,setClick,loading,date,setDate,datRef}) => {
             onChange={item => setDate([item.selection])}
             moveRangeOnFirstSelection={false}
             ranges={date}
+            // className='bg-gray-700'
+            // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
             />
             </li>
         )}
