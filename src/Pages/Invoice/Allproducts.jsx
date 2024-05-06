@@ -1,17 +1,28 @@
 import React from 'react';
-import { Plus  } from 'lucide-react'; // Importing the Package icon
+import { Plus  } from 'lucide-react';
+import {  useSelector } from 'react-redux';
 
 const Allproducts = ({ datas, addToOrder }) => {
     const handleClick = (data) => {
         addToOrder(data);
     };
 
-    return (
-        <div className="flex items-center gap-2 flex-wrap max-h-[600px] overflow-scroll">
-            {datas && datas.map((data) => (
-                <div key={data.productId} className="w-[275px] p-2 bg-white space-y-3 border border-gray-200 rounded-md">
+    
+    const color = useSelector((state) => state.animateSlice)
 
-                    <div className="font-semibold flex flex-row  items-center">
+    return (
+        <div className="flex items-center gap-2 flex-wrap max-h-[600px] overflow-scroll mb-3">
+            {datas && datas.map((data) => (
+                <div
+                style={{
+                    color:color.textColor,
+                    backgroundColor:color.cardBgColor,
+             }}
+                key={data.productId} className="w-[275px] p-2 bg-white space-y-3 border border-gray-200 rounded-md mb-2">
+
+                    <div
+                    
+                    className="font-semibold flex flex-row  items-center">
                         {data.productName}
                         <button className='ml-[2rem] bg-[#262626] hover:bg-slate-500 flex items-center justify-center w-[5rem] rounded-md text-white' onClick={() => handleClick(data)}>
                             Add

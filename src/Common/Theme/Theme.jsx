@@ -6,6 +6,7 @@ import {
   setCardBgColor,
   setTextColor,
   setThemeEditor,
+  
 } from "../../redux/services/animateSlice";
 import { MdOutlineClose, MdOutlineGeneratingTokens, MdOutlineSave } from "react-icons/md";
 import faker from "faker";
@@ -101,6 +102,8 @@ const Theme = () => {
             value={color.textColor}
           />
         </div>
+
+        
       </div>
 
       <div className=" flex justify-between gap-8 items-center " >
