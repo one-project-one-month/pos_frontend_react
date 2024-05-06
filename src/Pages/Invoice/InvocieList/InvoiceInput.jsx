@@ -5,8 +5,6 @@ import { useSelector } from 'react-redux'
 
 const InvoiceInput = ({invoiceLists,setFilteredData,setCurrentPage,loading}) => {
   const [invoiceNumber,setInvoiceNumber] = useState ('')
-
-  const {text,cardColor} = useSelector((state) => state.animateSlice);
   
   const changeHandler =  (value) => {
     setInvoiceNumber(value);
@@ -42,13 +40,9 @@ const InvoiceInput = ({invoiceLists,setFilteredData,setCurrentPage,loading}) => 
                     //     onChange={(e)=>changeHandler(e.target.value)}
                     // />
                     <input
-                    style={{
-                      background : cardColor,
-                      color :text,
-                    }}
                         type='text'
                         id='simple-search'
-                        className='text-sm rounded-lg block 
+                        className='bg-gray-700 text-sm rounded-lg block 
                         w-full ps-3 p-2.5 border-gray-600 placeholder-gray-400 
                         focus:ring-blue-500 focus:border-blue-500'
                         placeholder='Search Invoice number here'
