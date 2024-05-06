@@ -1,13 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
 import { InvoiceSkeleton } from '../../../Components/skeletons/InvoiceSkeleton'
-import { useSelector } from 'react-redux'
-
 
 const InvoiceInput = ({invoiceLists,setFilteredData,setCurrentPage,loading}) => {
   const [invoiceNumber,setInvoiceNumber] = useState ('')
-
-  const { bgColor } = useSelector((state) => state.animateSlice);
   
   const changeHandler =  (value) => {
     setInvoiceNumber(value);

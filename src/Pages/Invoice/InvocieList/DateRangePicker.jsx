@@ -1,10 +1,9 @@
 import React from 'react'
-import { useRef } from 'react'
 import 'react-date-range/dist/styles.css'; 
 import 'react-date-range/dist/theme/default.css'
 import { DateRange } from 'react-date-range';
-import { addDays } from 'date-fns';
 import { InvoiceSkeleton } from '../../../Components/skeletons/InvoiceSkeleton'
+import "../invoice.css"
 
 const DateRangePicker = ({click,setClick,loading,date,setDate,datRef}) => {
 
@@ -16,6 +15,7 @@ const DateRangePicker = ({click,setClick,loading,date,setDate,datRef}) => {
     month: 'long',
     day: 'numeric',
     };
+    console.log(date);
   const currentStartDate = date[0].startDate.toLocaleDateString('en', options);
   const currentEndDate = date[0].endDate.toLocaleDateString('en', options);
 

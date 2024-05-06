@@ -62,8 +62,7 @@ const InvoiceList = () => {
     } catch (error) {
         console.error(error);
     } 
-};
-
+    };
 
       useEffect(()=>{
         fetchData()
