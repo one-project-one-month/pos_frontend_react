@@ -21,9 +21,10 @@ import {
   useDeleteProductsCategoryMutation,
   useGetProductsCategoryQuery,
 } from "../../redux/api/AuthApi";
+import { DateRangePicker } from "react-date-range";
 
 const Category = () => {
-  const { page, exportSet, pageNum, addCatForm,currentPage } = useSelector(
+  const { page, exportSet, pageNum, addCatForm, currentPage } = useSelector(
     (state) => state.animateSlice
   );
 
@@ -49,14 +50,12 @@ const Category = () => {
 
   useEffect(() => {
     deleted?.isSuccess === true && setCategory(data?.data.categories);
-
   }, [deleted]);
 
   const deleteCategory = async (Cid) => {
     const deletedCat = await deleteCat(Cid);
 
-
-    deletedCat &&  window.location.replace('/products/productcategories')
+    deletedCat && window.location.replace("/products/productcategories");
 
     deletedCat && setCategory(data?.data.categories);
   };
@@ -82,10 +81,12 @@ const Category = () => {
   const addCategoryData = (id) => {
     dispatch(setCatId(id));
 
-    console.log(id);
     dispatch(addCatFormOn(true));
     dispatch(setCatMod(true));
   };
+
+  
+ 
 
   return (
     <div
@@ -381,6 +382,8 @@ const Category = () => {
         currentPage={currentPage}
       />
     </div>
+
+   
   );
 };
 
