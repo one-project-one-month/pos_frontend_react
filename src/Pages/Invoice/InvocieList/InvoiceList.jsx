@@ -8,8 +8,11 @@ import { TableSkeleton,PaginationSkeleton } from "../../../Components/skeletons/
 import { Link } from "react-router-dom";
 import InvoiceInput from "./InvoiceInput";
 import DateRangePicker from "./DateRangePicker";
+import { useSelector } from "react-redux";
 
 const InvoiceList = () => {
+    const color = useSelector((state) => state.animateSlice);
+
     const [click,setClick] = useState (false)
 
     const [invoiceLists,setInvoiceLists] = useState ([])
@@ -88,7 +91,9 @@ const InvoiceList = () => {
 
     return (
         <section className="absolute h-full w-[80%] right-2 top-[70px]">
-            <div className="flex gap-3 rounded-md bg-gray-50 h-[100vh] p-5">
+            <div style={{
+                backgroundColor: color.cardBgColor
+            }} className="flex gap-3 rounded-md bg-gray-50 h-[100vh] p-5">
                 <div className="rounded-md w-full h-fit space-y-6">
                    <h3 className="text-2xl font-medium">Sale Invoices List</h3>
                    <ul className='flex justify-between mx-auto'>
