@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { DateRangePicker } from "react-date-range";
 import { useSelector } from "react-redux";
 
@@ -35,16 +35,27 @@ const DateRange = () => {
 
       TextProp: "color",
     },
-    {
-      BgColor: color.cardBgColor,
-      TextColor: color.textColor,
-    }
+    { BgColor: color.cardBgColor, TextColor: color.textColor }
   );
+
+  useEffect(() => {
+    changeCssValue(
+      parentElement,
+      {
+        BgProp: "background-color",
+
+        TextProp: "color",
+      },
+      { BgColor: color.cardBgColor, TextColor: color.textColor }
+    );
+  }, []);
   return (
-    <DateRangePicker
-      ranges={[selectionRange]}
-      rangeColors={[`${color.cardBgColor}`, `${color.bgColor}`]}
-    />
+    <div className=" flex p-2 absolute left-[50%] ">
+      <DateRangePicker
+        ranges={[selectionRange]}
+        rangeColors={[`${color.cardBgColor}`, `${color.bgColor}`]}
+      />
+    </div>
   );
 };
 
