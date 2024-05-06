@@ -34,7 +34,8 @@ const initialState = {
   pdMod: false,
   addPdForm:false,
   pageNumber:[],
-  currentPage:1
+  currentPage:1,
+  idk:null
 };
 
 const STORAGE_KEY = "AnimateSlice";
