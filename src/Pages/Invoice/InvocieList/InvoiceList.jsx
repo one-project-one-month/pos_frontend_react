@@ -1,19 +1,15 @@
-import "./invoice.css";
-import 'react-date-range/dist/styles.css'; // main css file
-import 'react-date-range/dist/theme/default.css'; // theme css file
-import { DateRange } from 'react-date-range';
-import { addDays } from 'date-fns';
+import "../invoice.css";
 import { useState } from 'react';
 import { useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 import { useRef } from "react";
-import { InvoiceSkeleton,TableSkeleton,PaginationSkeleton } from "../../Components/skeletons/InvoiceSkeleton";
+import { TableSkeleton,PaginationSkeleton } from "../../../Components/skeletons/InvoiceSkeleton";
 import { Link } from "react-router-dom";
+import InvoiceInput from "./InvoiceInput";
+import DateRangePicker from "./DateRangePicker";
 
 const InvoiceList = () => {
-    const [invoiceNumber,setInvoiceNumber] = useState ('')
-
     const [click,setClick] = useState (false)
 
     const [invoiceLists,setInvoiceLists] = useState ([])
@@ -45,19 +41,6 @@ const InvoiceList = () => {
         }
 
       }, [])
-      
-      const options = {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      };
-     
-      const currentStartDate = date[0].startDate.toLocaleDateString('en', options);
-      const currentEndDate = date[0].endDate.toLocaleDateString('en', options);
-
-      const dateRangeHandler = () => {
-        setClick(!click)
-      }
 
       const fetchData = async () => {
       const startDateString = date[0].startDate;
@@ -83,11 +66,6 @@ const InvoiceList = () => {
         fetchData()
       },[date])
 
-      const clearInput = ()=> {
-        setInvoiceNumber('')
-        setFilteredData(invoiceLists)
-      }
-
     const itemsPerPage = 8
 
     const [currentPage, setCurrentPage] = useState(0);
@@ -108,82 +86,17 @@ const InvoiceList = () => {
 
     const slicedData = filteredData.slice(startIndex, endIndex);
 
-    const changeHandler =  (value) => {
-    setInvoiceNumber(value);
-    setCurrentPage(0)
-    const filtered = invoiceLists.filter(item => item.voucherNo.includes(value));
-    setFilteredData(filtered);
-    };
-
     return (
         <section className="absolute h-full w-[80%] right-2 top-[70px]">
             <div className="flex gap-3 rounded-md bg-gray-50 h-[100vh] p-5">
                 <div className="rounded-md w-full h-fit space-y-6">
                    <h3 className="text-2xl font-medium">Sale Invoices List</h3>
                    <ul className='flex justify-between mx-auto'>
-                    <li className='w-[30%]'>
-                        <div className='flex items-center max-w-lg'>
-                            <div className='relative w-full'>
-                                <div className='absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none'></div>
-                                {loading ? (
-                                  <InvoiceSkeleton/>
-                                ) : (
-                                    <input
-                                        type='text'
-                                        id='simple-search'
-                                        className='bg-white border border-gray-300 text-gray-900 
-                                        text-sm rounded-lg focus:ring-blue-500
-                                         focus:border-blue-500 block 
-                                        w-full ps-3 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white 
-                                        dark:focus:ring-blue-500 dark:focus:border-blue-500'
-                                        placeholder='Search Invoice number here'
-                                        required
-                                        value={invoiceNumber} 
-                                        onChange={(e)=>changeHandler(e.target.value)}
-                                    />
-                                )}
-                                {(invoiceNumber && !loading) && (
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" 
-                                strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 absolute top-[13px] 
-                                right-3 cursor-pointer" 
-                                onClick={clearInput}
-                                >
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                                </svg>
-                                )}
-                            </div>
-                        </div>
-                    </li>
-                    <div className="min-w-[30%] relative" ref={datRef}>
-                        <li>
-                           {loading ? (
-                            <InvoiceSkeleton/>
-                           ) : (
-                            <button className="bg-white border border-gray-300 text-gray-900 text-sm
-                            rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
-                            p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
-                            dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 
-                            space-x-1 hover:border-blue-500"
-                            onClick={dateRangeHandler}>
-                                <span className="font-light text-gray-500">From :</span>
-                                <span>{currentStartDate}</span>
-                                <span> - </span>
-                                <span className="font-light text-gray-500">To :</span>
-                                <span>{currentEndDate}</span>
-                            </button>
-                           )}
-                        </li>
-                        {click && (
-                            <li className="absolute right-0 top-[48px] z-50">          
-                            <DateRange
-                            editableDateInputs={true}
-                            onChange={item => setDate([item.selection])}
-                            moveRangeOnFirstSelection={false}
-                            ranges={date}
-                            />
-                            </li>
-                        )}
-                    </div>
+
+                    <InvoiceInput invoiceLists={invoiceLists} setFilteredData ={setFilteredData} setCurrentPage={setCurrentPage} loading={loading} /> 
+                
+                    <DateRangePicker click={click} setClick={setClick} loading={loading} date={date} setDate={setDate}/>
+                    
                    </ul>
                    {loading ? (
                     <TableSkeleton/>

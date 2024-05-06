@@ -21,7 +21,7 @@ const clickNext = () => {
 const clickPrev = () => {
     setCurrentPage(prevPage => prevPage -  1);
 };
-console.log(datas.length);
+
 const startIndex = currentPage * itemsPerPage;
 
 const endIndex = startIndex + itemsPerPage;
