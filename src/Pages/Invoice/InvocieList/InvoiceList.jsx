@@ -4,11 +4,11 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useRef } from "react";
 import InvoiceInput from "./InvoiceInput";
-import DateRangePicker from "./DateRangePicker";
 import { useSelector } from "react-redux";
 import TableComponent from "./TableComponent";
 import PaginationComponent from "../../../Components/Pagination/PaginationComponent";
 import usePagination from "../../../Hooks/usePagination";
+import DateRangePickers from "./DateRangePicker";
 
 const InvoiceList = () => {
     const [click,setClick] = useState (false)
@@ -85,7 +85,7 @@ const InvoiceList = () => {
 
                     <InvoiceInput invoiceLists={invoiceLists} setFilteredData ={setFilteredData} setCurrentPage={setCurrentPage} loading={loading} /> 
                 
-                    <DateRangePicker click={click} setClick={setClick} loading={loading} date={date} setDate={setDate} datRef={datRef}/>
+                    <DateRangePickers click={click} setClick={setClick} loading={loading} date={date} setDate={setDate} datRef={datRef}/>
 
                    </ul>
                 

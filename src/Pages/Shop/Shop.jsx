@@ -36,9 +36,11 @@ const Shop = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = `http://localhost:3000/shops${search ? `?q=${search}` : ''}`;
-        const { data } = await axios.get(url);
-        setDatas(data);
+        // const url = `http://localhost:3000/shops${search ? `?q=${search}` : ''}`;
+        const url = `https://pos-frontend-next-ruby.vercel.app/api/v1/shops${search ? `?q=${search}` : ''}`;
+        const { data:{data:{shops}} } = await axios.get(url);
+        console.log(shops);
+        setDatas(shops);
         if (isSuccessfull) {
           toast.success("You've successfully added new shop!");
         }
@@ -178,7 +180,7 @@ const Shop = () => {
         <div className='max-w-6xl mx-auto flex items-center flex-wrap gap-5'>
           {datas &&
             datas.map((data, i) => (
-              <div key={data.id} className='bg-white border border-gray-200 rounded-md w-[280px] px-4 py-6 space-y-3'>
+              <div key={data.shopId} className='bg-white border border-gray-200 rounded-md w-[280px] px-4 py-6 space-y-3'>
                 <div className='flex items-center justify-between'>
                   <p className='font-bold text-base'>{data.shopName}</p>
                   <div className='flex items-center gap-2'>
