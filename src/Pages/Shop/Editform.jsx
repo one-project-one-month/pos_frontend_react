@@ -5,7 +5,7 @@ const Editform = ({newShopCode,newShopName,newShopAddress,newShopmobileNo,change
     <>
       <div className='fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity'></div>
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto flex items-center justify-center">
-        <form className="w-[600px] mx-auto bg-gray-700 p-6 rounded-lg border border-gray-600" onSubmit={submitHandler}>
+        <form className="w-[600px] mx-auto bg-gray-800 p-6 rounded-lg border border-gray-600" onSubmit={submitHandler}>
           <h1 className='font-semibold text-lg mb-6 text-gray-200'>
             Edit Shop
           </h1>
@@ -13,28 +13,28 @@ const Editform = ({newShopCode,newShopName,newShopAddress,newShopmobileNo,change
             <label className="block uppercase tracking-wide text-gray-200 text-xs font-bold mb-2" htmlFor="grid-first-name">
               Shope Code
             </label>
-            <input className={`appearance-none block w-full bg-gray-700 text-gray-200 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-blue-500`} id="grid-first-name" type="text" name='shopCode' placeholder="Enter your shop code"  value={newShopCode} onChange={e => changeHandler(e.target) }/>
+            <input className={`appearance-none block w-full bg-gray-700 text-gray-200 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-gray-700 focus:border-blue-500`} id="grid-first-name" type="text" name='shopCode' placeholder="Enter your shop code"  value={newShopCode} onChange={e => changeHandler(e.target) }/>
             {isSave && !newShopCode &&  <p className="text-red-500 text-xs italic">Please fill out this field.</p>}
           </div>
           <div className="w-full px-3 mb-6 ">
             <label className="block uppercase tracking-wide text-gray-200 text-xs font-bold mb-2" htmlFor="grid-first-name">
               Shop Name
             </label>
-            <input className={`appearance-none block w-full bg-gray-700 text-gray-200 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-blue-500`} id="grid-first-name" type="text" name='shopName' placeholder="Enter your shop name"  value={newShopName} onChange={e => changeHandler(e.target) }/>
+            <input className={`appearance-none block w-full bg-gray-700 text-gray-200 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-gray-700 focus:border-blue-500`} id="grid-first-name" type="text" name='shopName' placeholder="Enter your shop name"  value={newShopName} onChange={e => changeHandler(e.target) }/>
             {isSave && !newShopName &&  <p className="text-red-500 text-xs italic">Please fill out this field.</p>}
           </div>
           <div className="w-full px-3 mb-6 ">
             <label className="block uppercase tracking-wide text-gray-200 text-xs font-bold mb-2" htmlFor="grid-last-name">
               Mobile Number
             </label>
-            <input className={`appearance-none block w-full bg-gray-700 text-gray-200 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-blue-500`} id="grid-last-name" type="text" name='mobileNo' placeholder="Enter your mobile number" value={newShopmobileNo} onChange={e => changeHandler(e.target) }/>
+            <input className={`appearance-none block w-full bg-gray-700 text-gray-200 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-gray-700 focus:border-blue-500`} id="grid-last-name" type="text" name='mobileNo' placeholder="Enter your mobile number" value={newShopmobileNo} onChange={e => changeHandler(e.target) }/>
             {isSave && !newShopmobileNo &&  <p className="text-red-500 text-xs italic">Please fill out this field.</p>}
           </div>
           <div className="w-full px-3 mb-6">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-last-name">
               Address
             </label>
-            <textarea className={`appearance-none block w-full bg-gray-700 text-gray-200 border border-gray-500  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-blue-500`} id="grid-last-name" rows='6' name='address' placeholder="Enter your address"value={newShopAddress} onChange={e => changeHandler(e.target) } />
+            <textarea className={`appearance-none block w-full bg-gray-700 text-gray-200 border border-gray-500  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-gray-700 focus:border-blue-500`} id="grid-last-name" rows='6' name='address' placeholder="Enter your address"value={newShopAddress} onChange={e => changeHandler(e.target) } />
             {isSave && !newShopAddress &&  <p className="text-red-500 text-xs italic">Please fill out this field.</p>}
           </div>
           <div className='flex items-center gap-3 justify-end'>

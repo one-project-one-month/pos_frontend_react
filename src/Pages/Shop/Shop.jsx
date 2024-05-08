@@ -143,7 +143,7 @@ const Shop = () => {
               </div>
               <button
                 type='button'
-                className='p-2.5 ms-2 text-sm font-medium text-blue-500 bg-gray-700 rounded-lg border border-[#b790ff] hover:bg-gray-50 focus:outline-none focus:ring-[#9055fd] dark:bg-[#9055fd] dark:hover:bg-[#9055fd] dark:focus:ring-[#9055fd]'
+                className='p-2.5 ms-2 text-sm font-medium text-blue-500 bg-gray-700 rounded-lg border border-[#b790ff] hover:bg-gray-50 focus:outline-none focus:ring-[#9055fd]'
                 onClick={searchHandler}
               >
                 <svg
