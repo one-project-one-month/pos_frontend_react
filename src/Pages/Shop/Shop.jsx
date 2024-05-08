@@ -24,7 +24,7 @@ const Shop = () => {
     mobileNo: '',
     address: '',
   });
-
+  const { bgColor} = useSelector((state) => state.animateSlice);
   const [isDelete, setIsDelete] = useState(false);
 
   const isSuccessfull = useSelector((state) => state.newShopReducer.isSuccessful);
@@ -36,10 +36,8 @@ const Shop = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const url = `http://localhost:3000/shops${search ? `?q=${search}` : ''}`;
         const url = `https://pos-frontend-next-ruby.vercel.app/api/v1/shops${search ? `?q=${search}` : ''}`;
         const { data:{data:{shops}} } = await axios.get(url);
-        console.log(shops);
         setDatas(shops);
         if (isSuccessfull) {
           toast.success("You've successfully added new shop!");
@@ -75,14 +73,13 @@ const Shop = () => {
     if (isFormCompleted) {
       try {
         const postData = { id: currentId, ...shop };
-        const res = await axios.patch(`http://localhost:3000/shops/${currentId}`, postData);
-        console.log(res);
+        const res = await axios.patch(`https://pos-frontend-next-ruby.vercel.app/api/v1/shops/${currentId}`, postData);
         if (res.status === 200) {
           setIsEdit(false);
           toast.success("You've successfully edited the shop!");
           setDatas((prevDatas) =>
             prevDatas.map((item) => {
-              if (item.id === currentId) {
+              if (item.shopId === currentId) {
                 return { ...item, ...shop };
               }
               return item;
@@ -97,16 +94,18 @@ const Shop = () => {
 
   const deleteShop = async () => {
     try {
-      const res = await axios.delete(`http://localhost:3000/shops/${currentId}`);
-      if (res.status === 200) {
+      // const res = await axios.delete(`http://localhost:3000/shops/${currentId}`);
+      const res = await axios.delete(`https://pos-frontend-next-ruby.vercel.app/api/v1/shops/${currentId}`);
+      if (res.status === 204) {
         toast.success("You've successfully deleted the shop!");
         setIsDelete(false);
-        setDatas((prevDatas) => prevDatas.filter((shop) => shop.id !== currentId));
+        setDatas((prevDatas) => prevDatas.filter((shop) => shop.shopId !== currentId));
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
+
   const editHandler = (index,id) => {
     setCurrentId(id)
     setCurrentIndex(index)
@@ -120,10 +119,10 @@ const Shop = () => {
   }
   return (
     <div className='absolute h-full w-[80%] right-2 top-[70px]'>
-      <div className='bg-white border-b-2 border-gray-200'>
+      <div style={{background : bgColor}}className='bg-white border-b-2 border-gray-700'>
         <ul className='flex justify-between items-center p-3 mx-auto'>
           <li className='w-full'>
-            <form className='flex items-center max-w-sm'>
+            <div className='flex items-center max-w-sm'>
               <label htmlFor='simple-search' className='sr-only'>
                 Search
               </label>
@@ -132,7 +131,7 @@ const Shop = () => {
                 <input
                   type='text'
                   id='simple-search'
-                  className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-3 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                  className='bg-gray-700 border  text-sm rounded-lg block w-full ps-3 p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500'
                   placeholder='Search shop name'
                   required
                   value={shopName} 
@@ -144,7 +143,7 @@ const Shop = () => {
               </div>
               <button
                 type='button'
-                className='p-2.5 ms-2 text-sm font-medium text-blue-500 bg-white rounded-lg border border-[#9055fd] hover:bg-gray-50 focus:outline-none focus:ring-[#9055fd] dark:bg-[#9055fd] dark:hover:bg-[#9055fd] dark:focus:ring-[#9055fd]'
+                className='p-2.5 ms-2 text-sm font-medium text-blue-500 bg-gray-700 rounded-lg border border-[#b790ff] hover:bg-gray-50 focus:outline-none focus:ring-[#9055fd] dark:bg-[#9055fd] dark:hover:bg-[#9055fd] dark:focus:ring-[#9055fd]'
                 onClick={searchHandler}
               >
                 <svg
@@ -155,7 +154,7 @@ const Shop = () => {
                   viewBox='0 0 20 20'
                 >
                   <path
-                    stroke='blue'
+                    stroke='#b790ff' 
                     strokeLinecap='round'
                     strokeLinejoin='round'
                     strokeWidth='2'
@@ -164,7 +163,7 @@ const Shop = () => {
                 </svg>  
                 <span className='sr-only'>Search</span>
               </button>
-            </form>
+            </div>
           </li> 
           <li className='w-full text-right'>
             <Link
@@ -176,13 +175,13 @@ const Shop = () => {
           </li>
         </ul>
       </div>
-      <div className='bg-gray-50 h-[100vh] p-5'>
+      <div  style={{background : bgColor}} className='bg-gray-50 h-[100vh] p-5'>
         <div className='max-w-6xl mx-auto flex items-center flex-wrap gap-5'>
           {datas &&
             datas.map((data, i) => (
-              <div key={data.shopId} className='bg-white border border-gray-200 rounded-md w-[280px] px-4 py-6 space-y-3'>
+              <div key={data.shopId} className='bg-gray-700 border border-gray-600 rounded-md w-[280px] px-4 py-6 space-y-3'>
                 <div className='flex items-center justify-between'>
-                  <p className='font-bold text-base'>{data.shopName}</p>
+                  <p className='font-bold text-base text-gray-200'>{data.shopName}</p>
                   <div className='flex items-center gap-2'>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
@@ -190,8 +189,8 @@ const Shop = () => {
                       viewBox='0 0 24 24'
                       strokeWidth={1.5}
                       stroke='currentColor'
-                      className='w-4 h-4 text-blue-500 cursor-pointer'
-                      onClick={() => editHandler(i, data.id)}
+                      className='w-4 h-4 text-blue-400 cursor-pointer'
+                      onClick={() => editHandler(i, data.shopId)}
                     >
                       <path
                         strokeLinecap='round'
@@ -205,8 +204,8 @@ const Shop = () => {
                       viewBox='0 0 24 24'
                       strokeWidth={1.5}
                       stroke='currentColor'
-                      className='w-4 h-4 text-red-500 cursor-pointer'
-                      onClick={() => deleteHandler(data.id)}
+                      className='w-4 h-4 text-red-400 cursor-pointer'
+                      onClick={() => deleteHandler(data.shopId)}
                     >
                       <path
                         strokeLinecap='round'
@@ -216,15 +215,15 @@ const Shop = () => {
                     </svg>
                   </div>
                 </div>
-                <p className='text-sm text-gray-500'>{data.shopCode}</p>
-                <p className='text-sm'>{data.address}</p>
+                <p className='text-sm text-gray-200'>{data.shopCode}</p>
+                <p className='text-sm text-gray-200'>{data.address}</p>
                 <div className='flex items-center space-x-2'>
                   <div className='p-1 flex items-center justify-center rounded-sm bg-green-400'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" strokeWidth={1.5} stroke="none" className="w-4 h-4">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
                     </svg>
                   </div>
-                  <p className='text-sm font-medium'>{data.mobileNo}</p>
+                  <p className='text-sm font-medium text-gray-200'>{data.mobileNo}</p>
                 </div>
               </div>
             ))}

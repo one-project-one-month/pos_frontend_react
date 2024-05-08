@@ -3,13 +3,13 @@ import React from 'react'
 const Deleteform = ({discardChanges,deleteShop}) => {
   return (
     <>
-     <div className='fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity'></div>
+     <div className='fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity'></div>
      <div className="fixed inset-0 z-10 w-screen overflow-y-auto flex items-center justify-center">
-       <form className="w-[600px] mx-auto bg-white p-6 rounded-lg border border-gray-100">
-         <h1 className='font-semibold text-lg mb-3'>
+       <form className="w-[600px] mx-auto bg-gray-700 p-6 rounded-lg border border-gray-600">
+         <h1 className='font-semibold text-lg mb-3 text-gray-200'>
            Delete Shop
          </h1>
-         <div className="w-full px-3 mb-6 ">
+         <div className="w-full px-3 mb-6 text-gray-200">
            <h1>Are you sure you want to delete the shop?</h1>
          </div>
          <div className='flex items-center gap-3 justify-end'>
