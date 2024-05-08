@@ -122,7 +122,7 @@ const AddNewInvoice = () => {
                     backgroundColor: color.bgColor,
       
                   }}
-                className="rounded-md p-4 w-[75%] h-[96] overflow-y-auto ">
+                className="rounded-md p-4 w-[75%] ">
                     <SearchInput productName={productName} setProductName={setProductName} searchHandler={searchHandler} />
                     <Carousel item={item} />
                     <Allproducts datas={datas} addToOrder={addToOrder} />
