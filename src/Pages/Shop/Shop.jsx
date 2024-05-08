@@ -119,7 +119,7 @@ const Shop = () => {
   }
   return (
     <div className='absolute h-full w-[80%] right-2 top-[70px]'>
-      <div style={{background : bgColor}} className='bg-white border-b-2 border-gray-700'>
+      <div style={{background : bgColor}}className='bg-white border-b-2 border-gray-700'>
         <ul className='flex justify-between items-center p-3 mx-auto'>
           <li className='w-full'>
             <div className='flex items-center max-w-sm'>
