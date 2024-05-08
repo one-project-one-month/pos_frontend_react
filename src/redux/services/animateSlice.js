@@ -18,6 +18,7 @@ const initialState = {
   textColor: "#d4d4d4",
   buttonColor: "#312d4b",
   borderColor: "#d4d4d4",
+  gg:"#ffffff",
   shadowColor: "#212121",
   upTrendColor: "#186f65",
   downTrendColor: "#e2434b",

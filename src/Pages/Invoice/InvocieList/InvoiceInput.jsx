@@ -42,7 +42,7 @@ const InvoiceInput = ({invoiceLists,setFilteredData,setCurrentPage,loading}) => 
                     <input
                         type='text'
                         id='simple-search'
-                        className='bg-gray-700 text-sm rounded-lg block 
+                        className='bg-gray-700 text-sm rounded-lg block text-gray-200
                         w-full ps-3 p-2.5 border-gray-600 placeholder-gray-400 
                         focus:ring-blue-500 focus:border-blue-500'
                         placeholder='Search Invoice number here'

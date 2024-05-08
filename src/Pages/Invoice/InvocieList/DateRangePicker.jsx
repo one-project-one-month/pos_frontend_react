@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import 'react-date-range/dist/styles.css'; 
 import 'react-date-range/dist/theme/default.css'
 import { DateRange } from 'react-date-range';
@@ -6,7 +6,12 @@ import { InvoiceSkeleton } from '../../../Components/skeletons/InvoiceSkeleton'
 import "../invoice.css"
 import { useSelector } from 'react-redux';
 
-const DateRangePicker = ({click,setClick,loading,date,setDate,datRef}) => {
+const DateRangePickers = ({click,setClick,loading,date,setDate,datRef}) => {
+
+  const color = useSelector((state) => state.animateSlice);
+
+  const parentElement = document.querySelector(".rdrDateRangeWrapper");
+  const exceptEl = document.querySelector(".rdrDays");
 
   const dateRangeHandler = () => {
     setClick(!click)
@@ -21,6 +26,86 @@ const DateRangePicker = ({click,setClick,loading,date,setDate,datRef}) => {
   const currentStartDate = date[0].startDate.toLocaleDateString('en', options);
   const currentEndDate = date[0].endDate.toLocaleDateString('en', options);
   
+  function changeCssValue(parent, propertyName, newValue) {
+    if (!parent || !parent.childNodes || parent === exceptEl) {
+      return;
+    }
+
+    for (let i = 0; i < parent.childNodes.length; i++) {
+      const childNode = parent.childNodes[i];
+
+      parent !== exceptEl &&
+        childNode.style?.setProperty(propertyName?.BgProp, newValue?.BgColor);
+      parent !== exceptEl &&
+        childNode.style?.setProperty(
+          propertyName?.TextProp,
+          newValue?.TextColor
+        );
+
+      if (childNode.nodeType === Node.ELEMENT_NODE) {
+        changeCssValue(childNode, propertyName, newValue);
+      }
+    }
+  }
+
+  changeCssValue(
+    parentElement,
+    {
+      BgProp: "background-color",
+
+      TextProp: "color",
+    },
+    { BgColor: color.cardBgColor, TextColor: color.textColor,icon :color.iconColor }
+    
+  );
+
+  useEffect(() => {
+    changeCssValue(
+      parentElement,
+      {
+        BgProp: "background-color",
+
+        TextProp: "color",
+      },
+      {
+        BgColor: color.cardBgColor,
+        TextColor: color.textColor,
+      }
+    );
+  }, [click]);
+
+const monthYearWrapper = document.querySelector(".rdrMonthAndYearWrapper"); // Descriptive name
+
+function changeButtonColor(buttons,newColor) {
+  if (!buttons) {
+    console.error("Button elements not found.");
+    return; // Exit function if no buttons found
+  }
+
+  buttons.forEach(button => {
+    button.style.backgroundColor = newColor;
+    buttons[0].firstChild.style.backgroundColor = newColor
+    buttons[1].firstChild.style.backgroundColor = newColor
+  });
+}
+
+useEffect(() => {
+  if (monthYearWrapper && click) {
+    const buttonElements = monthYearWrapper.querySelectorAll(".rdrNextPrevButton");
+    console.log(buttonElements[1]);
+
+    if (!buttonElements) {
+      console.error("Next/Prev buttons not found within month/year wrapper.");
+      return; // Exit function if buttons not found within wrapper
+    }
+
+    changeButtonColor(buttonElements,"rgb(229,231,235)");
+  } else {
+    console.error("Parent element not found or 'click' state not set.");
+  }
+}, [click]);
+
+
   return (
     <div className="min-w-[30%] relative" ref={datRef}>
         <li>
@@ -51,20 +136,23 @@ const DateRangePicker = ({click,setClick,loading,date,setDate,datRef}) => {
             </button>
         )}
         </li>
-        {click && (
-            <li className="absolute right-0 top-[48px] z-50">          
+            <li 
+            style={{
+              visibility : click ? 'visible' : 'collapse'
+            }}
+            className="absolute right-0 top-[48px] z-50">          
             <DateRange
             editableDateInputs={true}
             onChange={item => setDate([item.selection])}
             moveRangeOnFirstSelection={false}
             ranges={date}
-            // className='bg-gray-700'
-            // rangeColors={['#f33e5b', '#3ecf8e', '#fed14c']}
+            color={"black"}
+            retainEndDateOnFirstSelection
+            rangeColors={['rgb(59,130,246)']}
             />
             </li>
-        )}
     </div>
   )
 }
 
-export default DateRangePicker
+export default DateRangePickers
