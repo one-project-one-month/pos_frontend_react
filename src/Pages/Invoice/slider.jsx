@@ -60,13 +60,11 @@ function Carousel({item,loading}) {
     variableWidth: true,
   };
 
-  console.log(loading);
 
   useEffect(() => {
     const url = 'https://pos-frontend-next-ruby.vercel.app/api/v1/product-categories'
     const fetchData = async() => {
         const {data:{data:{categories}}} = await axios.get(url)
-        console.log(categories);
         setCategories(categories)
     }
     fetchData()

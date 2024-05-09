@@ -24,7 +24,7 @@ const Shop = () => {
     mobileNo: '',
     address: '',
   });
-  const { bgColor} = useSelector((state) => state.animateSlice);
+  const { bgColor,cardBgColor} = useSelector((state) => state.animateSlice);
   const [isDelete, setIsDelete] = useState(false);
 
   const isSuccessfull = useSelector((state) => state.newShopReducer.isSuccessful);
@@ -181,7 +181,7 @@ const Shop = () => {
         <div className='max-w-6xl mx-auto flex items-center flex-wrap gap-5'>
           {datas &&
             datas.map((data, i) => (
-              <div key={data.shopId} className='bg-gray-700 border border-gray-600 rounded-md w-[280px] px-4 py-6 space-y-3'>
+              <div style={{background : cardBgColor}} key={data.shopId} className='bg-gray-700 border border-gray-600 rounded-md w-[280px] px-4 py-6 space-y-3'>
                 <div className='flex items-center justify-between'>
                   <p className='font-bold text-base text-gray-200'>{data.shopName}</p>
                   <div className='flex items-center gap-2'>
