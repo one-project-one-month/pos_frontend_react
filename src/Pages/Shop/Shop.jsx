@@ -96,7 +96,7 @@ const Shop = () => {
     try {
       // const res = await axios.delete(`http://localhost:3000/shops/${currentId}`);
       const res = await axios.delete(`https://pos-frontend-next-ruby.vercel.app/api/v1/shops/${currentId}`);
-      if (res.status === 204) {
+      if (res.status === 202) {
         toast.success("You've successfully deleted the shop!");
         setIsDelete(false);
         setDatas((prevDatas) => prevDatas.filter((shop) => shop.shopId !== currentId));
@@ -117,6 +117,8 @@ const Shop = () => {
       address : datas[index].address
     })
   }
+
+  console.log(datas);
   return (
     <div className='absolute h-full w-[80%] right-2 top-[70px]'>
       <div style={{background : bgColor}}className='bg-white border-b-2 border-gray-700'>
