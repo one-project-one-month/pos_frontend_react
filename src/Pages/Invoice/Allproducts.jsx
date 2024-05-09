@@ -4,12 +4,14 @@ import { PaginationSkeleton, AllProductsSkeleton } from "../../Components/skelet
 import usePagination from '../../Hooks/usePagination';
 import PaginationComponent from '../../Components/Pagination/PaginationComponent';
 import { FaPlus } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
 const Allproducts = ({ datas, loading, addToOrder }) => {
     const handleClick = (data) => {
         addToOrder(data);
     };
-
+    
+    const color = useSelector((state) => state.animateSlice)
       
     const itemsPerPage = 12;
 
@@ -20,16 +22,18 @@ const Allproducts = ({ datas, loading, addToOrder }) => {
             {loading ? (
                 <AllProductsSkeleton itemsPerPage={itemsPerPage} />
             ) : (slicedData && slicedData.map((data) => (
-                <div key={data.productId} className="w-[262px] p-2 bg-gray-700 space-y-3 border border-gray-700 rounded-md cursor-pointer" >
-                    <div className="flex font-semibold text-gray-200">
-                        {data.productName} 
-                        <span className='flex bg-[#2b2827] ml-5 px-2 py-2 text-white rounded-md h-8   w-[35%] pointer hover:bg-[#a59991] ' onClick={() => handleClick(data)} >
-                          Add <FaPlus className='ml-3 w-4 h-4'/></span>
+                <div key={data.productId} style={{
+                  backgroundColor : color.cardBgColor,
+                }} className="w-[262px] min-h-[130px] p-2 bg-gray-700 space-y-3 border border-gray-700 rounded-md cursor-pointer" >
+                    <div className="flex items-center justify-between text-xs text-gray-200">
+                        <p className='bg-blue-400 px-2 py-1 rounded'>{data.productCode}</p>
+                        <span className='flex bg-[#2b2827] text-xs px-2 py-2 text-white rounded-md h-8   w-[25%] pointer hover:bg-[#a59991] ' onClick={() => handleClick(data)} >
+                          Add <FaPlus className='ml-3 w-3 h-3'/></span>
                     </div>
-                    <div className="px-2 py-1 max-w-fit bg-slate-300 text-gray-700 text-xs rounded-sm">
-                        {data.productCode}
+                    <div className="font-semibold text-gray-200 text-sm">
+                      {data.productName} 
                     </div>
-                    <div className="text-blue-400 font-semibold text-sm">${data.price}</div>
+                    <div className="font-semibold text-sm">${data.price}</div>
                 </div>
             )
             ))}

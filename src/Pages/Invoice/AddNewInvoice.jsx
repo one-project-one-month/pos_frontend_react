@@ -25,6 +25,7 @@ const AddNewInvoice = () => {
     const [discountAmount, setDiscountAmount] = useState(0);
     const [taxAmount, setTaxAmount] = useState(0);
     const [totalAmount, setTotalAmount] = useState(0);
+    const [loading,setLoading] = useState(false);
 
     const discountPercentage = 4;
     const taxPercentage = 2;
@@ -50,16 +51,20 @@ const AddNewInvoice = () => {
     };
 
     useEffect(() => {
-
-        const url = `https://pos-frontend-next-ruby.vercel.app/api/v1/products${searchValue ? `?name=${encodeURIComponent(searchValue)}` : ''}${item ? `${searchValue ? '&' : '?'}categoryCode=${encodeURIComponent(item)}` : ''}`;
-
         const fetchData = async () => {
-            const { data: { data: { products } } } = await axios.get(url);
-            console.log(products);
-            setDatas(products);
+            const url = `https://pos-frontend-next-ruby.vercel.app/api/v1/products${searchValue ? `?name=${encodeURIComponent(searchValue)}` : ''}${item ? `${searchValue ? '&' : '?'}categoryCode=${encodeURIComponent(item)}` : ''}`;
+            try {
+                setLoading(true); 
+                const { data: { data: { products } } } = await axios.get(url);
+                setDatas(products);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                setLoading(false);
+            }
         };
         fetchData();
-    }, [searchValue, item]);
+    }, [searchValue, item,]);
 
     //send order to orderDetails
     const addToOrder = (product) => {
@@ -116,16 +121,16 @@ const AddNewInvoice = () => {
             color:color.textColor,
          }}
             
-            className="InvoiceSection flex gap-3 rounded-md bg-gray-50 h-[100vh] p-5">
+            className="InvoiceSection flex gap-3 rounded-md bg-gray-50 min-h-[100vh] p-5">
                 <div
                  style={{
                     backgroundColor: color.bgColor,
       
                   }}
-                className="rounded-md p-4 w-[75%] ">
-                    <SearchInput productName={productName} setProductName={setProductName} searchHandler={searchHandler} />
-                    <Carousel item={item} />
-                    <Allproducts datas={datas} addToOrder={addToOrder} />
+                className="rounded-md p-4 min-w-[75%] ">
+                    <SearchInput productName={productName} setProductName={setProductName} searchHandler={searchHandler} loading={loading} />
+                    <Carousel item={item} loading={loading} />
+                    <Allproducts datas={datas} loading={loading} addToOrder={addToOrder} />
                 </div>
 
                 <div 
@@ -133,45 +138,53 @@ const AddNewInvoice = () => {
                     backgroundColor: color.bgColor,
                   
                   }}
-                className="InvoiceCard px-5 w-[40%] h-[100%] rounded-md  bg-[#f1efef]">
-                    <h1 className="font-bold px-2 py-2 mb-3 ">Order Details</h1>
+                className="InvoiceCard px-3 w-[25%] h-[100%] rounded-md  bg-[#f1efef] p-2 space-y-2">
+                    <h1 className="font-bold">Order Details</h1>
                     <div className="overflow-y-auto  h-[20rem] " >
                         
                         {orderDetails.map((item, index) => (
                             <div key={index}  style={{
                                 backgroundColor : color.cardBgColor,
                               }}
-                               className="border rounded-md px-1 py-2  border-[#c2c2c2] w-[20rem] shadow-md mb-3 ">
+                               className="border rounded-md px-2 py-2  border-[#c2c2c2] w-full shadow-md space-y-2">
                                 
-                                <p className="flex"
-                                >{item.productName}  
-                                 <button className="pl-[8rem] item-centers justify-end"
-                                    onClick={() => deleteItem(index)} > <FaTrash  className="text-[#ef4444]"/>
+                                <div className="flex items-center justify-between ">
+                                    <p className="text-sm font-semibold">{item.productName} </p> 
+                                 <button className="item-centers justify-end"
+                                    onClick={() => deleteItem(index)} > <FaTrash  className="text-[#ef4444] w-3 h-3"/>
                                 </button>
-                                </p>
-                                <div className="flex mt-2">
-                                <span>Price : {item.price}</span>
+                                </div>
+                                <div className="flex items-center justify-between">
+                                {/* <span>Price : {item.price}</span> */}
+                                <p className="text-sm">Quantity</p>
                                 
-                                <div className="mb-2 mx-5 ">
-                                    <button className="text-white bg-black hover:bg-slate-400 rounded-md mx-2  "
+                                <div className="flex items-center gap-2">
+                                    <button
                                     onClick={() => decreaseCounter(index)}
                                     
                                     >
-                                        <Minus className="w-[20px] h-[15px] " />
+                                        <Minus className="w-4 h-4 text-white bg-black hover:bg-slate-400"/>
                                     </button>
 
-                                    <span>{item.quantity}</span>
+                                    <span className="text-sm">{item.quantity}</span>
 
-                                    <button  className="text-white bg-black  hover:bg-slate-400  rounded-md  mx-2 " 
+                                    <button
                                     onClick={() => increaseCounter(index)}>
-                                        <Plus  className="w-[23px] h-[15px]" />
+                                        <Plus className="w-4 h-4 text-white bg-black hover:bg-slate-400"/>
                                     </button>
 
                                 </div>
                                 </div>
-                                <p className="mb-2" > Total : {item.price * item.quantity} 
+                                <div className="flex items-center justify-between">
+                                   <div className="flex items-center gap-3">
+                                    <p className="text-sm">${item.price}</p>
+                                    <p className="text-sm text-green-400">x {item.quantity}</p>
+                                   </div>
+                                    <p className="font-semibold" >${item.price * item.quantity}</p>
+                                </div>
+                                {/* <p className="mb-2" > Total : {item.price * item.quantity} 
                               
-                                </p>
+                                </p> */}
                                
                             </div>
                         ))}

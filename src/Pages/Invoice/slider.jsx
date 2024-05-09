@@ -60,6 +60,8 @@ function Carousel({item,loading}) {
     variableWidth: true,
   };
 
+  console.log(loading);
+
   useEffect(() => {
     const url = 'https://pos-frontend-next-ruby.vercel.app/api/v1/product-categories'
     const fetchData = async() => {
@@ -84,12 +86,12 @@ function Carousel({item,loading}) {
         <SliderSkeleton/>
       ):(
         <Slider {...settings}>
-          <div className={`p-2 text-sm border border-gray-700
+          {categories && (<div className={`p-2 text-sm border border-gray-700
             ${!item? 'bg-gray-100 text-black' : 'bg-gray-700 text-gray-200'}
             text-center rounded cursor-pointer`} 
             onClick={clickALlHandler}  style={{ width: slideWidth  }}>
             All
-          </div>
+          </div>)}
           {categories && categories.map((category)=>(
               <div key={category.productCategoryId}
                 className={`p-2 text-sm border border-gray-700 text-center font-semibold rounded cursor-pointer
