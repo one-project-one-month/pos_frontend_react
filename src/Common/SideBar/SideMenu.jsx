@@ -15,23 +15,6 @@ const SideMenu = [
     route: "/",
   },
   {
-    routeName: "General",
-    icon: <BoltIcon />,
-    route: "/general",
-    children: [
-      {
-        childrenName: "Shop",
-        route: "/general/shops",
-        icon: <ShoppingBagIcon />,
-      },
-      {
-        childrenName: "Customers",
-        route: "/general/customers",
-        icon: <Users />,
-      },
-    ],
-  },
-  {
     routeName: "Products",
     icon: <Package />,
     route: "/products",
