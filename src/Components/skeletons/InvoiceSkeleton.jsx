@@ -24,10 +24,10 @@ export const AllProductsSkeleton = ({ itemsPerPage }) => {
     return (
       <>
         {slicedData &&
-          slicedData.map((data) => (
+          slicedData.map((data,i) => (
             <div
-              key={data}
-              className="w-[262px] p-2 bg-slate-200 space-y-3 rounded-md animate-pulse"
+              key={i}
+              className="w-[262px]  min-h-[130px]  p-2 bg-slate-200 space-y-3 rounded-md animate-pulse"
             >
               <div className="font-semibold text-slate-200">gg</div>
               <div className="px-2 py-1 max-w-fit text-slate-200 text-xs rounded-sm">
@@ -42,6 +42,12 @@ export const AllProductsSkeleton = ({ itemsPerPage }) => {
 
 export const SliderSkeleton = () => {
     return (
-      <div className='w-full rounded-lg bg-slate-200 h-10 animate-pulse'></div>
+      <div className='w-full rounded-lg bg-slate-200 ml-2 h-10 animate-pulse'></div>
+    )
+  }
+
+  export const SearchSkeleton = () => {
+    return (
+      <div className='w-[10%] rounded-lg bg-slate-200 ml-2 h-10 animate-pulse'></div>
     )
   }
