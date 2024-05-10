@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const InvoiceSkeleton = () => {
   return (
     <div className='rounded-lg bg-slate-200 h-10 w-full animate-pulse'></div>
@@ -46,8 +44,35 @@ export const SliderSkeleton = () => {
     )
   }
 
-  export const SearchSkeleton = () => {
+export const SearchSkeleton = () => {
     return (
       <div className='w-[10%] rounded-lg bg-slate-200 ml-2 h-10 animate-pulse'></div>
+    )
+  };
+
+export const OrderDetailsSkeleton = () => {
+    return (
+      <div 
+      className="InvoiceCard px-3 w-full h-[100%] rounded-md  bg-slate-200 py-2 space-y-2 animate-pulse">
+          <h1 className="font-bold"></h1>
+          <div className="overflow-y-auto  h-[26rem] space-y-3 " >
+          </div>
+          <div
+          className="  flex flex-col w-full rounded-sm">
+              <div className="w-[52] py-2 space-y-3">
+                  <div className="flex items-center justify-between">
+                  </div>
+                  <div className="flex items-center justify-between">
+                  </div>
+                  <div className="flex items-center justify-between">
+                  </div>
+              </div>
+              <div className="mt-2">
+                  <div className="flex items-center justify-between">
+                  </div>
+                  <button className='mb-2 mr-10 w-full py-2 rounded-md  mt-3'></button>
+              </div>
+          </div>
+      </div>
     )
   }

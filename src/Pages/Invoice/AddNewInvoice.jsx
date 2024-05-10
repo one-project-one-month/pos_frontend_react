@@ -8,6 +8,7 @@ import Allproducts from "./Allproducts";
 import { FaTrash} from 'react-icons/fa';
 import { Plus  } from 'lucide-react'; 
 import { Minus  } from 'lucide-react'; 
+import { OrderDetailsSkeleton } from "../../Components/skeletons/InvoiceSkeleton";
 
 
 const AddNewInvoice = () => {
@@ -152,96 +153,103 @@ const AddNewInvoice = () => {
                     <Allproducts datas={datas} loading={loading} addToOrder={addToOrder} />
                 </div>
 
-                <div 
-                style={{
-                    backgroundColor: color.bgColor,
-                  
-                  }}
-                className="InvoiceCard px-3 w-full h-[100%] rounded-md  bg-[#f1efef] py-2 space-y-2">
-                    <h1 className="font-bold">Order Details</h1>
-                    <div className="overflow-y-auto  h-[26rem] space-y-3 " >
-                        {filteredOrderDetails.length == 0 && (
-                            <div className="w-full h-full flex items-center justify-center">
-                                <p className="font-semibold text-sm">No orders yet</p>
-                            </div>
-                        )}
-                        {filteredOrderDetails.length > 0 && filteredOrderDetails.map((item, index) => (
-                            <div key={index}  style={{
-                                backgroundColor : color.cardBgColor,
-                              }}
-                               className="border rounded-md px-2 py-2  border-gray-600 w-full shadow-md space-y-2">
-                                
-                                <div className="flex items-center justify-between ">
-                                    <p className="text-sm font-semibold">{item.productName} </p> 
-                                 <button className="item-centers justify-end"
-                                    onClick={() => deleteItem(index)} > <FaTrash  className="text-[#ef4444] w-3 h-3"/>
-                                </button>
+               {
+                loading ? (
+                    <OrderDetailsSkeleton/>
+                ) : (
+                    <div 
+                    style={{
+                        backgroundColor: color.bgColor,
+                      
+                      }}
+                    className="InvoiceCard px-3 w-full h-[100%] rounded-md  bg-[#f1efef] py-2 space-y-2">
+                        <h1 className="font-bold">Order Details</h1>
+                        <div className="overflow-y-auto  h-[26rem] space-y-3 " >
+                            {filteredOrderDetails.length == 0 && (
+                                <div className="w-full h-full flex items-center justify-center">
+                                    <p className="font-semibold text-sm">No orders yet</p>
                                 </div>
-                                <div className="flex items-center justify-between">
-                                {/* <span>Price : {item.price}</span> */}
-                                <p className="text-sm">Quantity</p>
-                                
-                                <div className="flex items-center gap-2">
-                                    <button
-                                    onClick={() => decreaseQuantity(item.productId)}
+                            )}
+                            {filteredOrderDetails.length > 0 && filteredOrderDetails.map((item, index) => (
+                                <div key={index}  style={{
+                                    backgroundColor : color.cardBgColor,
+                                  }}
+                                   className="border rounded-md px-2 py-2  border-gray-600 w-full shadow-md space-y-2">
                                     
-                                    >
-                                        <Minus className="w-4 h-4 text-white bg-black hover:bg-slate-400"/>
+                                    <div className="flex items-center justify-between ">
+                                        <p className="text-sm font-semibold">{item.productName} </p> 
+                                     <button className="item-centers justify-end"
+                                        onClick={() => deleteItem(index)} > <FaTrash  className="text-[#ef4444] w-3 h-3"/>
                                     </button>
-
-                                    <span className="text-sm">{item.quantity}</span>
-
-                                    <button
-                                    onClick={() => increaseQuantity(item.productId)}>
-                                        <Plus className="w-4 h-4 text-white bg-black hover:bg-slate-400"/>
-                                    </button>
-
+                                    </div>
+                                    <div className="flex items-center justify-between">
+                                    {/* <span>Price : {item.price}</span> */}
+                                    <p className="text-sm">Quantity</p>
+                                    
+                                    <div className="flex items-center gap-2">
+                                        <button
+                                        onClick={() => decreaseQuantity(item.productId)}
+                                        
+                                        >
+                                            <Minus className="w-4 h-4 text-white bg-[#131211] hover:bg-[#1c1c1c]"/>
+                                        </button>
+    
+                                        <span className="text-sm">{item.quantity}</span>
+    
+                                        <button
+                                        onClick={() => increaseQuantity(item.productId)}>
+                                            <Plus className="w-4 h-4 text-white bg-[#131211] hover:bg-[#1c1c1c]"/>
+                                        </button>
+    
+                                    </div>
+                                    </div>
+                                    <div className="flex items-center justify-between">
+                                       <div className="flex items-center gap-3">
+                                        <p className="text-sm">${item.price}</p>
+                                        <p className="text-sm text-green-400">x {item.quantity}</p>
+                                       </div>
+                                        <p className="font-semibold text-sm" >${item.price * item.quantity}</p>
+                                    </div>
+                                    {/* <p className="mb-2" > Total : {item.price * item.quantity} 
+                                  
+                                    </p> */}
+                                   
                                 </div>
+                            ))}
+                        </div>
+    
+                        <div
+                         style ={{backgroundColor :  color.bgColor
+    
+                         }}
+                        className="  flex flex-col w-full rounded-sm">
+                            <div className="border-b border-t  border-[#3d3636] w-[52] py-2 space-y-3">
+                                <div className="flex items-center justify-between">
+                                    <h3 className="text-sm ">SubTotal</h3>
+                                    <p className="text-sm font-semibold ">${subtotal.toFixed(2)}</p>
                                 </div>
                                 <div className="flex items-center justify-between">
-                                   <div className="flex items-center gap-3">
-                                    <p className="text-sm">${item.price}</p>
-                                    <p className="text-sm text-green-400">x {item.quantity}</p>
-                                   </div>
-                                    <p className="font-semibold text-sm" >${item.price * item.quantity}</p>
+                                    <h3 className="text-sm">Discount sales</h3>
+                                    <p className="text-sm font-semibold">${discountAmount.toFixed(2)}</p>
                                 </div>
-                                {/* <p className="mb-2" > Total : {item.price * item.quantity} 
-                              
-                                </p> */}
-                               
+                                <div className="flex items-center justify-between">
+                                    <h3 className="text-sm">Total sales tax</h3>
+                                    <p className="text-sm font-semibold">${taxAmount.toFixed(2)}</p>
+                                </div>
                             </div>
-                        ))}
-                    </div>
-
-                    <div
-                     style ={{backgroundColor :  color.bgColor
-
-                     }}
-                    className="  flex flex-col w-full rounded-sm">
-                        <div className="border-b border-t  border-[#3d3636] w-[52] py-2 space-y-3">
-                            <div className="flex items-center justify-between">
-                                <h3 className="text-sm ">SubTotal</h3>
-                                <p className="text-sm font-semibold ">${subtotal.toFixed(2)}</p>
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <h3 className="text-sm">Discount sales</h3>
-                                <p className="text-sm font-semibold">${discountAmount.toFixed(2)}</p>
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <h3 className="text-sm">Total sales tax</h3>
-                                <p className="text-sm font-semibold">${taxAmount.toFixed(2)}</p>
+                            <div className="mt-2">
+                                <div className="flex items-center justify-between">
+                                    <h3 className="">Total</h3>
+                                    <h3 className="font-semibold">${totalAmount.toFixed(2)}</h3>
+                                </div>
+                                <button className={`${filteredOrderDetails.length > 0 ? 'bg-blue-600 hover:bg-blue-700 text-white' :
+                                'bg-[#3d385e] hover:bg-none text-gray-400 cursor-default'} mb-2 mr-10 w-full py-2 rounded-md  mt-3`}onClick={handlePayNow}>Pay now
+                                </button>
                             </div>
                         </div>
-                        <div className="mt-2">
-                            <div className="flex items-center justify-between">
-                                <h3 className="">Total</h3>
-                                <h3 className="font-semibold">${totalAmount.toFixed(2)}</h3>
-                            </div>
-                            <button className={`${filteredOrderDetails.length > 0 ? 'bg-blue-600 hover:bg-blue-700' :'bg-[#3d385e] hover:bg-none cursor-default'}   text-white mb-2 mr-10 w-full py-2 rounded-md  mt-3`}onClick={handlePayNow}>Pay now
-                            </button>
-                        </div>
                     </div>
-                </div>
+                )
+               }
                 
             </section>
         </div>
