@@ -61,14 +61,22 @@ export const OrderDetailsSkeleton = () => {
           className="  flex flex-col w-full rounded-sm">
               <div className="w-[52] py-2 space-y-3">
                   <div className="flex items-center justify-between">
+                    <h3 className="text-sm  text-slate-200">SubTotal</h3>
+                    <p className="text-sm font-semibold text-slate-200">$gg</p>
                   </div>
                   <div className="flex items-center justify-between">
+                    <h3 className="text-sm text-slate-200">Discount sales</h3>
+                    <p className="text-sm  text-slate-200 font-semibold">$gg</p>
                   </div>
                   <div className="flex items-center justify-between">
+                    <h3 className="text-sm text-slate-200">Discount sales</h3>
+                    <p className="text-sm font-semibold text-slate-200">$gg</p>
                   </div>
               </div>
               <div className="mt-2">
                   <div className="flex items-center justify-between">
+                    <h3 className="text-sm text-slate-200">Discount sales</h3>
+                    <p className="text-sm font-semibold text-slate-200">$gg</p>
                   </div>
                   <button className='mb-2 mr-10 w-full py-2 rounded-md  mt-3'></button>
               </div>
