@@ -25,8 +25,8 @@ const Allproducts = ({ datas, loading, addToOrder }) => {
                 <div key={data.productId} style={{
                   backgroundColor : color.cardBgColor,
                 }} className="w-[262px] min-h-[130px] p-2 bg-gray-700 space-y-3 border border-gray-700 rounded-md " >
-                    <div className="flex items-center justify-between text-xs text-gray-200">
-                        <p className='bg-blue-400 px-2 py-1 rounded'>{data.productCode}</p>
+                    <div className="flex items-center justify-between text-xs">
+                        <p className='bg-blue-400 px-2 text-white py-1 rounded'>{data.productCode}</p>
                         <span className='flex bg-[#131211] text-xs px-2 py-2 text-white rounded-md h-8   w-[25%] pointer hover:bg-[#1c1c1c] cursor-pointer' onClick={() => handleClick(data)} >
                           Add <FaPlus className='ml-3 w-3 h-3'/></span>
                     </div>
