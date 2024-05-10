@@ -237,7 +237,8 @@ const AddNewInvoice = () => {
                                 <h3 className="">Total</h3>
                                 <h3 className="font-semibold">${totalAmount.toFixed(2)}</h3>
                             </div>
-                            <button className="bg-blue-600 hover:bg-blue-700  text-white mb-2 mr-10 w-full py-2 rounded-md  mt-3" onClick={handlePayNow}>Pay now</button>
+                            <button className={`${filteredOrderDetails.length > 0 ? 'bg-blue-600 hover:bg-blue-700' :'bg-[#3d385e] hover:bg-none cursor-default'}   text-white mb-2 mr-10 w-full py-2 rounded-md  mt-3`}onClick={handlePayNow}>Pay now
+                            </button>
                         </div>
                     </div>
                 </div>
