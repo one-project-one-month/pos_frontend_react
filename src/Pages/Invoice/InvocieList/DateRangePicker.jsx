@@ -74,9 +74,10 @@ const DateRangePickers = ({click,setClick,loading,date,setDate,datRef}) => {
     );
   }, [click]);
 
-const monthYearWrapper = document.querySelector(".rdrMonthAndYearWrapper"); // Descriptive name
+const monthYearWrapper = document.querySelector(".rdrMonthAndYearWrapper");
+const daysWrapper = document.querySelector(".rdrDays")
 
-function changeButtonColor(buttons,newColor) {
+function changeButtonColor(buttons,days,newColor) {
   if (!buttons) {
     console.error("Button elements not found.");
     return; // Exit function if no buttons found
@@ -87,19 +88,25 @@ function changeButtonColor(buttons,newColor) {
     buttons[0].firstChild.style.backgroundColor = newColor
     buttons[1].firstChild.style.backgroundColor = newColor
   });
+  days.forEach(day => {
+    day.firstChild.style.color = newColor
+  });
 }
 
 useEffect(() => {
   if (monthYearWrapper && click) {
     const buttonElements = monthYearWrapper.querySelectorAll(".rdrNextPrevButton");
-    console.log(buttonElements[1]);
+    const daysElements = daysWrapper.querySelectorAll(".rdrDayNumber")
+    // console.log(buttonElements[1]);
+    const gg = daysWrapper.querySelectorAll(".rdrDayToday");
+   gg.forEach(g => console.log(typeof g.firstChild.firstChild.innerHTML));
 
     if (!buttonElements) {
       console.error("Next/Prev buttons not found within month/year wrapper.");
       return; // Exit function if buttons not found within wrapper
     }
 
-    changeButtonColor(buttonElements,"rgb(229,231,235)");
+    changeButtonColor(buttonElements,daysElements,"rgb(229,231,235)");
   } else {
     console.error("Parent element not found or 'click' state not set.");
   }
