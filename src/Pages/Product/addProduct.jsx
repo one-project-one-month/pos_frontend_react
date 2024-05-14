@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const AddCategory = () => {
+const AddProduct = () => {
   const [newCategory, setNewCategory] = useState({
     
     productCode: "",
@@ -88,4 +88,4 @@ const AddCategory = () => {
   );
 };
 
-export default AddCategory;
+export default AddProduct;

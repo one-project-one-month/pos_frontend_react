@@ -170,7 +170,7 @@ const Shop = () => {
           <li className='w-full text-right'>
             <Link
               to={'/general/shops/newshop'}
-              className='py-2.5 px-5 text-sm font-medium text-white focus:outline-none bg-[#9055fd] rounded-lg  hover:bg-[#9055fd] hover:text-white focus:z-10 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-[#9055fd] transition-all dark:text-[#ecebeb] dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700'
+              className='py-2.5 px-5 text-sm font-medium text-white focus:outline-none bg-blue-500 rounded-lg  hover:bg-blue-700 hover:text-white focus:z-10 focus:ring-gray-100  '
             >
               Add New Shop
             </Link>
