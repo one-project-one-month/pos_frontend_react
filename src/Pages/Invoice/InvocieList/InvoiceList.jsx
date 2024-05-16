@@ -28,6 +28,7 @@ const InvoiceList = () => {
           key: 'selection'
         }
       ]);
+      console.log(date[0].endDate);
 
       const datRef = useRef(null)
 

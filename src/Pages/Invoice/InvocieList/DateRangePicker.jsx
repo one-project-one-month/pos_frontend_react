@@ -24,7 +24,7 @@ const DateRangePickers = ({click,setClick,loading,date,setDate,datRef}) => {
     };
 
   const currentStartDate = date[0].startDate.toLocaleDateString('en', options);
-  const currentEndDate = date[0].endDate.toLocaleDateString('en', options);
+  const currentEndDate = date[0]?.endDate.toLocaleDateString('en', options);
   
   function changeCssValue(parent, propertyName, newValue) {
     if (!parent || !parent.childNodes || parent === exceptEl) {
@@ -98,8 +98,6 @@ useEffect(() => {
     const buttonElements = monthYearWrapper.querySelectorAll(".rdrNextPrevButton");
     const daysElements = daysWrapper.querySelectorAll(".rdrDayNumber")
     // console.log(buttonElements[1]);
-    const gg = daysWrapper.querySelectorAll(".rdrDayToday");
-   gg.forEach(g => console.log(typeof g.firstChild.firstChild.innerHTML));
 
     if (!buttonElements) {
       console.error("Next/Prev buttons not found within month/year wrapper.");
