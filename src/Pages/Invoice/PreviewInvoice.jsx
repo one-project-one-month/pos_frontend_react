@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import moment from "moment";
+import animation from '../../assets/animation.json'
+import { Player } from '@lottiefiles/react-lottie-player';
 
 const PreviewInvoice = () => {
   const { saleInvoiceId } = useParams();
@@ -46,8 +48,14 @@ const PreviewInvoice = () => {
     <div id="invoice-preview" className="bg-transparent top-[70px] overflow-y-hidden bg-[#312d4b] shadow-md absolute w-[80%] right-0 p-10 h-[91vh]">
       <div className="flex flex-col items-center justify-center w-full ">
         {loading ? (
-          <div className="flex flex-col justify-center w-1/2 h-[450px] p-10 text-black bg-white rounded-md invoice-preview">
-
+          <div className="flex items-center justify-center w-full h-full">
+            <Player
+            autoplay
+            loop
+            src={animation}
+            style={{ height: '300px', width: '300px' }}
+            >
+           </Player>
           </div>
         ) : (
           <div
@@ -140,9 +148,11 @@ const PreviewInvoice = () => {
               <h3 className="text-center mt-3">Thank you so much for buying from us</h3>
             </div>
         )}
-        <button className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded mt-5" onClick={handlePrint}>
+        {!loading && (
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5" onClick={handlePrint}>
           Print
         </button>
+        )}
       </div>
     </div>
   );

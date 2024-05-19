@@ -46,7 +46,6 @@ const AddNewInvoice = () => {
         } 
      
      }
- 
     const searchHandler = () => {
         navigate("/invoice/add?search=" + productName);
     };

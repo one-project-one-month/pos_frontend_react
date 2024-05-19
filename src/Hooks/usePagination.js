@@ -1,11 +1,10 @@
-import React from 'react'
 import { useState } from 'react';
 
 const usePagination = (filteredData,itemsPerPage) => {
 
   const [currentPage, setCurrentPage] = useState(0);
 
-  const totalPages = Math.floor(filteredData.length / itemsPerPage);
+  const totalPages = filteredData.length < 8 ? 1 : Math.floor(filteredData.length / itemsPerPage);
 
   const startIndex = currentPage * itemsPerPage;
 
@@ -14,7 +13,9 @@ const usePagination = (filteredData,itemsPerPage) => {
   const slicedData = filteredData.slice(startIndex, endIndex);
 
   const clickNext = () => {
-    setCurrentPage(prevPage =>prevPage + 1);
+   if(currentPage+1 !== totalPages){
+    setCurrentPage(prevPage => prevPage + 1)
+   }
 };
 
 const clickPrev = () => {

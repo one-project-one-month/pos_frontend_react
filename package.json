@@ -10,8 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@chec/commerce.js": "^2.8.0",
+    "@chec/commerce.js": "^1.0.0",
     "@kurkle/color": "^0.3.2",
+    "@lottiefiles/react-lottie-player": "^3.5.3",
     "@mdi/js": "^7.4.47",
     "@mdi/react": "^1.6.1",
     "@reduxjs/toolkit": "^2.2.3",
